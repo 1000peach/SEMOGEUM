@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+            integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+            crossorigin="anonymous"
+        />
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
+            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
+            integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+            crossorigin="anonymous"
+        ></script>
+        <title><%= title %></title>
+    </head>
+    <style>
+        @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+        html,
+        body {
+            font-family: 'NanumSquare', sans-serif;
+            height: 100%;
+        }
+        nav {
+            height: 100%;
+            width: 250px;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+        }
+        #logo div {
+            margin: 0 auto;
+        }
+        a {
+            color: white;
+            height: 50px;
+            font-size: 18px;
+            display: block;
+        }
+        button {
+            color: white;
+            height: 50px;
+            background: none;
+        }
+        p,
+        h4 {
+            color: white;
+        }
+        #userdiv {
+            padding: 10px 10px;
+        }
+        .usermenu {
+            height: 25px;
+            font-size: 16px;
+        }
+        .submenu {
+            height: 30px;
+            font-size: 16px;
+        }
+        button:hover,
+        a:hover {
+            color: #b2ccff;
+            text-decoration: none;
+        }
+        #first,
+        #second,
+        #third {
+            padding: 0 14px;
+        }
+    </style>
+    <nav id="nav" class="bg-primary">
+        <div id="logo" style="width: 100%; height: 150px; display: flex; flex-direction: column;">
+            <div style="width: 220px; display: flex; height: 90px; padding: 10px 0px;">
+                <img src="http://placehold.it/220x80" class="d-inline-block align-top" alt="세모금 로고" />
+            </div>
+            <p class="mx-auto d-block" style="font-size: 16px;">세상의 모든 금손</p>
+        </div>
+        <div id="userdiv" style="height: 200px; padding: 30px;">
+            <h4 style="margin-bottom: 20px;">
+                이현서님,<br />
+                환영합니다.
+            </h4>
+            <a class="usermenu" href="#">마이페이지</a>
+            <a class="usermenu" href="#">공지사항</a>
+        </div>
+        <div style="padding: 10px 10px; display: flex; flex-direction: column;">
+            <button type="button" class="btn text-left" data-toggle="collapse" data-target="#first" style="font-size: 19px;">한 모금,</button>
+            <div id="first" class="collapse in">
+                <a class="submenu" href="#"><img src="images/rank.png" width="27" height="27" />이 달의 상품</a>
+                <a class="submenu" href="#"><img src="images/rank.png" width="27" height="27" />랭킹</a>
+            </div>
+            <button type="button" class="btn text-left" data-toggle="collapse" data-target="#second" style="font-size: 19px;">두 모금,</button>
+            <div id="second" class="collapse in">
+                <a class="submenu" href="#"><img src="images/rank.png" width="27" height="27" />상품 선정 결과</a>
+                <a class="submenu" href="#"><img src="images/rank.png" width="27" height="27" />명예의 전당</a>
+            </div>
+            <button type="button" class="btn text-left" data-toggle="collapse" data-target="#third" style="font-size: 19px;">세 모금,</button>
+            <div id="third" class="collapse in">
+                <a class="submenu" href="#"><img src="images/rank.png" width="27" height="27" />판매 상품</a>
+                <a class="submenu" href="#"></a>
+            </div>
+        </div>
+    </nav>
+</html>

@@ -1,0 +1,4 @@
+# SEMOGEUM IGNORE
+.vscode
+bin
+package.json
