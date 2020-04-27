@@ -1,59 +1,61 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('static-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+/*
+    내외부 모듈 추출
+*/
+const express = require('express');
+const app = express();
+const path = require('path');
+const favicon = require('static-favicon');
+const logger = require('morgan');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
+/*
+    라우팅
+*/
+const routes = require('./routes/main'); // index.js가 메인화면이니까 main.js로 바꿈 -> 읽으면 주석 삭제 바람
+const users = require('./routes/users');
 
-var app = express();
+/*
+    포트주소 설정(변수화하면 나중에 편해서)
+*/
+const port = 3000;
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+/*
+    포트번호를 외부 모듈로 빼기
+*/
+module.exports.port = port; // 이렇게 빼면 다른 파일들에서 require로 불러온 후에 객체에 접근하는 방식으로 사용가능(user_chat.ejs 참고)
 
+/*
+    실행환경 설정부분
+*/
+app.set('views', path.join(__dirname, 'views')); // views 경로 설정(ejs파일이 있는곳을 'views'로 가리킴)
+app.set('view engine', 'ejs'); // view  엔진 지정(ejs)
+
+app.use(express.static(path.join(__dirname, 'public'))); // 정적 위치 public을 다루기 위한 소스코드
 app.use(favicon());
 app.use(logger('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded());
+app.use(express.json()); // bodyParser.json() 대신에 사용
+app.use(express.urlencoded({ extended: false })); // express 4.16.0버전부터는 bodyParser 필요없이(아래문장 필요X) express로 사용가능!
+app.use(bodyParser.urlencoded({ extended: false })); // express 4.16.0버전부터는 이 문장이 필요 없다.(지워도 됨)
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(
+    session({
+        key: 'sid',
+        secret: 'secret key', // 세션id 암호화할때 사용
+        resave: false, // 접속할때마다 id부여금지
+        saveUninitialized: true, // 세션id사용전에는 발급금지
+    })
+);
 
-app.use('/', routes);
-app.use('/users', users);
+/*
+    URI와 핸들러를 매핑
+*/
+app.use('/', routes); // URI (/) 접속하면 main.js로 라우팅
+app.use('/users', users); // URI (/users) 접속하면 users.js로 라우팅
 
-/// catch 404 and forwarding to error handler
-app.use(function(req, res, next) {
-    var err = new Error('Not Found');
-    err.status = 404;
-    next(err);
+// 서버 실행
+app.listen(port, function () {
+    console.log('서버실행: http://localhost:' + port);
 });
-
-/// error handlers
-
-// development error handler
-// will print stacktrace
-if (app.get('env') === 'development') {
-    app.use(function(err, req, res, next) {
-        res.status(err.status || 500);
-        res.render('error', {
-            message: err.message,
-            error: err
-        });
-    });
-}
-
-// production error handler
-// no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-        message: err.message,
-        error: {}
-    });
-});
-
 
 module.exports = app;
