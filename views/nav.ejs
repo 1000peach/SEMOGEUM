@@ -9,12 +9,6 @@
             integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
             crossorigin="anonymous"
         />
-        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"
-            integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-            crossorigin="anonymous"
-        ></script>
         <script
             src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
@@ -24,98 +18,91 @@
     </head>
     <style>
         @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+        * {
+            box-sizing: border-box;
+        }
         html,
         body {
             font-family: 'NanumSquare', sans-serif;
             height: 100%;
         }
+        /* colum 방향 정렬 */
+        .col-div {
+            display: flex;
+            flex-direction: column;
+        }
         nav {
             height: 100%;
             width: 250px;
             cursor: pointer;
-            display: flex;
-            flex-direction: column;
             overflow-y: auto;
+            background-color: #111111;
         }
-        #logo div {
-            margin: 0 auto;
+        /* 로그인 메뉴 */
+        #login-menu {
+            display: flex;
+            justify-content: space-between;
+            padding: 0 10px;
         }
-        a {
-            color: white;
-            height: 50px;
-            font-size: 18px;
-            display: block;
-        }
-        button {
-            color: white;
-            height: 50px;
-            background: none;
-        }
-        p,
-        h4 {
-            color: white;
-        }
-        #userdiv {
-            padding: 10px 10px;
-        }
-        .usermenu {
+        #login-menu a {
+            width: 50%;
+            text-align: center;
+            font-size: 14px;
             height: 25px;
-            font-size: 16px;
         }
-        .submenu {
-            height: 30px;
-            font-size: 16px;
+        /* 페이지 메뉴 */
+        #page-menu a {
+            padding: 15px;
+            width: 100%;
+            height: 60px;
+            font-size: 19px;
         }
+        /* 특정 메뉴 마우스 오버 시 */
         button:hover,
-        a:hover {
+        #login-menu a:hover,
+        p:hover {
             color: #b2ccff;
             text-decoration: none;
         }
-        #first,
-        #second,
-        #third {
-            padding: 0 14px;
+        /* 페이지 메뉴 마우스 오버 시 */
+        #page-menu a:hover {
+            background-image: linear-gradient(to right, #80d4ff, #cc66ff);
+            text-decoration: none;
+            color: white;
+        }
+        /* 기본 태그 설정 */
+        p,
+        h4,
+        h5,
+        a,
+        button {
+            color: white;
+        }
+        button {
+            cursor: pointer;
+            border: none;
+            outline: 0;
+            height: 60px;
+            background: none;
         }
     </style>
-    <nav id="nav" class="bg-primary">
-        <div id="logo" style="width: 100%; height: 150px; display: flex; flex-direction: column;">
-            <div style="width: 220px; display: flex; height: 90px; padding: 10px 0px;">
-                <img src="http://placehold.it/220x80" class="d-inline-block align-top" alt="세모금 로고" />
-            </div>
-            <p class="mx-auto d-block" style="font-size: 16px;">세상의 모든 금손</p>
+    <nav id="nav" class="col-div">
+        <div id="logo" class="col-div" style="width: 100%; height: 200px;">
+            <img src="http://placehold.it/220x80" alt="세모금 로고" width="220" height="80" style="margin: 10px auto;" />
+            <p class="mx-auto d-block">세상의 모든 금손</p>
         </div>
-        <div id="userdiv" style="height: 200px; padding: 30px;">
-            <h4 style="margin-bottom: 20px;">
-<<<<<<< HEAD
-<<<<<<< HEAD
-                민지엑흐,<br />
-=======
-                천승아님,<br />
->>>>>>> 261f0ecfab681e9cd8efc55bc784275c1138b6eb
-=======
-                민지엑흐,<br />
->>>>>>> ef13b8f0422dd60c7e709bfffc9a861f4f0d7178
-                환영합니다.
-            </h4>
-            <a class="usermenu" href="#">마이페이지</a>
-            <a class="usermenu" href="#">공지사항</a>
+        <div id="userdiv" style="height: 200px; padding: 20px;">
+            <h5 class="text-center" style="margin-bottom: 20px;">
+                민지엑흐님 환영합니다.
+            </h5>
+            <div id="login-menu">
+                <a href="#">마이페이지</a>
+                <a href="#">공지사항</a>
+            </div>
         </div>
-        <div style="padding: 10px 10px; display: flex; flex-direction: column;">
-            <button type="button" class="btn text-left" data-toggle="collapse" data-target="#first" style="font-size: 19px;">한 모금,</button>
-            <div id="first" class="collapse in">
-                <a class="submenu" href="#"><img src="images/rank.png" width="27" height="27" />이 달의 상품</a>
-                <a class="submenu" href="#"><img src="images/rank.png" width="27" height="27" />랭킹</a>
-            </div>
-            <button type="button" class="btn text-left" data-toggle="collapse" data-target="#second" style="font-size: 19px;">두 모금,</button>
-            <div id="second" class="collapse in">
-                <a class="submenu" href="#"><img src="images/rank.png" width="27" height="27" />상품 선정 결과</a>
-                <a class="submenu" href="#"><img src="images/rank.png" width="27" height="27" />명예의 전당</a>
-            </div>
-            <button type="button" class="btn text-left" data-toggle="collapse" data-target="#third" style="font-size: 19px;">세 모금,</button>
-            <div id="third" class="collapse in">
-                <a class="submenu" href="#"><img src="images/rank.png" width="27" height="27" />판매 상품</a>
-                <a class="submenu" href="#"></a>
-            </div>
+        <div id="page-menu" class="col-div">
+            <a href="#"><img src="images/rank.png" width="27" height="27" />&nbsp;한 모금, 투표하기</a>
+            <a href="#"><img src="images/rank.png" width="27" height="27" />&nbsp;두 모금, 선정결과</a>
+            <a href="#"><img src="images/rank.png" width="27" height="27" />&nbsp;세 모금, 구매하기</a>
         </div>
     </nav>
-</html>
