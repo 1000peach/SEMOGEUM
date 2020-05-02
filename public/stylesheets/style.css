@@ -1,3 +1,72 @@
 a {
     color: #00b7ff;
 }
+
+@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
+* {
+    box-sizing: border-box;
+}
+html,
+body {
+    font-family: 'NanumSquare', sans-serif;
+    height: 100%;
+}
+/* colum 방향 정렬 */
+.col-div {
+    display: flex;
+    flex-direction: column;
+}
+nav {
+    height: 100%;
+    width: 250px;
+    cursor: pointer;
+    overflow-y: auto;
+    background-color: #111111;
+}
+/* 로그인 메뉴 */
+#login-menu {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 10px;
+}
+#login-menu a {
+    width: 50%;
+    text-align: center;
+    font-size: 14px;
+    height: 25px;
+}
+/* 페이지 메뉴 */
+#page-menu a {
+    padding: 15px;
+    width: 100%;
+    height: 60px;
+    font-size: 19px;
+}
+/* 특정 메뉴 마우스 오버 시 */
+button:hover,
+#login-menu a:hover,
+p:hover {
+    color: #b2ccff;
+    text-decoration: none;
+}
+/* 페이지 메뉴 마우스 오버 시 */
+#page-menu a:hover {
+    background-image: linear-gradient(to right, #80d4ff, #cc66ff);
+    text-decoration: none;
+    color: white;
+}
+/* 기본 태그 설정 */
+p,
+h4,
+h5,
+a,
+button {
+    color: white;
+}
+button {
+    cursor: pointer;
+    border: none;
+    outline: 0;
+    height: 60px;
+    background: none;
+}

@@ -9,6 +9,7 @@ const router = express.Router();
 
 const getMainUi = (req, res) => {
     let mainStream = '';
+    mainStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
     mainStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
     mainStream += fs.readFileSync(__dirname + '/../views/main.ejs', 'utf8');
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
