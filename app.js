@@ -8,6 +8,7 @@ const favicon = require('static-favicon');
 const logger = require('morgan');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
+const sessionParser = require('express-session');
 
 /*
     라우팅
@@ -39,7 +40,7 @@ app.use(express.urlencoded({ extended: false })); // express 4.16.0버전부터�
 app.use(bodyParser.urlencoded({ extended: false })); // express 4.16.0버전부터는 이 문장이 필요 없다.(지워도 됨)
 app.use(cookieParser());
 app.use(
-    session({
+    sessionParser({
         key: 'sid',
         secret: 'secret key', // 세션id 암호화할때 사용
         resave: false, // 접속할때마다 id부여금지
