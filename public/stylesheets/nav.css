@@ -18,10 +18,16 @@ body {
 }
 nav {
     height: 100%;
-    width: 250px;
+    min-width: 250px;
     cursor: pointer;
     overflow-y: auto;
     background-color: #111111;
+}
+/* md 기준보다 브라우저 크기 작으면 nav 사라짐 */
+@media screen and (max-width: 768px) {
+    #nav {
+        display: none;
+    }
 }
 /* 로그인 메뉴 */
 #login-menu {
@@ -73,7 +79,6 @@ p:hover {
 }
 /* 기본 태그 설정 */
 p,
-h4,
 h5,
 a,
 button,
