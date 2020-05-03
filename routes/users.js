@@ -16,6 +16,9 @@ const db = mysql.createConnection({
     database: 'semogeum', //사용할 DB명
 });
 
+/*********************************************************** */
+/************************ 회원가입 기능 ***********************/
+/*********************************************************** */
 /*
     회원가입 페이지를 출력합니다.
 */
@@ -63,27 +66,19 @@ const handleSignUp = (req, res) => {
                     } else {
                         // 회원가입 성공시
                         console.log('Insertion into DB was completed!');
-
-                        let signUpSuccessStream = '';
-                        signUpSuccessStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
-                        signUpSuccessStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
-                        //signUpSuccessStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
-
-                        res.status(562).end(
-                            ejs.render(signUpSuccessStream, {
-                                title: '회원가입 완료',
-                            })
-                        );
+                        res.redirect('/');
                     }
                 }); // db.query();
             } else {
                 let handleSignUpErrorStream = '';
                 handleSignUpErrorStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
+                handleSignUpErrorStream += fs.readFileSync(__dirname + '/../views/error.ejs', 'utf8');
                 //handleSignUpErrorStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
 
                 res.status(562).end(
                     ejs.render(handleSignUpErrorStream, {
                         title: '회원가입 에러',
+                        errorMessage: '회원가입을 처리하는 도중'
                     })
                 );
             }
@@ -91,6 +86,9 @@ const handleSignUp = (req, res) => {
     });
 };
 
+/*********************************************************** */
+/************************* 로그인 기능 ************************/
+/*********************************************************** */
 /*
     로그인 화면을 출력합니다.
 */
@@ -118,13 +116,14 @@ const handleLogin = (req, res) => {
     let handleLoginErrorStream = '';
 
     handleLoginErrorStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
-    handleLoginErrorStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
+    handleLoginErrorStream += fs.readFileSync(__dirname + '/../views/error.ejs', 'utf8');
     //handleLoginErrorStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
 
     if (body.userId == '' || body.userPwd == '') {
         res.status(562).end(
             ejs.render(handleLoginErrorStream, {
                 title: '로그인 에러',
+                errorMessage: '로그인을 처리하는 도중'
             })
         );
         console.log('아이디나 암호가 입력되지 않아서 로그인할 수 없습니다.');
@@ -136,6 +135,7 @@ const handleLogin = (req, res) => {
                 res.status(562).end(
                     ejs.render(handleLoginErrorStream, {
                         title: '로그인 에러',
+                        errorMessage: '로그인을 처리하는 도중'
                     })
                 );
                 console.log(error);
@@ -145,6 +145,7 @@ const handleLogin = (req, res) => {
                     res.status(562).end(
                         ejs.render(handleLoginErrorStream, {
                             title: '로그인 에러',
+                            errorMessage: '로그인을 처리하는 도중'
                         })
                     );
                     console.log('등록된 아이디가 존재하지 않습니다.');
@@ -157,17 +158,18 @@ const handleLogin = (req, res) => {
                         userPwd = userData.userPwd;
                         userName = userData.userName;
 
-                        console.log('DB에서 로그인성공한 ID/암호 : %s/%s', userId, userPwd);
+                        console.log('로그인 성공 ID/암호 : %s/%s', userId, userPwd);
 
                         // 로그인이 성공한 경우
                         if (body.userId == userId && body.userPwd == userPwd) {
                             req.session.auth = 99; // 임의로 수(99)로 로그인성공했다는 것을 설정함
                             req.session.userId = userId;
                             req.session.who = userName; // 인증된 사용자명 확보 (로그인후 이름출력용)
-
-                            if (body.userId == 'admin')
+                            console.log('userName:', req.session.who);
+                            if (body.userId == 'admin') {
                                 // 만약, 인증된 사용자가 관리자(admin)라면 이를 표시
                                 req.session.admin = true;
+                            }
                             res.redirect('/');
                         }
                     });
@@ -180,11 +182,38 @@ const handleLogin = (req, res) => {
 /*
     로그아웃을 처리합니다.
 */
-const handleLogout = (req, res) => {};
+const handleLogout = (req, res) => {
+    req.session.destroy(); // 세션을 제거하여 인증오작동 문제를 해결
+    res.redirect('/'); // 로그아웃후 메인화면으로 재접속
+};
+
+/*
+    마이페이지를 출력합니다.
+*/
+const getMyPage = (req, res) => {
+    let myPageStream = '';
+    myPageStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
+    myPageStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
+    myPageStream += fs.readFileSync(__dirname + '/../views/myPage.ejs', 'utf8');
+    //myPageStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
+
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
+    res.end(
+        ejs.render(myPageStream, {
+            title: '마이페이지',
+            userName: req.session.who,
+            signUpUrl: '/users/myPage',
+            signUpLabel: '마이페이지',
+            loginUrl: '/users/logout',
+            loginLabel: '로그아웃',
+        })
+    );
+};
 
 router.get('/signUp', getSignUpPage);
 router.get('/login', getLoginPage);
 router.get('/logout', handleLogout);
+router.get('/myPage', getMyPage);
 
 router.post('/signUp', handleSignUp);
 router.post('/login', handleLogin);
