@@ -92,3 +92,7 @@ button {
     height: 60px;
     background: none;
 }
+/* 이름 색상 꾸미기 위함 */
+#page-userName {
+    color: #80d4ff;
+}

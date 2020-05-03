@@ -6,14 +6,13 @@
         </div>
         <div id="userdiv" style="height: 200px; padding: 20px;">
             <h5 class="text-center" style="margin-bottom: 20px;">
-                민지엑흐님 환영합니다.
+                <span id="page-userName"><%= userName %></span>님 환영합니다.
             </h5>
             <div id="login-menu">
-                <a href="/users/signUp">회원가입</a>
-                <a href="/users/login">로그인</a>
+                <a href='<%= signUpUrl %>'><%= signUpLabel %></a>
+                <a href='<%= loginUrl %>'><%= loginLabel %></a>
             </div>
             <div id="login-menu">
-                <a href="#">마이페이지</a>
                 <a href="#">공지사항</a>
             </div>
         </div>

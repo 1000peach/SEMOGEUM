@@ -22,6 +22,7 @@
         <link rel="stylesheet" type="text/css" href="/stylesheets/login/vendor/animsition/css/animsition.min.css">
         <link rel="stylesheet" type="text/css" href="/stylesheets/login/vendor/select2/select2.min.css">
         <link rel="stylesheet" type="text/css" href="/stylesheets/login/vendor/daterangepicker/daterangepicker.css"> 
+
         <script src="/stylesheets/login/vendor/animsition/js/animsition.min.js"></script>
         <script src="/stylesheets/login/vendor/select2/select2.min.js"></script>
         <script src="/stylesheets/login/vendor/daterangepicker/moment.min.js"></script>
@@ -29,47 +30,16 @@
         <script src="/stylesheets/login/vendor/countdowntime/countdowntime.js"></script>
         <script src="/stylesheets/login/js/main.js"></script>
         
+        
         <!-- 회원가입 템플릿 연동 -->
         <link rel="stylesheet" type="text/css" href="/stylesheets/signup/css/opensans-font.css">
         <link rel="stylesheet" type="text/css" href="/stylesheets/signup/css/line-awesome.min.css">
         <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css">
         <link rel="stylesheet" href="/stylesheets/signup/css/style.css"/>
-        <script>
-            // just for the demos, avoids form submit
-            jQuery.validator.setDefaults({
-                debug: true,
-                success:  function(label){
-                    label.attr('id', 'valid');
-                },
-            });
-            $( "#myform" ).validate({
-                rules: {
-                    your_email: {
-                        required: true,
-                        email: true
-                    },
-                    password: "required",
-                    comfirm_password: {
-                        equalTo: "#password"
-                    }
-                },
-                messages: {
-                    username: {
-                        required: "Please enter an username"
-                    },
-                    your_email: {
-                        required: "Please provide an email"
-                    },
-                    password: {
-                        required: "Please provide a password"
-                    },
-                    comfirm_password: {
-                        required: "Please provide a password",
-                        equalTo: "Wrong Password"
-                    }
-                }
-            });
-        </script>
+
+        <!-- 에러페이지 템플릿 연동 -->
+        <link href="https://fonts.googleapis.com/css?family=Maven+Pro:400,900" rel="stylesheet">
+        <link type="text/css" rel="stylesheet" href="/stylesheets/errorPage/css/style.css" />
     
         <title><%= title %></title>
     </head>

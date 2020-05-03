@@ -43,7 +43,7 @@ app.use(cookieParser());
 app.use(
     sessionParser({
         key: 'sid',
-        secret: 'secret key', // 세션id 암호화할때 사용
+        secret: '!@#$%^asdf!@#$^', // 세션id 암호화할때 사용
         resave: false, // 접속할때마다 id부여금지
         saveUninitialized: true, // 세션id사용전에는 발급금지
     })
@@ -56,8 +56,8 @@ app.use('/', routes); // URI (/) 접속하면 main.js로 라우팅
 app.use('/users', users); // URI (/users) 접속하면 users.js로 라우팅
 
 // 서버 실행
-app.listen(port, function () {
-    console.log('서버실행: http://localhost:' + port);
-}); 
+// app.listen(port, function () {
+//     console.log('서버실행: http://localhost:' + port);
+// }); 
 
 module.exports = app;
