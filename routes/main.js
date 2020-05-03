@@ -1,19 +1,9 @@
 const express = require('express');
 const fs = require('fs');
 const ejs = require('ejs');
-const mysql = require('mysql');
 const router = express.Router();
-
-/* 
-    데이터베이스 연동 소스코드 
-*/
-const db = mysql.createConnection({
-    host: 'localhost', // DB서버 IP주소
-    port: 3306, // DB서버 Port주소
-    user: 'root', // DB접속 아이디
-    password: 'root', // DB암호
-    database: 'semogeum', //사용할 DB명
-});
+/* DB 연동 모듈 불러옴 */
+const db = require('./db');
 
 /*
     메인 화면을 출력합니다.
@@ -29,7 +19,7 @@ const getMainUi = (req, res) => {
 
     // if :로그인된 상태,  else : 로그인안된 상태
     if (req.session.userId) {  
-        res.end(ejs.render(mainStream,  { title : '세상의 모든 금손, 세모금',
+        res.end(ejs.render(mainStream,  { title: '세상의 모든 금손, 세모금',
                                           userName: req.session.who,
                                           signUpUrl: '/users/myPage',
                                           signUpLabel: '마이페이지',

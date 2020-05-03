@@ -1,20 +1,10 @@
 const fs = require('fs');
 const express = require('express');
 const ejs = require('ejs');
-const mysql = require('mysql');
 const bodyParser = require('body-parser');
 const router = express.Router();
-
-/* 
-    데이터베이스 연동 소스코드 
-*/
-const db = mysql.createConnection({
-    host: 'localhost', // DB서버 IP주소
-    port: 3306, // DB서버 Port주소
-    user: 'root', // DB접속 아이디
-    password: 'root', // DB암호
-    database: 'semogeum', //사용할 DB명
-});
+/* DB 연동 모듈 불러옴 */
+const db = require('./db');
 
 /*********************************************************** */
 /************************ 회원가입 기능 ***********************/
@@ -78,7 +68,7 @@ const handleSignUp = (req, res) => {
                 res.status(562).end(
                     ejs.render(handleSignUpErrorStream, {
                         title: '회원가입 에러',
-                        errorMessage: '회원가입을 처리하는 도중'
+                        errorMessage: '회원가입을 처리하는 도중',
                     })
                 );
             }
@@ -123,7 +113,7 @@ const handleLogin = (req, res) => {
         res.status(562).end(
             ejs.render(handleLoginErrorStream, {
                 title: '로그인 에러',
-                errorMessage: '로그인을 처리하는 도중'
+                errorMessage: '로그인을 처리하는 도중',
             })
         );
         console.log('아이디나 암호가 입력되지 않아서 로그인할 수 없습니다.');
@@ -135,7 +125,7 @@ const handleLogin = (req, res) => {
                 res.status(562).end(
                     ejs.render(handleLoginErrorStream, {
                         title: '로그인 에러',
-                        errorMessage: '로그인을 처리하는 도중'
+                        errorMessage: '로그인을 처리하는 도중',
                     })
                 );
                 console.log(error);
@@ -145,7 +135,7 @@ const handleLogin = (req, res) => {
                     res.status(562).end(
                         ejs.render(handleLoginErrorStream, {
                             title: '로그인 에러',
-                            errorMessage: '로그인을 처리하는 도중'
+                            errorMessage: '로그인을 처리하는 도중',
                         })
                     );
                     console.log('등록된 아이디가 존재하지 않습니다.');
