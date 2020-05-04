@@ -40,10 +40,9 @@ mark {
     width: 50px;
     margin-left: 10px;
 }
-/* sm 기준보다 브라우저 크기 작으면 d-day 사라짐 */
+/* sm 기준보다 브라우저 크기 작을 때 */
 @media screen and (max-width: 576px) {
     .d-day {
         display: none;
     }
 }
-

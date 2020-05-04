@@ -12,6 +12,7 @@ body {
     display: flex;
     flex-direction: column;
 }
+/* 세로 네비 */
 nav {
     height: 100%;
     min-width: 250px;
@@ -19,10 +20,31 @@ nav {
     overflow-y: auto;
     background-color: #111111;
 }
-/* md 기준보다 브라우저 크기 작으면 nav 사라짐 */
+#logo {
+    height: 170px;
+}
+#userdiv {
+    height: 170px;
+    padding: 20px;
+}
+/* md 기준보다 브라우저 크기 작을 때 가로 네비로 변경*/
 @media screen and (max-width: 768px) {
-    #nav {
-        display: none;
+    body {
+        flex-direction: column;
+    }
+    nav {
+        height: auto;
+        min-height: 430px;
+    }
+    #userdiv {
+        height: 100px;
+        padding: 0;
+    }
+    #page-menu a {
+        text-align: center;
+    }
+    #logo {
+        height: 150px;
     }
 }
 /* 로그인 메뉴 */
@@ -57,25 +79,15 @@ nav {
 }
 /* 페이지 메뉴 마우스 오버 시 */
 #page-menu a:hover {
-    background-image: linear-gradient(to right, #66CCFF, #cc66ff);
+    background-image: linear-gradient(to right, #66ccff, #cc66ff);
     text-decoration: none;
     color: white;
 }
 /* 기본 태그 설정 */
-#logo p,
-h5,
-#login-menu a,
-#page-menu a,
-mark,
-.notice-li a {
-    color: white;
-}
 button {
     cursor: pointer;
     border: none;
     outline: 0;
-    height: 60px;
-    background: none;
 }
 /* 이름 색상 꾸미기 위함 */
 #page-userName {
