@@ -57,15 +57,17 @@ nav {
 }
 /* 페이지 메뉴 마우스 오버 시 */
 #page-menu a:hover {
-    background-image: linear-gradient(to right, #80d4ff, #cc66ff);
+    background-image: linear-gradient(to right, #66CCFF, #cc66ff);
     text-decoration: none;
     color: white;
 }
 /* 기본 태그 설정 */
-p,
+#logo p,
 h5,
-a,
-mark {
+#login-menu a,
+#page-menu a,
+mark,
+.notice-li a {
     color: white;
 }
 button {
