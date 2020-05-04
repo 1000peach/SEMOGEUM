@@ -1,7 +1,3 @@
-a {
-    color: #00b7ff;
-}
-
 @import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
 * {
     box-sizing: border-box;
@@ -54,20 +50,8 @@ nav {
     background-position: left bottom;
     background-repeat: no-repeat;
 }
-#first-carousel,
-#second-carousel,
-#third-carousel {
-    background-image: url('/images/main1-bg.png');
-    background-color: #eaeaea;
-}
-mark {
-    padding: 0;
-    background-color: black;
-}
 /* 특정 메뉴 마우스 오버 시 */
-button:hover,
-#login-menu a:hover,
-p:hover {
+#login-menu a:hover {
     color: #b2ccff;
     text-decoration: none;
 }
@@ -81,7 +65,6 @@ p:hover {
 p,
 h5,
 a,
-button,
 mark {
     color: white;
 }

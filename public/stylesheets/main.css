@@ -1,0 +1,11 @@
+/* 상단 carousel div */
+#first-carousel,
+#second-carousel,
+#third-carousel {
+    background-image: url('/images/main1-bg.png');
+    background-color: #eaeaea;
+}
+mark {
+    padding: 0;
+    background-color: black;
+}
