@@ -77,6 +77,12 @@ p:hover {
     text-decoration: none;
     color: white;
 }
+/* 페이지 메뉴 클릭 시 */
+.active-menu {
+    background-image: linear-gradient(to right, #80d4ff, #cc66ff);
+    text-decoration: none;
+    color: white;
+}
 /* 기본 태그 설정 */
 p,
 h5,

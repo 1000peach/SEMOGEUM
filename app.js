@@ -24,7 +24,7 @@ const port = 3000;
 /*
     포트번호를 외부 모듈로 빼기
 */
-module.exports.port = port; // 이렇게 빼면 다른 파일들에서 require로 불러온 후에 객체에 접근하는 방식으로 사용가능(user_chat.ejs 참고)
+module.exports.port = port; // 이렇게 빼면 다른 파일들에서 require로 불러온 후에 객체에 접근하는 방식으로 사용가능
 
 /*
     실행환경 설정부분
@@ -56,8 +56,8 @@ app.use('/', routes); // URI (/) 접속하면 main.js로 라우팅
 app.use('/users', users); // URI (/users) 접속하면 users.js로 라우팅
 
 // 서버 실행
-// app.listen(port, function () {
-//     console.log('서버실행: http://localhost:' + port);
-// }); 
+app.listen(port, function () {
+    console.log('서버실행: http://localhost:' + port);
+}); 
 
 module.exports = app;

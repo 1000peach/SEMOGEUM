@@ -68,7 +68,7 @@ const handleSignUp = (req, res) => {
                 res.status(562).end(
                     ejs.render(handleSignUpErrorStream, {
                         title: '회원가입 에러',
-                        errorMessage: '회원가입을 처리하는 도중',
+                        errorMessage: '회원가입을 처리하는 도중 에러가 발생했습니다.',
                     })
                 );
             }
@@ -113,7 +113,7 @@ const handleLogin = (req, res) => {
         res.status(562).end(
             ejs.render(handleLoginErrorStream, {
                 title: '로그인 에러',
-                errorMessage: '로그인을 처리하는 도중',
+                errorMessage: '공백을 모두 채워주세요.',
             })
         );
         console.log('아이디나 암호가 입력되지 않아서 로그인할 수 없습니다.');
@@ -125,7 +125,7 @@ const handleLogin = (req, res) => {
                 res.status(562).end(
                     ejs.render(handleLoginErrorStream, {
                         title: '로그인 에러',
-                        errorMessage: '로그인을 처리하는 도중',
+                        errorMessage: '로그인을 처리하는 도중 에러가 발생했습니다.',
                     })
                 );
                 console.log(error);
@@ -135,7 +135,7 @@ const handleLogin = (req, res) => {
                     res.status(562).end(
                         ejs.render(handleLoginErrorStream, {
                             title: '로그인 에러',
-                            errorMessage: '로그인을 처리하는 도중',
+                            errorMessage: '등록된 계정이 없습니다.',
                         })
                     );
                     console.log('등록된 아이디가 존재하지 않습니다.');
@@ -177,33 +177,11 @@ const handleLogout = (req, res) => {
     res.redirect('/'); // 로그아웃후 메인화면으로 재접속
 };
 
-/*
-    마이페이지를 출력합니다.
-*/
-const getMyPage = (req, res) => {
-    let myPageStream = '';
-    myPageStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
-    myPageStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
-    myPageStream += fs.readFileSync(__dirname + '/../views/myPage.ejs', 'utf8');
-    //myPageStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
 
-    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
-    res.end(
-        ejs.render(myPageStream, {
-            title: '마이페이지',
-            userName: req.session.who,
-            signUpUrl: '/users/myPage',
-            signUpLabel: '마이페이지',
-            loginUrl: '/users/logout',
-            loginLabel: '로그아웃',
-        })
-    );
-};
 
 router.get('/signUp', getSignUpPage);
 router.get('/login', getLoginPage);
 router.get('/logout', handleLogout);
-router.get('/myPage', getMyPage);
 
 router.post('/signUp', handleSignUp);
 router.post('/login', handleLogin);
