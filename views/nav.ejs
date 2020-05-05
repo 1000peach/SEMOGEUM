@@ -1,24 +1,22 @@
 <body style="display: flex;">
     <nav id="nav" class="col-div">
-        <div id="logo" class="col-div" style="width: 100%; height: 200px;">
+        <div id="logo" class="col-div" style="width: 100%;">
             <img src="http://placehold.it/220x80" alt="세모금 로고" width="220" height="80" style="margin: 10px auto;" />
-            <p class="mx-auto d-block">세상의 모든 금손</p>
+            <p class="mx-auto d-block text-white">세상의 모든 금손</p>
         </div>
-        <div id="userdiv" style="height: 200px; padding: 20px;">
-            <h5 class="text-center" style="margin-bottom: 20px;">
-                <span id="page-userName"><%= userName %></span>님 환영합니다.
-            </h5>
+        <div id="userdiv">
+            <h5 class="text-center text-white" style="margin-bottom: 20px;"><span id="page-userName"><%= userName %></span>님 환영합니다.</h5>
             <div id="login-menu">
-                <a href='<%= signUpUrl %>'><%= signUpLabel %></a>
-                <a href='<%= loginUrl %>'><%= loginLabel %></a>
+                <a href="<%= signUpUrl %>" class="text-white"><%= signUpLabel %></a>
+                <a href="<%= loginUrl %>" class="text-white"><%= loginLabel %></a>
             </div>
             <div id="login-menu">
-                <a href="#">공지사항</a>
+                <a href="#" class="text-white">공지사항</a>
             </div>
         </div>
         <div id="page-menu" class="col-div">
-            <a href="#"><img src="/images/rank.png" width="27" height="27" />&nbsp;한 모금, 투표하기</a>
-            <a href="#"><img src="/images/rank.png" width="27" height="27" />&nbsp;두 모금, 선정결과</a>
-            <a href="#"><img src="/images/rank.png" width="27" height="27" />&nbsp;세 모금, 구매하기</a>
+            <a href="#" class="text-white"><img src="/images/rank.png" width="27" height="27" />&nbsp;한 모금, 투표하기</a>
+            <a href="#" class="text-white"><img src="/images/rank.png" width="27" height="27" />&nbsp;두 모금, 선정결과</a>
+            <a href="#" class="text-white"><img src="/images/rank.png" width="27" height="27" />&nbsp;세 모금, 구매하기</a>
         </div>
     </nav>
