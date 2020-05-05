@@ -48,12 +48,12 @@ nav {
     }
 }
 /* 로그인 메뉴 */
-#login-menu {
+.login-menu {
     display: flex;
     justify-content: space-between;
     padding: 0 10px;
 }
-#login-menu a {
+.login-menu a {
     width: 50%;
     text-align: center;
     font-size: 14px;
@@ -73,7 +73,7 @@ nav {
     background-repeat: no-repeat;
 }
 /* 특정 메뉴 마우스 오버 시 */
-#login-menu a:hover {
+.login-menu a:hover {
     color: #b2ccff;
     text-decoration: none;
 }

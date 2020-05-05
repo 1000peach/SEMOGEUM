@@ -48,8 +48,9 @@ const getNotice = (req, res) => {
 
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 
+    let who = (req.session.userId === undefined) ? '비회원' : req.session.who; 
     res.end(ejs.render(noticeStream,  { title: '마이페이지',
-                                        userName: req.session.who,
+                                        userName: who,
                                         signUpUrl: '/myPage',
                                         signUpLabel: '마이페이지',
                                         loginUrl: '/users/logout',
@@ -60,7 +61,9 @@ const getNotice = (req, res) => {
     마이페이지를 출력합니다.
 */
 const getMyPage = (req, res) => {
-    let myPageStream, myPageErrorStream = '';
+    let myPageStream = '';
+    let myPageErrorStream = '';
+    
     myPageStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
     myPageStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
     myPageStream += fs.readFileSync(__dirname + '/../views/myPage.ejs', 'utf8');
