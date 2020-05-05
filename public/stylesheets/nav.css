@@ -11,7 +11,7 @@ body {
     font-family: 'NanumSquare', sans-serif;
     height: 100%;
 }
-/* colum 방향 정렬 */
+/* column 방향 정렬 */
 .col-div {
     display: flex;
     flex-direction: column;
@@ -95,4 +95,54 @@ button {
 /* 이름 색상 꾸미기 위함 */
 #page-userName {
     color: #80d4ff;
+}
+
+/* main.ejs 수정하면서 이런 상품도 있어요! 및 꿀떡꿀떡 넘어가는 리뷰 전용 css 태그들 */
+
+.product {
+    background-image: linear-gradient(to right, #80d4ff, #cc66ff);
+    text-align: left;
+    float: left;
+    color: white;
+    padding: 1%;
+}
+#productTitle {
+    font-size: 180%;
+    float: left;
+    color: white;
+}
+#productName {
+    font-size: 180%;
+    float: left;
+    color: white;
+}
+.reviewText {
+    background-color: lightgray;
+    padding: 2%;
+    text-align: left;
+}
+#reviewRank {
+    float: left;
+    font-size: 180%;
+    color:yellow;
+}
+#reviewTitle {
+    font-size: 180%;
+    font-weight: bold;
+    float: left;
+    color:black;
+}
+#reviewContent {
+    font-size: 130%;
+    float: left;
+    color:black;
+    text-align: left;
+}
+#customerID{
+    color:black;
+    float: right;
+}
+.col-sm-3 {
+    text-align: right;
+    padding: 0%;
 }
