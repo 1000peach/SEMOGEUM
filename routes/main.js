@@ -16,12 +16,13 @@ returnError = () => {
 /*
     메인 화면을 출력합니다.
 */
-const getMainUi = (req, res) => {
+const getMainPage = (req, res) => {
     let mainStream = '';
     mainStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
     mainStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
     mainStream += fs.readFileSync(__dirname + '/../views/main.ejs', 'utf8');
     //mainStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
+
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 
     // if :로그인된 상태,  else : 로그인안된 상태
@@ -55,10 +56,8 @@ const getMainUi = (req, res) => {
 /*
     공지사항 페이지를 출력합니다.
 */
-const getNotice = (req, res) => {
+const getNoticePage = (req, res) => {
     let noticeStream = '';
-    let who = req.session.userId === undefined ? '비회원' : req.session.who;
-
     noticeStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
     noticeStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
     noticeStream += fs.readFileSync(__dirname + '/../views/notice.ejs', 'utf8');
@@ -66,17 +65,30 @@ const getNotice = (req, res) => {
 
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 
-    res.end(
-        ejs.render(noticeStream, {
-            title: '마이페이지',
-            page: 0,
-            userName: who,
-            signUpUrl: '/myPage',
-            signUpLabel: '마이페이지',
-            loginUrl: '/users/logout',
-            loginLabel: '로그아웃',
-        })
-    );
+    // if :로그인된 상태,  else : 로그인안된 상태
+    if (req.session.userId) {
+        res.end(
+            ejs.render(noticeStream, {
+                title: '공지사항',
+                userName: req.session.who,
+                signUpUrl: '/myPage',
+                signUpLabel: '마이페이지',
+                loginUrl: '/users/logout',
+                loginLabel: '로그아웃',
+            })
+        );
+    } else {
+        res.end(
+            ejs.render(noticeStream, {
+                title: '공지사항',
+                userName: '비회원',
+                signUpUrl: '/users/signUp',
+                signUpLabel: '회원가입',
+                loginUrl: '/users/login',
+                loginLabel: '로그인',
+            })
+        );
+    }
 };
 
 /*
@@ -91,11 +103,11 @@ const getMyPage = (req, res) => {
 
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 
+    // if :로그인된 상태,  else : 로그인안된 상태
     if (req.session.userId) {
         res.end(
             ejs.render(myPageStream, {
                 title: '마이페이지',
-                page: 0,
                 userName: req.session.who,
                 signUpUrl: '/myPage',
                 signUpLabel: '마이페이지',
@@ -104,7 +116,42 @@ const getMyPage = (req, res) => {
             })
         );
     } else {
-        res.end(ejs.render(returnError(), { title: '에러 페이지', errorMessage: '로그인이 필요합니다.' }));
+        res.end(ejs.render(myPageErrorStream, { title: '에러 페이지', errorMessage: '로그인이 필요합니다.' }));
+    }
+};
+
+/*
+    장바구니 페이지를 출력합니다.
+*/
+const getCartPage = (req, res) => {
+    let cartStream = '';
+    let cartErrorStream = '';
+
+    cartStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
+    cartStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
+    cartStream += fs.readFileSync(__dirname + '/../views/cart.ejs', 'utf8');
+    //cartStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
+
+    cartErrorStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
+    cartErrorStream += fs.readFileSync(__dirname + '/../views/error.ejs', 'utf8');
+    //cartErrorStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
+
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
+
+    // if :로그인된 상태,  else : 로그인안된 상태
+    if (req.session.userId) {
+        res.end(
+            ejs.render(cartStream, {
+                title: '장바구니',
+                userName: req.session.who,
+                signUpUrl: '/myPage',
+                signUpLabel: '마이페이지',
+                loginUrl: '/users/logout',
+                loginLabel: '로그아웃',
+            })
+        );
+    } else {
+        res.end(ejs.render(cartErrorStream, { title: '에러 페이지', errorMessage: '로그인이 필요합니다.' }));
     }
 };
 
@@ -162,9 +209,10 @@ const getMogeum = (req, res) => {
     }
 };
 
-router.get('/', getMainUi);
-router.get('/notice', getNotice);
+router.get('/', getMainPage);
+router.get('/notice', getNoticePage);
 router.get('/myPage', getMyPage);
+router.get('/cart', getCartPage);
 router.get('/mogeum/:page', getMogeum); // 모금 페이지
 
 module.exports = router;

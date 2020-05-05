@@ -1,0 +1,54 @@
+<script>
+    function validate() {
+        let newPwd = $('#new-pwd').val();
+        let newPwdConfirm = $('#new-pwd-confirm').val();
+
+        if (newPwd != newPwdConfirm) {
+            alert('비밀번호를 확인해주세요.');
+            return false;
+        }
+        alert('비밀번호가 정상적으로 변경되었습니다.');
+        return true;
+    }
+    $(document).ready(function () {
+        bsCustomFileInput.init();
+    });
+</script>
+
+<div class="limiter">
+    <div class="container-login100" style="background-image: url('/stylesheets/login/images/bg-01.jpg');">
+        <div class="wrap-login100 p-l-55 p-r-55 p-t-65 p-b-54">
+            <form class="login100-form validate-form" method="POST" action="/users/changePwd?_method=PUT" onsubmit="return validate()">
+                <span class="login100-form-title p-b-49">비밀번호 변경</span>
+                <div class="wrap-input100 validate-input m-b-23" data-validate="Username is reuired">
+                    <span class="label-input100">아이디</span>
+                    <input class="input100" type="text" value="<%=userId%>" disabled/>
+                    <span class="focus-input100" data-symbol="&#xf206;"></span>
+                </div>
+                <div class="wrap-input100 validate-input m-b-23" data-validate="Username is reauired">
+                    <span class="label-input100">새로운 비밀번호</span>
+                    <input id="new-pwd" class="input100" type="password" name="userPwd" placeholder="새로운 비밀번호를 입력해주세요" />
+                    <span class="focus-input100" data-symbol="&#xf170;"></span>
+                </div>
+                <div class="wrap-input100 validate-input" data-validate="Password is required">
+                    <span class="label-input100">비밀번호 확인</span>
+                    <input id ="new-pwd-confirm" class="input100" type="password" name="userPwdConfirm" placeholder="위와 동일한 비밀번호를 입력해주세요" />
+                    <span class="focus-input100" data-symbol="&#xf170;"></span>
+                </div>
+                <div class="text-right p-t-8 p-b-31 find-pwd">
+                    <!-- 칸 맞추기 위한 공백-->
+                </div>
+                <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <button class="login100-form-btn">
+                            확인
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div id="dropDownSelect1"></div>
