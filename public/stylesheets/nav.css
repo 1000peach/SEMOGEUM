@@ -66,28 +66,25 @@ nav {
     height: 60px;
     font-size: 19px;
 }
-/* 상단 상품 추천 carousel */
-.top-carousel {
-    background-size: 300px 300px;
-    background-position: left bottom;
-    background-repeat: no-repeat;
+/* 로그인, 페이지 메뉴 기본 스타일 */
+.login-menu a,
+#page-menu a {
+    color: white;
 }
-/* 특정 메뉴 마우스 오버 시 */
+/* 로그인 메뉴 마우스 오버 시 */
 .login-menu a:hover {
-    color: #b2ccff;
+    color: #80d4ff;
     text-decoration: none;
 }
 /* 페이지 메뉴 마우스 오버 시 */
-#page-menu a:hover {
-    background-image: linear-gradient(to right, #66ccff, #cc66ff);
-    text-decoration: none;
-    color: white;
+#page-1:hover {
+    color: #80d4ff;
 }
-/* 페이지 메뉴 클릭 시 */
-.active-menu {
-    background-image: linear-gradient(to right, #80d4ff, #cc66ff);
-    text-decoration: none;
-    color: white;
+#page-2:hover {
+    color: #80d4ff;
+}
+#page-3:hover {
+    color: #80d4ff;
 }
 /* 기본 태그 설정 */
 button {

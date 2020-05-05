@@ -5,6 +5,13 @@
     cursor: pointer;
     margin-bottom: 2px;
 }
+/* 상단 상품 추천 carousel item */
+.top-carousel {
+    background-size: 300px 300px;
+    background-position: left bottom;
+    background-repeat: no-repeat;
+}
+/* carousel item 삽입 이미지 */
 #first-carousel,
 #second-carousel,
 #third-carousel {
