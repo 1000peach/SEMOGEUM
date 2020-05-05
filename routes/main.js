@@ -5,12 +5,19 @@ const router = express.Router();
 /* DB 연동 모듈 불러옴 */
 const db = require('./db');
 
+returnError = () => {
+    let errorStream = '';
+    errorStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
+    errorStream += fs.readFileSync(__dirname + '/../views/error.ejs', 'utf8');
+    //errorStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
+    return errorStream;
+}; // 에러 페이지 (별로면 const로 묶기)
+
 /*
     메인 화면을 출력합니다.
 */
 const getMainUi = (req, res) => {
     let mainStream = '';
-
     mainStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
     mainStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
     mainStream += fs.readFileSync(__dirname + '/../views/main.ejs', 'utf8');
@@ -77,16 +84,10 @@ const getNotice = (req, res) => {
 */
 const getMyPage = (req, res) => {
     let myPageStream = '';
-    let myPageErrorStream = '';
-
     myPageStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
     myPageStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
     myPageStream += fs.readFileSync(__dirname + '/../views/myPage.ejs', 'utf8');
     //myPageStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
-
-    myPageErrorStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
-    myPageErrorStream += fs.readFileSync(__dirname + '/../views/error.ejs', 'utf8');
-    //myPageErrorStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
 
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 
@@ -103,7 +104,7 @@ const getMyPage = (req, res) => {
             })
         );
     } else {
-        res.end(ejs.render(myPageErrorStream, { title: '에러 페이지', errorMessage: '로그인이 필요합니다.' }));
+        res.end(ejs.render(returnError(), { title: '에러 페이지', errorMessage: '로그인이 필요합니다.' }));
     }
 };
 
@@ -121,6 +122,9 @@ const getMogeum = (req, res) => {
     } else if (req.params.page === '3') {
         title = '세 모금, 투표하기';
         ejsView = 'threeMogeum.ejs';
+    } else {
+        res.end(ejs.render(returnError(), { title: '에러 페이지', errorMessage: '존재하지 않는 페이지입니다.' }));
+        return;
     }
 
     mogeumStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
