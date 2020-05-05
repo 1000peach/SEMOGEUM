@@ -8,7 +8,6 @@ const db = require('./db');
 /*
     메인 화면을 출력합니다.
 */
-
 const getMainUi = (req, res) => {
     let mainStream = '';
 
@@ -41,7 +40,7 @@ const getMainUi = (req, res) => {
     공지사항 페이지를 출력합니다.
 */
 const getNotice = (req, res) => {
-    let noticeStream;
+    let noticeStream = '';
     noticeStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
     noticeStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
     noticeStream += fs.readFileSync(__dirname + '/../views/notice.ejs', 'utf8');
