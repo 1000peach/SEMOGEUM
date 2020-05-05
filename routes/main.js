@@ -5,6 +5,14 @@ const router = express.Router();
 /* DB 연동 모듈 불러옴 */
 const db = require('./db');
 
+returnError = () => {
+    let errorStream = '';
+    errorStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
+    errorStream += fs.readFileSync(__dirname + '/../views/error.ejs', 'utf8');
+    //errorStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
+    return errorStream;
+}; // 에러 페이지 (별로면 const로 묶기)
+
 /*
     메인 화면을 출력합니다.
 */
@@ -22,6 +30,7 @@ const getMainPage = (req, res) => {
         res.end(
             ejs.render(mainStream, {
                 title: '세상의 모든 금손, 세모금',
+                page: 0,
                 userName: req.session.who,
                 signUpUrl: '/myPage',
                 signUpLabel: '마이페이지',
@@ -33,6 +42,7 @@ const getMainPage = (req, res) => {
         res.end(
             ejs.render(mainStream, {
                 title: '세상의 모든 금손, 세모금',
+                page: 0,
                 userName: '비회원',
                 signUpUrl: '/users/signUp',
                 signUpLabel: '회원가입',
@@ -86,16 +96,10 @@ const getNoticePage = (req, res) => {
 */
 const getMyPage = (req, res) => {
     let myPageStream = '';
-    let myPageErrorStream = '';
-
     myPageStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
     myPageStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
     myPageStream += fs.readFileSync(__dirname + '/../views/myPage.ejs', 'utf8');
     //myPageStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
-
-    myPageErrorStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
-    myPageErrorStream += fs.readFileSync(__dirname + '/../views/error.ejs', 'utf8');
-    //myPageErrorStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
 
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 
@@ -151,61 +155,38 @@ const getCartPage = (req, res) => {
     }
 };
 
-/*
-    한 모금, 투표하기 페이지를 출력합니다.
-*/
-const getOneMogeumPage = (req, res) => {
-    let oneMogeumStream = '';
-    oneMogeumStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
-    oneMogeumStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
-    oneMogeumStream += fs.readFileSync(__dirname + '/../views/oneMogeum.ejs', 'utf8');
-    //oneMogeumStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
-
-    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
-
-    // if :로그인된 상태,  else : 로그인안된 상태
-    if (req.session.userId) {
-        res.end(
-            ejs.render(oneMogeumStream, {
-                title: '한 모금, 투표하기',
-                userName: req.session.who,
-                signUpUrl: '/myPage',
-                signUpLabel: '마이페이지',
-                loginUrl: '/users/logout',
-                loginLabel: '로그아웃',
-            })
-        );
+/* 한 모금, 두 모금, 세 모금 페이지 출력 */
+const getMogeum = (req, res) => {
+    let mogeumStream = '';
+    let title = '',
+        ejsView;
+    if (req.params.page === '1') {
+        title = '한 모금, 투표하기';
+        ejsView = 'oneMogeum.ejs';
+    } else if (req.params.page === '2') {
+        title = '두 모금, 선정결과';
+        ejsView = 'twoMogeum.ejs';
+    } else if (req.params.page === '3') {
+        title = '세 모금, 투표하기';
+        ejsView = 'threeMogeum.ejs';
     } else {
-        res.end(
-            ejs.render(oneMogeumStream, {
-                title: '한 모금, 투표하기',
-                userName: '비회원',
-                signUpUrl: '/users/signUp',
-                signUpLabel: '회원가입',
-                loginUrl: '/users/login',
-                loginLabel: '로그인',
-            })
-        );
+        res.end(ejs.render(returnError(), { title: '에러 페이지', errorMessage: '존재하지 않는 페이지입니다.' }));
+        return;
     }
-};
 
-/*
-    두 모금, 선정결과 페이지를 출력합니다.
-*/
-const getTwoMogeumPage = (req, res) => {
-    let twoMogeumStream = '';
-    twoMogeumStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
-    twoMogeumStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
-    twoMogeumStream += fs.readFileSync(__dirname + '/../views/twoMogeum.ejs', 'utf8');
-    //twoMogeumStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
+    mogeumStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
+    mogeumStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
+    mogeumStream += fs.readFileSync(__dirname + `/../views/${ejsView}`, 'utf8');
+    //threemogeumStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
 
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 
-    // if :로그인된 상태,  else : 로그인안된 상태
+    // // if :로그인된 상태,  else : 로그인안된 상태
     if (req.session.userId) {
         res.end(
-            ejs.render(twoMogeumStream, {
-                title: '두 모금, 투표하기',
+            ejs.render(mogeumStream, {
+                title: title,
+                page: req.params.page,
                 userName: req.session.who,
                 signUpUrl: '/myPage',
                 signUpLabel: '마이페이지',
@@ -215,46 +196,9 @@ const getTwoMogeumPage = (req, res) => {
         );
     } else {
         res.end(
-            ejs.render(twoMogeumStream, {
-                title: '두 모금, 투표하기',
-                userName: '비회원',
-                signUpUrl: '/users/signUp',
-                signUpLabel: '회원가입',
-                loginUrl: '/users/login',
-                loginLabel: '로그인',
-            })
-        );
-    }
-};
-
-/*
-    세 모금, 구매하기 페이지를 출력합니다.
-*/
-const getThreeMogeumPage = (req, res) => {
-    let threeMogeumStream = '';
-    threeMogeumStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
-    threeMogeumStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
-    threeMogeumStream += fs.readFileSync(__dirname + '/../views/threeMogeum.ejs', 'utf8');
-    //threeMogeumStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
-
-    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
-
-    // if :로그인된 상태,  else : 로그인안된 상태
-    if (req.session.userId) {
-        res.end(
-            ejs.render(threeMogeumStream, {
-                title: '세 모금, 투표하기',
-                userName: req.session.who,
-                signUpUrl: '/myPage',
-                signUpLabel: '마이페이지',
-                loginUrl: '/users/logout',
-                loginLabel: '로그아웃',
-            })
-        );
-    } else {
-        res.end(
-            ejs.render(threeMogeumStream, {
-                title: '세 모금, 투표하기',
+            ejs.render(mogeumStream, {
+                title: title,
+                page: req.params.page,
                 userName: '비회원',
                 signUpUrl: '/users/signUp',
                 signUpLabel: '회원가입',
@@ -269,8 +213,6 @@ router.get('/', getMainPage);
 router.get('/notice', getNoticePage);
 router.get('/myPage', getMyPage);
 router.get('/cart', getCartPage);
-router.get('/oneMogeum', getOneMogeumPage);
-router.get('/twoMogeum', getTwoMogeumPage);
-router.get('/threeMogeum', getThreeMogeumPage);
+router.get('/mogeum/:page', getMogeum); // 모금 페이지
 
 module.exports = router;
