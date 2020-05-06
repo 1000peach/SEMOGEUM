@@ -1,5 +1,5 @@
 <!-- 상단 carousel : 상품 추천. 클릭 시 상품 상세 페이지 이동-->
-<div id="main-div" class="col-div" style="width: 100%; z-index: 1;">
+<div id="main-div" class="col-div" style="width: 100%; z-index: 1; overflow-y: scroll;">
   <div id="main-carousel" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#main-carousel" data-slide-to="0" class="active"></li>
@@ -52,6 +52,130 @@
       <a href="#" class="text-white">6월의 상품 공모 (2020.04.20~2020.05.03)</a>
     </li>
   </ol>
+  <!-- 중간: 이런 상품도 있어요 -->
+<div class="container"> <!-- 이런 상품도 있어요 전체를 묶는 div -->
+  <div class="row"> <!-- 제목 표시 row -->
+    <h2>이런 상품도 있어요</h2>
+  </div>
+  <div class="row mt-3"> 
+    <div class="col-sm-3 product">
+      <a href="#">
+        <span id="productTitle">한 모금</span>
+        <span id="productName"><br>5월의 상품<br>상품 30개<br>투표 34828개<br></span>
+      </a>
+    </div>
+    <div class="col-sm-3"> 
+      <a href="#"><img src="/images/pencilCase.PNG " width="80%"></a> 
+    </div>
+    <div class="col-sm-3"> 
+      <a href="#"><img src="/images/pencilCase.PNG " width="80%"></a>
+    </div>
+    <div class="col-sm-3"> 
+      <a href="#"><img src="/images/pencilCase.PNG " width="80%"></a> 
+    </div>
+  </div>
+  <div class="row mt-3"> 
+    <div class="col-sm-3 product">
+      <a href="#">
+        <span id="productTitle">두 모금</span>
+        <span id="productName"><br>4월 선정작<br>상품화 진행<br>선정 30개<br>완료 10개<br></span>
+      </a>
+    </div>
+    <div class="col-sm-3"> 
+      <a href="#"><img src="/images/pencilCase.PNG " width="80%"></a> 
+    </div>
+    <div class="col-sm-3"> 
+      <a href="#"><img src="/images/pencilCase.PNG " width="80%"></a>
+    </div>
+    <div class="col-sm-3"> 
+      <a href="#"><img src="/images/pencilCase.PNG " width="80%"></a> 
+    </div>
+  </div>
+  <div class="row mt-3"> 
+    <div class="col-sm-3 product">
+      <a href="#">
+        <span id="productTitle">세 모금<br></span>
+        <span id="productName"><br>판매중인 상품</span>
+      </a>
+    </div>
+    <div class="col-sm-3"> 
+      <a href="#"><img src="/images/pencilCase.PNG " width="80%"></a> 
+    </div>
+    <div class="col-sm-3"> 
+      <a href="#"><img src="/images/pencilCase.PNG " width="80%"></a>
+    </div>
+    <div class="col-sm-3"> 
+      <a href="#"><img src="/images/pencilCase.PNG " width="80%"></a> 
+    </div>
+  </div>
+</div>
+<!-- 중간: 꿀떡꿀떡 넘어가는 리뷰-->
+<div class="container"> <!-- 꿀떡꿀떡 넘어가는 리뷰 전체를 묶는 div -->
+    <div class="row"> <!-- 제목 표시 row -->
+      <h2>꿀떡꿀떡 넘어가는 리뷰</h2>
+    </div>
+    <div class="row mt-3"> <!-- 한 줄에 리뷰 2개 표시 (사진 2개, 텍스트 2개) mt는 margin top -->
+      <div class="col-sm-3"> <!-- col 12를 3씩 4개로 나눔 -->
+        <a href="#"><img src="/images/catPaw.PNG " width="80%"></a> <!-- 나중에 리뷰를 클릭하면 해당 페이지로 이동할 수 있게 a태그 추가 -->
+      </div>
+      <div class="col-sm-3 reviewText">
+        <a href="#"><span id="reviewTitle">너무 귀여워요!</span>
+          <span id="reviewRank">★★★★★</span>
+          <span id="reviewContent">드디어 민지를 보드랍게 쓰다듬어줄 수 있게 되었어요.</span>
+          <span id="customerID">- 현서 lee</span></a>
+      </div>
+      <div class="col-sm-3">
+        <a href="#"><img src="/images/catPaw.PNG" width="80%"></a>
+      </div>
+      <div class="col-sm-3 reviewText">
+        <a href="#"><span id="reviewTitle">너무 귀여워요!</span>
+          <span id="reviewRank">★★★★★</span>
+          <span id="reviewContent">드디어 민지를 보드랍게 쓰다듬어줄 수 있게 되었어요.</span>
+          <span id="customerID">- 현서 lee</span></a>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-sm-3">
+        <a href="#"><img src="/images/catPaw.PNG " width="80%"></a>
+      </div>
+      <div class="col-sm-3 reviewText">
+        <a href="#"><span id="reviewTitle">너무 귀여워요!</span>
+          <span id="reviewRank">★★★★★</span>
+          <span id="reviewContent">드디어 민지를 보드랍게 쓰다듬어줄 수 있게 되었어요.</span>
+          <span id="customerID">- 현서 lee</span></a>
+      </div>
+      <div class="col-sm-3">
+        <a href="#"><img src="/images/catPaw.PNG" width="80%"></a>
+      </div>
+      <div class="col-sm-3 reviewText">
+        <a href="#"><span id="reviewTitle">너무 귀여워요!</span>
+          <span id="reviewRank">★★★★★</span>
+          <span id="reviewContent">드디어 민지를 보드랍게 쓰다듬어줄 수 있게 되었어요.</span>
+          <span id="customerID">- 현서 lee</span></a>
+      </div>
+    </div>
+    <div class="row mt-3">
+      <div class="col-sm-3">
+        <a href="#"><img src="/images/catPaw.PNG " width="80%"></a>
+      </div>
+      <div class="col-sm-3 reviewText">
+        <a href="#"><span id="reviewTitle">너무 귀여워요!</span>
+          <span id="reviewRank">★★★★★</span>
+          <span id="reviewContent">드디어 민지를 보드랍게 쓰다듬어줄 수 있게 되었어요.</span>
+          <span id="customerID">- 현서 lee</span></a>
+      </div>
+      <div class="col-sm-3">
+        <a href="#"><img src="/images/catPaw.PNG" width="80%"></a>
+      </div>
+      <div class="col-sm-3 reviewText">
+        <a href="#"><span id="reviewTitle">너무 귀여워요!</span>
+          <span id="reviewRank">★★★★★</span>
+          <span id="reviewContent">드디어 민지를 보드랍게 쓰다듬어줄 수 있게 되었어요.</span>
+          <span id="customerID">- 현서 lee</span></a>
+      </div>
+    </div>
+  </div>
+</div>
 </div>
 </body>
 </html>
