@@ -5,7 +5,7 @@ const router = express.Router();
 /* DB 연동 모듈 불러옴 */
 const db = require('./db');
 
-returnError = () => {
+const returnError = () => {
     let errorStream = '';
     errorStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
     errorStream += fs.readFileSync(__dirname + '/../views/error.ejs', 'utf8');
@@ -70,6 +70,7 @@ const getNoticePage = (req, res) => {
         res.end(
             ejs.render(noticeStream, {
                 title: '공지사항',
+                page: 0,
                 userName: req.session.who,
                 signUpUrl: '/myPage',
                 signUpLabel: '마이페이지',
@@ -81,6 +82,7 @@ const getNoticePage = (req, res) => {
         res.end(
             ejs.render(noticeStream, {
                 title: '공지사항',
+                page: 0,
                 userName: '비회원',
                 signUpUrl: '/users/signUp',
                 signUpLabel: '회원가입',
@@ -108,6 +110,7 @@ const getMyPage = (req, res) => {
         res.end(
             ejs.render(myPageStream, {
                 title: '마이페이지',
+                page: 0,
                 userName: req.session.who,
                 signUpUrl: '/myPage',
                 signUpLabel: '마이페이지',
@@ -116,7 +119,7 @@ const getMyPage = (req, res) => {
             })
         );
     } else {
-        res.end(ejs.render(myPageErrorStream, { title: '에러 페이지', errorMessage: '로그인이 필요합니다.' }));
+        res.end(ejs.render(returnError(), { title: '에러 페이지', errorMessage: '로그인이 필요합니다.' }));
     }
 };
 
@@ -125,16 +128,11 @@ const getMyPage = (req, res) => {
 */
 const getCartPage = (req, res) => {
     let cartStream = '';
-    let cartErrorStream = '';
 
     cartStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
     cartStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
     cartStream += fs.readFileSync(__dirname + '/../views/cart.ejs', 'utf8');
     //cartStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
-
-    cartErrorStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
-    cartErrorStream += fs.readFileSync(__dirname + '/../views/error.ejs', 'utf8');
-    //cartErrorStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
 
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 
@@ -143,6 +141,7 @@ const getCartPage = (req, res) => {
         res.end(
             ejs.render(cartStream, {
                 title: '장바구니',
+                page: 0,
                 userName: req.session.who,
                 signUpUrl: '/myPage',
                 signUpLabel: '마이페이지',
@@ -151,7 +150,7 @@ const getCartPage = (req, res) => {
             })
         );
     } else {
-        res.end(ejs.render(cartErrorStream, { title: '에러 페이지', errorMessage: '로그인이 필요합니다.' }));
+        res.end(ejs.render(returnError(), { title: '에러 페이지', errorMessage: '로그인이 필요합니다.' }));
     }
 };
 
