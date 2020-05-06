@@ -70,6 +70,7 @@ const getNoticePage = (req, res) => {
         res.end(
             ejs.render(noticeStream, {
                 title: '공지사항',
+                page: 0,
                 userName: req.session.who,
                 signUpUrl: '/myPage',
                 signUpLabel: '마이페이지',
@@ -81,6 +82,7 @@ const getNoticePage = (req, res) => {
         res.end(
             ejs.render(noticeStream, {
                 title: '공지사항',
+                page: 0,
                 userName: '비회원',
                 signUpUrl: '/users/signUp',
                 signUpLabel: '회원가입',
@@ -108,6 +110,7 @@ const getMyPage = (req, res) => {
         res.end(
             ejs.render(myPageStream, {
                 title: '마이페이지',
+                page: 0,
                 userName: req.session.who,
                 signUpUrl: '/myPage',
                 signUpLabel: '마이페이지',
@@ -116,7 +119,7 @@ const getMyPage = (req, res) => {
             })
         );
     } else {
-        res.end(ejs.render(myPageErrorStream, { title: '에러 페이지', errorMessage: '로그인이 필요합니다.' }));
+        res.end(ejs.render(returnError(), { title: '에러 페이지', errorMessage: '로그인이 필요합니다.' }));
     }
 };
 
@@ -143,6 +146,7 @@ const getCartPage = (req, res) => {
         res.end(
             ejs.render(cartStream, {
                 title: '장바구니',
+                page: 0,
                 userName: req.session.who,
                 signUpUrl: '/myPage',
                 signUpLabel: '마이페이지',
