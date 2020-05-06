@@ -77,3 +77,9 @@ mark {
     width: 100px;
     margin-left: 10px;
 }
+
+.footer {
+    font-size: 10px;
+    text-align: center;
+    padding-bottom: 10px;
+}

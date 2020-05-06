@@ -55,9 +55,9 @@ app.use(
 app.use('/', routes); // URI (/) 접속하면 main.js로 라우팅
 app.use('/users', users); // URI (/users) 접속하면 users.js로 라우팅
 
-// 서버 실행
-app.listen(port, function () {
-    console.log('서버실행: http://localhost:' + port);
-}); 
+// // 서버 실행
+// app.listen(port, function () {
+//     console.log('서버실행: http://localhost:' + port);
+// }); 
 
 module.exports = app;
