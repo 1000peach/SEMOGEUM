@@ -17,7 +17,6 @@ router.use(methodOverride('_method')); // put을 사용하기 위함
 */
 const getSignUpPage = (req, res) => {
     let signUpStream = '';
-
     signUpStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
     signUpStream += fs.readFileSync(__dirname + '/../views/signUp.ejs', 'utf8');
     //signUpStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
@@ -210,16 +209,17 @@ const handleFindId = (req, res) => {
     let body = req.body;
     let userName = body.userName;
     let userPhone = body.userPhone;
-
+    console.log('body: ', body);
     let findIdResultStream = '';
     let errorStream = '';
 
-    db.query(str1, [userPhone, userName], (error, results) => {
+    db.query(str1, [userName, userPhone], (error, results) => {
         if (error) {
             console.log(error);
             res.end('error');
         } else {
             // 입력받은 데이터가 DB에 존재하는지 판단합니다.
+            console.log('results: ', results);
             if (results[0] == null) {
                 errorStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
                 errorStream += fs.readFileSync(__dirname + '/../views/error.ejs', 'utf8');
@@ -327,11 +327,14 @@ const handleChangePwd = (req, res) => {
     let body = req.body;
     let userId = body.userId;
     let userPwd = body.userPwd;
+    console.log('userId: ', userId);
+    console.log('userPwd: ', userPwd);
 
     let errorStream = '';
 
-    console.log(body);
+    console.log('body: ', body);
     db.query(str1, [userPwd, userId], (error, results) => {
+        console.log('results: ', results);
         if (error) {
             console.log(error);
             errorStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
@@ -344,8 +347,7 @@ const handleChangePwd = (req, res) => {
                 })
             );
         } else {
-            // 테스트 코드
-            console.log(results);
+            console.log('비밀번호 변경 완료');
             res.redirect('/users/login');
         }
     });
