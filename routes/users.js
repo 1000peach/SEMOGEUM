@@ -1,11 +1,10 @@
 const fs = require('fs');
 const express = require('express');
 const ejs = require('ejs');
-const bodyParser = require('body-parser');
 const router = express.Router();
 const   methodOverride = require('method-override');
-/* DB 연동 모듈 불러옴 */
 const db = require('./db');
+const returnError = require('./error')
 
 router.use(methodOverride('_method')); // put을 사용하기 위함
 
@@ -63,13 +62,8 @@ const handleSignUp = (req, res) => {
                     }
                 }); // db.query();
             } else {
-                let handleSignUpErrorStream = '';
-                handleSignUpErrorStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
-                handleSignUpErrorStream += fs.readFileSync(__dirname + '/../views/error.ejs', 'utf8');
-                //handleSignUpErrorStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
-
                 res.status(562).end(
-                    ejs.render(handleSignUpErrorStream, {
+                    ejs.render(returnError(), {
                         title: '회원가입 에러',
                         errorMessage: '회원가입을 처리하는 도중 에러가 발생했습니다.',
                     })
@@ -107,15 +101,10 @@ const handleLogin = (req, res) => {
     console.log('body: ', body);
     let userId, userPwd, userName;
     let str1;
-    let handleLoginErrorStream = '';
-
-    handleLoginErrorStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
-    handleLoginErrorStream += fs.readFileSync(__dirname + '/../views/error.ejs', 'utf8');
-    //handleLoginErrorStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
 
     if (body.userId == '' || body.userPwd == '') {
         res.status(562).end(
-            ejs.render(handleLoginErrorStream, {
+            ejs.render(returnError(), {
                 title: '로그인 에러',
                 errorMessage: '공백을 모두 채워주세요.',
             })
@@ -127,7 +116,7 @@ const handleLogin = (req, res) => {
         db.query(str1, [body.userId, body.userPwd], (error, results, fields) => {
             if (error) {
                 res.status(562).end(
-                    ejs.render(handleLoginErrorStream, {
+                    ejs.render(returnError(), {
                         title: '로그인 에러',
                         errorMessage: '로그인을 처리하는 도중 에러가 발생했습니다.',
                     })
@@ -137,7 +126,7 @@ const handleLogin = (req, res) => {
                 if (results.length <= 0) {
                     // select 조회결과가 없는 경우 (즉, 등록계정이 없는 경우)
                     res.status(562).end(
-                        ejs.render(handleLoginErrorStream, {
+                        ejs.render(returnError(), {
                             title: '로그인 에러',
                             errorMessage: '아이디 또는 비밀번호가 일치하지 않습니다.',
                         })
@@ -211,7 +200,6 @@ const handleFindId = (req, res) => {
     let userPhone = body.userPhone;
     console.log('body: ', body);
     let findIdResultStream = '';
-    let errorStream = '';
 
     db.query(str1, [userName, userPhone], (error, results) => {
         if (error) {
@@ -221,12 +209,8 @@ const handleFindId = (req, res) => {
             // 입력받은 데이터가 DB에 존재하는지 판단합니다.
             console.log('results: ', results);
             if (results[0] == null) {
-                errorStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
-                errorStream += fs.readFileSync(__dirname + '/../views/error.ejs', 'utf8');
-                //errorStream += fs.readFileSync(__dirname + '/../views/footer.ejs','utf8');
-
                 res.status(562).end(
-                    ejs.render(errorStream, {
+                    ejs.render(returnError(), {
                         title: '에러 페이지',
                         errorMessage: '아이디 찾기를 처리하는 도중 에러가 발생했습니다.',
                     })
@@ -281,7 +265,6 @@ const getChangePwdPage = (req, res) => {
     let userPhone = body.userPhone;
 
     let pwdChangeResultStream = '';
-    let errorStream = '';
 
     db.query(str1, [userId, userPhone], (error, results) => {
         if (error) {
@@ -290,12 +273,8 @@ const getChangePwdPage = (req, res) => {
         } else {
             // 입력받은 데이터가 DB에 존재하는지 판단합니다.
             if (results[0] == null) {
-                errorStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
-                errorStream += fs.readFileSync(__dirname + '/../views/error.ejs', 'utf8');
-                //errorStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
-
                 res.status(562).end(
-                    ejs.render(errorStream, {
+                    ejs.render(returnError(), {
                         title: '에러 페이지',
                         errorMessage: '비밀번호 변경 페이지를 출력하는 도중 에러가 발생했습니다.',
                     })
@@ -330,18 +309,13 @@ const handleChangePwd = (req, res) => {
     console.log('userId: ', userId);
     console.log('userPwd: ', userPwd);
 
-    let errorStream = '';
-
     console.log('body: ', body);
     db.query(str1, [userPwd, userId], (error, results) => {
         console.log('results: ', results);
         if (error) {
             console.log(error);
-            errorStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
-            errorStream += fs.readFileSync(__dirname + '/../views/error.ejs', 'utf8');
-            //errorStream += fs.readFileSync(__dirname + '/../views/footer.ejs','utf8');
             res.status(562).end(
-                ejs.render(errorStream, {
+                ejs.render(returnError(), {
                     title: '에러 페이지',
                     error: '비밀번호 변경을 처리하는 도중 에러가 발생했습니다.',
                 })
