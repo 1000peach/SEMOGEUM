@@ -147,3 +147,9 @@ mark {
     text-align: right;
     padding: 0%;
 }
+/* footer */
+.footer p {
+    font-size: 11px;
+    text-align: center;
+    padding-bottom: 10px;
+}

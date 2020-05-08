@@ -52,6 +52,7 @@
       <a href="#" class="text-white">6월의 상품 공모 (2020.04.20~2020.05.03)</a>
     </li>
   </ol>
+<<<<<<< HEAD
   <!-- 중간: 이런 상품도 있어요 -->
   <div class="container"> <!-- 이런 상품도 있어요 전체를 묶는 div -->
     <h4 class="font-weight-bold mt-4 mb-0">이런 상품도 있어요</h4>
@@ -145,15 +146,40 @@
     <h4 class="font-weight-bold mt-4 mb-0">꿀떡꿀떡 넘어가는 리뷰</h4>
     <hr class="mt-2 mb-3">
     <% for (var i = 0; i < 3; i++) { %>
-    <div class="row">
-      <div class="col-lg-6">
-        <div class="card mb-3" style="border: none;">  <!-- 한 줄에 리뷰 2개 표시 (사진 2개, 텍스트 2개) mb는 margin bottom -->
-          <div class="row no-gutters">
-            <div class="col-6">
-              <img src="images/catPaw.PNG" alt="" class="card-img"/>
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="card mb-3" style="border: none;">  <!-- 한 줄에 리뷰 2개 표시 (사진 2개, 텍스트 2개) mb는 margin bottom -->
+            <div class="row no-gutters">
+              <div class="col-6">
+                <img src="images/catPaw.PNG" alt="" class="card-img"/>
+              </div>
+              <div class="col-6">
+                <div class="card-body">
+                    <p class="reviewTitle">너무 귀여워요!</p>
+                    <div>
+                      <span class="reviewRank fa fa-star checked"></span>
+                      <span class="reviewRank fa fa-star checked"></span>
+                      <span class="reviewRank fa fa-star checked"></span>
+                      <span class="reviewRank fa fa-star"></span>
+                      <span class="reviewRank fa fa-star"></span>
+                    </div>
+                    <div style="height: 60%;">
+                      <p class="reviewContent">드디어 민지를 보드랍게 쓰다듬어줄 수 있게 되었어요.</p>
+                      <p class="customerID">- 현서 lee</p>
+                    </div>
+                </div>
+              </div>
             </div>
-            <div class="col-6">
-              <div class="card-body">
+          </div>
+        </div>
+        <div class="col-lg-6">
+          <div class="card mb-3" style="border: none;">
+            <div class="row no-gutters">
+              <div class="col-6">
+                <img src="images/catPaw.PNG" alt="" class="card-img"/>
+              </div>
+              <div class="col-6">
+                <div class="card-body">
                   <p class="reviewTitle">너무 귀여워요!</p>
                   <div>
                     <span class="reviewRank fa fa-star checked"></span>
@@ -162,41 +188,57 @@
                     <span class="reviewRank fa fa-star"></span>
                     <span class="reviewRank fa fa-star"></span>
                   </div>
-                  <div style="height: 60%;">
-                    <p class="reviewContent">드디어 민지를 보드랍게 쓰다듬어줄 수 있게 되었어요.</p>
-                    <p class="customerID">- 현서 lee</p>
-                  </div>
+                  <p class="reviewContent">드디어 민지를 보드랍게 쓰다듬어줄 수 있게 되었어요.</p>
+                  <p class="customerID">- 현서 lee</p>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-      <div class="col-lg-6">
-        <div class="card mb-3" style="border: none;">
-          <div class="row no-gutters">
-            <div class="col-6">
-              <img src="images/catPaw.PNG" alt="" class="card-img"/>
+    <% } %>
+  </div> <!-- 꿀떡꿀떡 넘어가는 리뷰 끝-->
+    <!-- 하단 협찬사 캐러셀-->
+    <div id="carousel-bottom" class="carousel slide" data-ride="carousel" style="width: 100%;">
+      <div class="carousel-inner" >
+        <div class="carousel-item active">
+          <div class="row">
+            <div class="col-4">
+              <img src="/images/협력사1.jpg" class="d-block w-30 mx-auto" alt="...">
             </div>
-            <div class="col-6">
-              <div class="card-body">
-                <p class="reviewTitle">너무 귀여워요!</p>
-                <div>
-                  <span class="reviewRank fa fa-star checked"></span>
-                  <span class="reviewRank fa fa-star checked"></span>
-                  <span class="reviewRank fa fa-star checked"></span>
-                  <span class="reviewRank fa fa-star"></span>
-                  <span class="reviewRank fa fa-star"></span>
-                </div>
-                <p class="reviewContent">드디어 민지를 보드랍게 쓰다듬어줄 수 있게 되었어요.</p>
-                <p class="customerID">- 현서 lee</p>
-              </div>
+            <div class="col-4">
+              <img src="/images/협력사2.jpg" class="d-block w-30 mx-auto" alt="...">
+            </div>
+            <div class="col-4">
+              <img src="/images/협력사3.jpg" class="d-block w-30 mx-auto" alt="...">
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="row">
+            <div class="col-4">
+              <img src="/images/협력사1.jpg" class="d-block w-30 mx-auto" alt="...">
+            </div>
+            <div class="col-4">
+              <img src="/images/협력사2.jpg" class="d-block w-30 mx-auto" alt="...">
+            </div>
+            <div class="col-4">
+              <img src="/images/협력사3.jpg" class="d-block w-30 mx-auto" alt="...">
+            </div>
+          </div>
+        </div>
+        <div class="carousel-item">
+          <div class="row">
+            <div class="col-4">
+              <img src="/images/협력사1.jpg" class="d-block w-30 mx-auto" alt="...">
+            </div>
+            <div class="col-4">
+              <img src="/images/협력사2.jpg" class="d-block w-30 mx-auto" alt="...">
+            </div>
+            <div class="col-4">
+              <img src="/images/협력사3.jpg" class="d-block w-30 mx-auto" alt="...">
             </div>
           </div>
         </div>
       </div>
     </div>
-    <% } %>
-  </div> <!-- 꿀떡꿀떡 넘어가는 리뷰 끝-->
-</div> <!-- 메인 페이지 전체 감싸는 div -->
-</body>
-</html>

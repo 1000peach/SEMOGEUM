@@ -9,7 +9,6 @@ const returnError = () => {
     let errorStream = '';
     errorStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
     errorStream += fs.readFileSync(__dirname + '/../views/error.ejs', 'utf8');
-    //errorStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
     return errorStream;
 }; // 에러 페이지 (별로면 const로 묶기)
 
@@ -21,7 +20,7 @@ const getMainPage = (req, res) => {
     mainStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
     mainStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
     mainStream += fs.readFileSync(__dirname + '/../views/main.ejs', 'utf8');
-    //mainStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
+    mainStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
 
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 
