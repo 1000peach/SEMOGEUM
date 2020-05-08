@@ -50,26 +50,6 @@ mark {
     width: 50px;
     margin-left: 10px;
 }
-/* md 기준보다 브라우저 크기 작을 때 */
-@media screen and (max-width: 768px) {
-    #main-div {
-        overflow-y: inherit;
-    }
-    #main-div div h4 {
-        text-align: center;
-    }
-}
-@media screen and (max-width: 900px) {
-    .productTitle {
-        display: none;
-    }
-}
-/* sm 기준보다 브라우저 크기 작을 때 */
-@media screen and (max-width: 576px) {
-    .d-day {
-        display: none;
-    }
-}
 /* 한모금 페이지 배너 */
 .onemogeum-banner {
     height: 100px;

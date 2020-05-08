@@ -1,7 +1,3 @@
-@import url(https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css);
-* {
-    box-sizing: border-box;
-}
 html,
 body {
     font-family: 'NanumSquare', sans-serif;
@@ -26,26 +22,6 @@ nav {
 #userdiv {
     height: 170px;
     padding: 20px;
-}
-/* md 기준보다 브라우저 크기 작을 때 가로 네비로 변경*/
-@media screen and (max-width: 768px) {
-    body {
-        flex-direction: column;
-    }
-    nav {
-        height: auto;
-        min-height: 430px;
-    }
-    #userdiv {
-        height: 100px;
-        padding: 0;
-    }
-    #page-menu a {
-        text-align: center;
-    }
-    #logo {
-        height: 150px;
-    }
 }
 /* 로그인 메뉴 */
 .login-menu {
