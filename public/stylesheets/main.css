@@ -1,3 +1,6 @@
+#main-div {
+    overflow-y: scroll;
+}
 /* 상단 carousel div */
 #main-carousel {
     width: 100%;
@@ -47,6 +50,20 @@ mark {
     width: 50px;
     margin-left: 10px;
 }
+/* md 기준보다 브라우저 크기 작을 때 */
+@media screen and (max-width: 768px) {
+    #main-div {
+        overflow-y: inherit;
+    }
+    #main-div div h4 {
+        text-align: center;
+    }
+}
+@media screen and (max-width: 900px) {
+    .productTitle {
+        display: none;
+    }
+}
 /* sm 기준보다 브라우저 크기 작을 때 */
 @media screen and (max-width: 576px) {
     .d-day {
@@ -76,4 +93,63 @@ mark {
     float: left;
     width: 100px;
     margin-left: 10px;
+}
+.image_bg {
+    background-image: url(/images/product_vg.png);
+}
+/* 이런 상품도 있어요! */
+.productTitle {
+    font-size: 17px;
+    margin: 0;
+    float: left;
+    background-image: linear-gradient(to right, #80d4ff, #cc66ff);
+    border-radius: 5px;
+    height: 6vh;
+    padding: 1vh 10px;
+}
+.productName {
+    font-size: 18px;
+    color: black;
+}
+.mogeum p:hover {
+    text-decoration: underline;
+}
+/* 꿀떡꿀떡 넘어가는 리뷰 */
+.card-body {
+    padding-top: 0;
+}
+.reviewText {
+    background-color: lightgray;
+    padding: 2%;
+    text-align: left;
+}
+.reviewRank {
+    font-size: 25px;
+}
+.checked {
+    color: orange;
+}
+.reviewTitle {
+    height: 20%;
+    font-size: 20px;
+    font-weight: bold;
+    color: black;
+}
+.reviewContent {
+    color: black;
+    text-align: left;
+}
+.customerID {
+    color: black;
+    float: right;
+}
+.col-sm-3 {
+    text-align: right;
+    padding: 0%;
+}
+/* footer */
+.footer p {
+    font-size: 11px;
+    text-align: center;
+    padding-bottom: 10px;
 }

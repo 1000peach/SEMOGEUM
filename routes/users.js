@@ -33,10 +33,11 @@ const getSignUpPage = (req, res) => {
 */
 const handleSignUp = (req, res) => {
     let str1 = 'SELECT * FROM USER WHERE userId=?';
-    let str2 = 'INSERT INTO USER(userId, userName, userPhone, userPwd, userPwdConfirm) VALUES(?, ?, ?, ?, ?)';
+    let str2 = 'INSERT INTO USER(userId, userName, userEmail, userPhone, userPwd, userPwdConfirm) VALUES(?, ?, ?, ?, ?, ?)';
     let body = req.body;
     let userId = body.userId;
     let userName = body.userName;
+    let userEmail = body.userEmail;
     let userPhone = body.userPhone;
     let userPwd = body.userPwd;
     let userPwdConfirm = body.userPwdConfirm;
@@ -51,7 +52,7 @@ const handleSignUp = (req, res) => {
         } else {
             // 입력받은 데이터가 DB에 존재하는지 판단합니다.
             if (results[0] == undefined && userPwd == userPwdConfirm) {
-                db.query(str2, [userId, userName, userPhone, userPwd, userPwdConfirm], (error) => {
+                db.query(str2, [userId, userName, userEmail, userPhone, userPwd, userPwdConfirm], (error) => {
                     if (error) {
                         res.end('error');
                         console.log(error);
