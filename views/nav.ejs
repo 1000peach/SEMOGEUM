@@ -1,8 +1,12 @@
 <body style="display: flex;">
     <nav id="nav" class="col-div">
-        <input id="page" type="text" style="display: none;" value="<%= page %>"/>
+        <input id="page" type="text" style="display: none;" value="<%= page %>" />
         <a href="/" id="logo" class="col-div" style="width: 100%;">
-            <img src="http://placehold.it/220x80" alt="세모금 로고" width="220" height="80" style="margin: 10px auto;" />
+            <video id="logo_video" class="d-block mx-auto" width="220" height="80" autoplay muted loop>
+                <source src="/images/logo_video.mp4" type="video/mp4" />
+                해당 브라우저는 video 태그를 지원하지 않습니다.
+            </video>
+            <!-- 아이폰 모바일로는 비디오처럼 보이니까 media query 통해서 모바일로는 이미지로 보이게? -->
             <p class="mx-auto d-block text-white">세상의 모든 금손</p>
         </a>
         <div id="userdiv">
@@ -22,3 +26,4 @@
             <a id="page-3" href="/mogeum/3"><img src="/images/rank.png" width="27" height="27" />&nbsp;세 모금, 구매하기</a>
         </div>
     </nav>
+</body>
