@@ -2,15 +2,8 @@ const express = require('express');
 const fs = require('fs');
 const ejs = require('ejs');
 const router = express.Router();
-/* DB 연동 모듈 불러옴 */
 const db = require('./db');
-
-const returnError = () => {
-    let errorStream = '';
-    errorStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
-    errorStream += fs.readFileSync(__dirname + '/../views/error.ejs', 'utf8');
-    return errorStream;
-}; // 에러 페이지 (별로면 const로 묶기)
+const returnError = require('./error')
 
 /*
     메인 화면을 출력합니다.
