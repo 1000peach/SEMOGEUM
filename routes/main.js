@@ -168,7 +168,7 @@ const getMogeum = (req, res) => {
     mogeumStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
     mogeumStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
     mogeumStream += fs.readFileSync(__dirname + `/../views/${ejsView}`, 'utf8');
-    //threemogeumStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
+    mogeumStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
 
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 

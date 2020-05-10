@@ -1,0 +1,47 @@
+#one-div {
+    overflow-y: scroll;
+}
+#one-div > #col-div {
+    position: fixed;
+    z-index: 3;
+}
+#one-div-main {
+    display: flex;
+    flex-direction: row-reverse;
+}
+#realtime-ranking {
+    width: 400px;
+    padding: 0 20px;
+}
+#one-div .card-body {
+    padding-top: 10px;
+    color: black;
+}
+.card-body > h4 > a, .card-body > p {
+    color: black;
+}
+div[class="col-div"] {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+}
+.ranking-item {
+    color: black;
+    height: 40px;
+    border-width: 3px;
+    border-style: solid;
+    border-image: linear-gradient(to right, #80d4ff, #cc66ff);
+    border-image-slice: 2;
+    padding: 8px;
+    cursor: pointer;
+    position: sticky;
+    top: 100px;
+}
+.card {
+    border: none;
+    cursor: pointer;
+}
+.card:hover {
+    box-shadow: 10px 10px 10px lightgray;
+    transition: 0.2s;
+}
