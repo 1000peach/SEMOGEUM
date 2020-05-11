@@ -3,7 +3,17 @@
 * {
     box-sizing: border-box;
 }
-/* md 기준보다 브라우저 크기 작을 때 */ 
+/* lg 기준보다 브라우저 크기 작을 때 */
+@media screen and (max-width: 1200px) {
+    /* 한 모금 페이지 display 가로로 변경 */
+    #one-div-main {
+        flex-direction: column;
+    }
+    #realtime-ranking {
+        width: 100%;
+    }
+}
+/* md 기준보다 브라우저 크기 작을 때 */
 @media screen and (max-width: 768px) {
     /* 가로 네비로 변경 */
     body {
@@ -30,12 +40,19 @@
     #main-div div h4 {
         text-align: center;
     }
+    /* 한 모금 페이지 스크롤 내려서 볼 수 있게 변경 */
+    #one-div {
+        overflow-y: inherit;
+    }
 }
 /* sm 기준보다 브라우저 크기 작을 때 */
 @media screen and (max-width: 576px) {
     /* main에서 d-day 배너 삭제 */
     .d-day {
         display: none;
+    }
+    #one-div > div {
+        position: initial;
     }
 }
 /* 그 외 브라우저 크기 */
@@ -45,4 +62,3 @@
         display: none;
     }
 }
-
