@@ -1,12 +1,53 @@
-<div class="col-div" style="width: 100%; z-index: 1;">
-    <ol>
-        <li class="onemogeum-banner text-center">
-            <b class="d-day text-danger bg-white">D-4</b>
-            <a href="#" class="text-white">5월의 상품에 투표해 주세요! (2020.04.20~2020.04.26)</a><br>
-            <a href="#" class="text-white">상품화 되었으면 하는 제품 및 아이디어에 투표해 주세요. (인당 5개 가능)</a>
-        </li>
-    </ol>
-</div>
-</body>
-    <script src="/javascripts/nav.js"></script>
-</html>
+<div id="one-div" class="col-div" style="width: 100%;">
+    <div class="col-div">
+        <ol style="margin-bottom: 0;">
+            <li class="notice-li text-center" style="height: 80px; border: none; border-radius: 0; padding: 15px 0;">
+                <a href="/mogeum/1" class="text-white">
+                    <div style="display: flex; justify-content: center;">
+                        <b class="d-day text-danger bg-white" style="margin: 0 10px;">D-4</b>
+                        <h4 class="font-weight-bold">5월의 상품에 투표해 주세요!</h4>
+                    </div>
+                    <span id="sub-notice" style="font-size: 14px;">상품화 되었으면 하는 제품 및 아이디어에 투표해 주세요.</span>
+                </a>
+            </li>
+        </ol>
+    </div>
+    <div id="one-div-main" class="container">
+        <div id="realtime-ranking">
+            <h5 class="font-weight-bold mt-3 mb-3">실시간 랭킹</h5>
+            <h6 class="font-weight-bold text-black">상품화 될 가능성이 높아요!</h6>
+            <ol>
+                <li>
+                    <% for (var num = 0; num < 5; num++) { %>
+                    <p class="ranking-item mt-2"><%= num + 1 %>. 귀여운 민지를 쓰다듬자</p>
+                    <% } %>
+                </li>
+            </ol>
+            <h6 class="font-weight-bold text-black">조금만 더 힘내요!</h6>
+            <ol>
+                <li>
+                    <% for (var num = 5; num < 8; num++) { %>
+                    <p class="ranking-item mt-2"><%= num + 1 %>. 귀여운 민지를 쓰다듬자</p>
+                    <% } %>
+                </li>
+            </ol>
+        </div>
+        <div id="vote-list" style="width: 100%;">
+            <h5 class="font-weight-bold mt-3 mb-3">접전 끝에 선정된, 5월의 상품 후보를 소개합니다!</h5>
+            <div class="row">
+                <% for (var i = 0; i < 9; i ++) { %>
+                <div class="col-lg-4 col-sm-6 mb-4">
+                    <div class="card h-90">
+                        <a href="#"><img class="card-img-top" src="/images/catPaw.PNG" alt=""></a>
+                        <div class="card-body">
+                            <h4 class="card-title text-center">
+                                <a href="#"><strong>추억의 철필통, 어른 ver.</strong></a>
+                            </h4>
+                            <p class="card-text">이거 한 번도 안 사본 사람은 없을 거예요 . 필통 사 모으던 그 때 그 시절로 돌아가고 싶다면?</p>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+            </div> <!-- /row -->
+        </div> <!-- /vort-list -->
+    </div> <!-- /one-div-main -->
