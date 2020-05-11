@@ -12,7 +12,7 @@ const path = require('path');
 const upload = multer({
     storage: multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, __dirname + '/images/uploads/sellProducts');
+            cb(null, __dirname + '/images/uploads/voteProducts');
         },
         filename: function (req, file, cb) {
             cb(null, new Date().valueOf() + path.extname(file.originalname));
@@ -21,73 +21,51 @@ const upload = multer({
 });
 
 /*
-    상품등록 양식에서 입력된 상품정보를 등록합니다
+    상품공모 양식을 출력합니다
 */
-const handleAddProduct = (req, res) => {
+const getProdContest = (req, res) => {
     let body = req.body;
-    let htmlstream = '';
-    let datestr, y, m, d, regdate;
-    let prodimage = '/images/uploads/products/'; // 상품이미지 저장디렉터리
-    let picfile = req.file;
-    let result = { originalName: picfile.originalname, size: picfile.size };
+    let prodContestStream = '';
+    prodContestStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
+    prodContestStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
+    prodContestStream += fs.readFileSync(__dirname + '/../views/prodContest.ejs', 'utf8');
+    prodContestStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
 
-    console.log(body); // 이병문 - 개발과정 확인용(추후삭제).
+    console.log(body); 
+    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 
-    if (req.session.auth && req.session.admin) {
-        if (body.itemid == '' || datestr == '') {
-            console.log('상품번호가 입력되지 않아 DB에 저장할 수 없습니다.');
-            res.status(561).end('<meta charset="utf-8">상품번호가 입력되지 않아 등록할 수 없습니다');
-        } else {
-            prodimage = prodimage + picfile.filename;
-            regdate = new Date();
-            db.query(
-                'INSERT INTO u18_products (itemid, category, maker, pname, modelnum, rdate, price, dcrate, amount, event, pic) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)',
-                [
-                    body.itemid,
-                    body.category,
-                    body.maker,
-                    body.pname,
-                    body.modelnum,
-                    regdate,
-                    body.price,
-                    body.dcrate,
-                    body.amount,
-                    body.event,
-                    prodimage,
-                ],
-                (error, results, fields) => {
-                    if (error) {
-                        htmlstream = fs.readFileSync(__dirname + '/../views/alert.ejs', 'utf8');
-                        res.status(562).end(
-                            ejs.render(htmlstream, {
-                                title: '알리미',
-                                warn_title: '상품등록 오류',
-                                warn_message: '상품으로 등록할때 DB저장 오류가 발생하였습니다. 원인을 파악하여 재시도 바랍니다',
-                                return_url: '/',
-                            })
-                        );
-                    } else {
-                        console.log('상품등록에 성공하였으며, DB에 신규상품으로 등록하였습니다!');
-                        res.redirect('/adminprod/list');
-                    }
-                }
-            );
-        }
-    } else {
-        htmlstream = fs.readFileSync(__dirname + '/../views/alert.ejs', 'utf8');
-        res.status(562).end(
-            ejs.render(htmlstream, {
-                title: '알리미',
-                warn_title: '상품등록기능 오류',
-                warn_message: '관리자로 로그인되어 있지 않아서, 상품등록 기능을 사용할 수 없습니다.',
-                return_url: '/',
+    if (req.session.userId) {
+        res.end(
+            ejs.render(prodContestStream, {
+                title: '이 달의 상품 공모',
+                page: 0,
+                userName: req.session.who,
+                signUpUrl: '/myPage',
+                signUpLabel: '마이페이지',
+                loginUrl: '/cart',
+                loginLabel: '장바구니',
+                logoutUrl: '/users/logout',
+                logoutLabel: '로그아웃'
             })
         );
+    } else {
+        res.end(ejs.render(returnError(), { title: '에러 페이지', errorMessage: '로그인이 필요합니다.' }));
     }
 };
 
-상품명, [상품모델명], 카테고리, 판매자, 가격;
+/*
+    상품공모 양식에서 입력된 상품정보를 등록합니다
+*/
+const handleProdContest = (req, res) => {
+    let body = req.body;
+    let productImg = '/images/uploads/voteProducts/'; // 상품이미지 저장디렉터리
+    let imgFileArr = req.files;
+    let result = { originalName: picfile.originalname, size: picfile.size };
 
-router.post('/sellProduct', upload.single('photo'), handleAddProduct);
+    
+};
+
+router.get('/prodContest', getProdContest);
+router.post('/prodContest', upload.array('photo'), handleProdContest);
 
 module.exports = router;

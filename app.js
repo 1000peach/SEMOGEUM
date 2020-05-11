@@ -15,6 +15,7 @@ const sessionParser = require('express-session');
 */
 const routes = require('./routes/main');
 const users = require('./routes/users');
+const products = require('./routes/products');
 
 /*
     포트주소 설정(변수화하면 나중에 편해서)
@@ -54,6 +55,7 @@ app.use(
 */
 app.use('/', routes); // URI (/) 접속하면 main.js로 라우팅
 app.use('/users', users); // URI (/users) 접속하면 users.js로 라우팅
+app.use('/products', products); // URI (/products) 접속하면 products.js로 라우팅
 
 // 서버 실행
 app.listen(port, function () {
