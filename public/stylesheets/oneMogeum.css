@@ -1,3 +1,4 @@
+/* 한 모금 전체 div */
 #one-div {
     overflow-y: scroll;
 }
@@ -9,6 +10,7 @@
     display: flex;
     flex-direction: row-reverse;
 }
+/* 실시간 랭킹 */
 #realtime-ranking {
     width: 400px;
     padding: 0 20px;
@@ -17,9 +19,19 @@
     padding-top: 10px;
     color: black;
 }
+/* 상품 목록 */
+.card {
+    border: none;
+    cursor: pointer;
+}
+.card:hover {
+    box-shadow: 10px 10px 10px lightgray;
+    transition: 0.2s;
+}
 .card-body > h4 > a, .card-body > p {
     color: black;
 }
+/* 헤더 고정 */
 div[class="col-div"] {
     position: sticky;
     top: 0;
@@ -34,14 +46,15 @@ div[class="col-div"] {
     border-image-slice: 2;
     padding: 8px;
     cursor: pointer;
-    position: sticky;
     top: 100px;
 }
-.card {
-    border: none;
-    cursor: pointer;
-}
-.card:hover {
+/* scroll top */
+#top {
+    border-radius: 50%;
+    position: fixed;
+    right: 40px;
+    bottom: 20px;
+    z-index: 4;
+    background-image: linear-gradient(to right, rgb(128, 212, 255), rgb(204, 102, 255));
     box-shadow: 10px 10px 10px lightgray;
-    transition: 0.2s;
 }

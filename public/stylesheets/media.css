@@ -50,9 +50,12 @@
     /* main에서 d-day 배너 삭제 */
     .d-day {
         display: none;
-    }
+    }/* 한 모금 */
     #one-div > div {
         position: initial;
+    }
+    #top {
+        right: 10px;
     }
 }
 /* 그 외 브라우저 크기 */
