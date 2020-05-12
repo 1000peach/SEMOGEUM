@@ -24,7 +24,7 @@
     border: none;
     cursor: pointer;
 }
-.card:hover {
+#vote-list div div > .card:hover {
     box-shadow: 10px 10px 10px lightgray;
     transition: 0.2s;
 }
@@ -32,7 +32,7 @@
     color: black;
 }
 /* 헤더 고정 */
-div[class="col-div"] {
+#one_div > div[class="col-div"] {
     position: sticky;
     top: 0;
     z-index: 3;
