@@ -26,8 +26,10 @@ const getMainPage = (req, res) => {
                 userName: req.session.who,
                 signUpUrl: '/myPage',
                 signUpLabel: '마이페이지',
-                loginUrl: '/users/logout',
-                loginLabel: '로그아웃',
+                loginUrl: '/cart',
+                loginLabel: '장바구니',
+                logoutUrl: '/users/logout',
+                logoutLabel: '로그아웃'
             })
         );
     } else {
@@ -40,6 +42,8 @@ const getMainPage = (req, res) => {
                 signUpLabel: '회원가입',
                 loginUrl: '/users/login',
                 loginLabel: '로그인',
+                logoutUrl: '일단패스',
+                logoutLabel: '일단패스'
             })
         );
     }
@@ -66,8 +70,10 @@ const getNoticePage = (req, res) => {
                 userName: req.session.who,
                 signUpUrl: '/myPage',
                 signUpLabel: '마이페이지',
-                loginUrl: '/users/logout',
-                loginLabel: '로그아웃',
+                loginUrl: '/cart',
+                loginLabel: '장바구니',
+                logoutUrl: '/users/logout',
+                logoutLabel: '로그아웃'
             })
         );
     } else {
@@ -80,6 +86,8 @@ const getNoticePage = (req, res) => {
                 signUpLabel: '회원가입',
                 loginUrl: '/users/login',
                 loginLabel: '로그인',
+                logoutUrl: '일단패스',
+                logoutLabel: '일단패스'
             })
         );
     }
@@ -106,8 +114,10 @@ const getMyPage = (req, res) => {
                 userName: req.session.who,
                 signUpUrl: '/myPage',
                 signUpLabel: '마이페이지',
-                loginUrl: '/users/logout',
-                loginLabel: '로그아웃',
+                loginUrl: '/cart',
+                loginLabel: '장바구니',
+                logoutUrl: '/users/logout',
+                logoutLabel: '로그아웃'
             })
         );
     } else {
@@ -137,8 +147,10 @@ const getCartPage = (req, res) => {
                 userName: req.session.who,
                 signUpUrl: '/myPage',
                 signUpLabel: '마이페이지',
-                loginUrl: '/users/logout',
-                loginLabel: '로그아웃',
+                loginUrl: '/cart',
+                loginLabel: '장바구니',
+                logoutUrl: '/users/logout',
+                logoutLabel: '로그아웃'
             })
         );
     } else {
@@ -181,8 +193,10 @@ const getMogeum = (req, res) => {
                 userName: req.session.who,
                 signUpUrl: '/myPage',
                 signUpLabel: '마이페이지',
-                loginUrl: '/users/logout',
-                loginLabel: '로그아웃',
+                loginUrl: '/cart',
+                loginLabel: '장바구니',
+                logoutUrl: '/users/logout',
+                logoutLabel: '로그아웃'
             })
         );
     } else {
@@ -195,6 +209,8 @@ const getMogeum = (req, res) => {
                 signUpLabel: '회원가입',
                 loginUrl: '/users/login',
                 loginLabel: '로그인',
+                logoutUrl: '일단패스',
+                logoutLabel: '일단패스'
             })
         );
     }

@@ -78,7 +78,7 @@ mark {
     background-image: url(/images/product_vg.png);
 }
 /* 이런 상품도 있어요! */
-.productTitle {
+.product-title {
     font-size: 17px;
     margin: 0;
     float: left;
@@ -87,7 +87,7 @@ mark {
     height: 6vh;
     padding: 1vh 10px;
 }
-.productName {
+.product-name {
     font-size: 18px;
     color: black;
 }
@@ -98,28 +98,23 @@ mark {
 .card-body {
     padding-top: 0;
 }
-.reviewText {
-    background-color: lightgray;
-    padding: 2%;
-    text-align: left;
-}
-.reviewRank {
+.review-rank {
     font-size: 25px;
 }
 .checked {
     color: orange;
 }
-.reviewTitle {
+.review-title {
     height: 20%;
     font-size: 20px;
     font-weight: bold;
     color: black;
 }
-.reviewContent {
+.review-content {
     color: black;
     text-align: left;
 }
-.customerID {
+.customer-ID {
     color: black;
     float: right;
 }
