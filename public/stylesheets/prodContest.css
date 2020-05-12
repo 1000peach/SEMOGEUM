@@ -1,15 +1,11 @@
 #prodContest-div {
     overflow-y: scroll;
 }
-#prodContest-div > #col-div {
-    position: fixed;
-    z-index: 3;
-}
 #prodContest-div-main {
     display: flex;
     flex-direction: row-reverse;
 }
-div[class="col-div"] {
+#prodContest-div > div[class="col-div"] {
     position: sticky;
     top: 0;
     z-index: 3;

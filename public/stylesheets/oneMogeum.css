@@ -32,7 +32,7 @@
     color: black;
 }
 /* 헤더 고정 */
-#one_div > div[class="col-div"] {
+#one_div > div {
     position: sticky;
     top: 0;
     z-index: 3;
