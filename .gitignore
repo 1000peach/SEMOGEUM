@@ -1,7 +1,6 @@
 # SEMOGEUM IGNORE
 .vscode
 bin
-package.json
 db.js
 
 # 에그가 추가
