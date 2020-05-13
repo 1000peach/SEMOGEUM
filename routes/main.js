@@ -50,50 +50,6 @@ const getMainPage = (req, res) => {
 };
 
 /*
-    공지사항 페이지를 출력합니다.
-*/
-const getNoticePage = (req, res) => {
-    let noticeStream = '';
-    noticeStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
-    noticeStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
-    noticeStream += fs.readFileSync(__dirname + '/../views/notice.ejs', 'utf8');
-    //noticeStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
-
-    res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
-
-    // if :로그인된 상태,  else : 로그인안된 상태
-    if (req.session.userId) {
-        res.end(
-            ejs.render(noticeStream, {
-                title: '공지사항',
-                page: 0,
-                userName: req.session.who,
-                signUpUrl: '/myPage',
-                signUpLabel: '마이페이지',
-                loginUrl: '/cart',
-                loginLabel: '장바구니',
-                logoutUrl: '/users/logout',
-                logoutLabel: '로그아웃'
-            })
-        );
-    } else {
-        res.end(
-            ejs.render(noticeStream, {
-                title: '공지사항',
-                page: 0,
-                userName: '비회원',
-                signUpUrl: '/users/signUp',
-                signUpLabel: '회원가입',
-                loginUrl: '/users/login',
-                loginLabel: '로그인',
-                logoutUrl: '일단패스',
-                logoutLabel: '일단패스'
-            })
-        );
-    }
-};
-
-/*
     마이페이지를 출력합니다.
 */
 const getMyPage = (req, res) => {
@@ -217,7 +173,6 @@ const getMogeum = (req, res) => {
 };
 
 router.get('/', getMainPage);
-router.get('/notice', getNoticePage);
 router.get('/myPage', getMyPage);
 router.get('/cart', getCartPage);
 router.get('/mogeum/:page', getMogeum); // 모금 페이지
