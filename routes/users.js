@@ -4,7 +4,7 @@ const ejs = require('ejs');
 const router = express.Router();
 const   methodOverride = require('method-override');
 const db = require('./db');
-const returnError = require('./error')
+const returnError = require('./error');
 
 router.use(methodOverride('_method')); // put을 사용하기 위함
 
