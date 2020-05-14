@@ -3,7 +3,7 @@ const fs = require('fs');
 const ejs = require('ejs');
 const router = express.Router();
 const db = require('./db');
-const returnError = require('./error')
+const returnError = require('./error');
 
 /*
     메인 화면을 출력합니다.
