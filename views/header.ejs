@@ -45,7 +45,7 @@
         <!-- 회원가입 템플릿 연동 -->
         <link rel="stylesheet" type="text/css" href="/stylesheets/signup/css/opensans-font.css" />
         <link rel="stylesheet" type="text/css" href="/stylesheets/signup/css/line-awesome.min.css" />
-        <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css" />
+        <!-- <link rel="stylesheet" href="https://jqueryvalidation.org/files/demo/site-demos.css" /> -->
         <link rel="stylesheet" href="/stylesheets/signup/css/style.css" />
 
         <!-- 에러페이지 템플릿 연동 -->
@@ -53,29 +53,29 @@
         <link type="text/css" rel="stylesheet" href="/stylesheets/errorPage/css/style.css" />
 
         <!-- 상품 등록 템플릿 연동 -->
-        <link rel="stylesheet" type="text/css" href="/stylesheets/addProduct/css/util.css">
-        <link rel="stylesheet" type="text/css" href="/stylesheets/addProduct/css/main.css">
+        <link rel="stylesheet" type="text/css" href="/stylesheets/addProduct/css/util.css" />
+        <link rel="stylesheet" type="text/css" href="/stylesheets/addProduct/css/main.css" />
         <script async src="https://www.googletagmanager.com/gtag/js?id=UA-23581568-13"></script>
         <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+                dataLayer.push(arguments);
+            }
+            gtag('js', new Date());
 
-        gtag('config', 'UA-23581568-13');
+            gtag('config', 'UA-23581568-13');
         </script>
-
 
         <!-- nav -->
         <link href="/stylesheets/nav.css" rel="stylesheet" />
         <!-- main -->
         <link href="/stylesheets/main.css" rel="stylesheet" />
+        <!-- prodContest(상품공모) -->
+        <link href="/stylesheets/prodContest.css" rel="stylesheet" />
         <!-- oneMogeum -->
         <link href="/stylesheets/oneMogeum.css" rel="stylesheet" />
         <!-- media -->
         <link href="/stylesheets/media.css" rel="stylesheet" />
-        <!-- prodContest(상품공모) -->
-        <link href="/stylesheets/prodContest.css" rel="stylesheet" />
-
 
         <title><%= title %></title>
     </head>

@@ -1,1 +1,73 @@
-테스트
+<div id="product-div" class="col-div">
+    <div class="col-div">
+        <ol style="margin-bottom: 0;">
+            <li class="notice-li text-center" style="height: 80px; border: none; border-radius: 0; padding: 15px 0;">
+                <a href="/products/prodContest" class="text-white">
+                    <div style="display: flex; justify-content: center;">
+                        <h4 class="font-weight-bold">소중한 아이디어를 뽐내 주세요!</h4>
+                    </div>
+                    <span id="sub-notice" style="font-size: 14px;">감사합니다. 귀중한 내용을 꼼꼼히 읽고, 검토하겠습니다.</span>
+                </a>
+            </li>
+        </ol>
+    </div>
+    <div class="contact-form container">
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="input-seller">
+                    <strong>판매자에 대해 간단히 소개해 주세요.</strong><br />
+                    투표 단계에서는 본인 노출이 불가능하며, 상품 선정시 판매 페이지에서 판매자 정보가 등록됩니다.
+                </label>
+                <textarea class="form-control" id="input-seller" name="input-seller" rows="2" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="input-name"><strong>제품명을 입력해 주시고, 제품을 한 줄로 설명해 주세요.</strong></label>
+                <input type="text" class="form-control" id="input-name" name="input-name" required style="min-height: 40px;" />
+            </div>
+            <div class="form-group">
+                <label for="input-product"
+                    ><strong>제품에 대해 자세히 소개해 주세요.</strong><br />
+                    제작 배경, 예상 소재, 예상 고객, 제품의 용도 등을 자세히 소개해 주세요.
+                </label>
+                <textarea class="form-control" id="input-product" name="input-product" rows="15" required></textarea>
+            </div>
+            <div class="form-group mb-3" style="display: flex;">
+                <img src="/images/img-upload.png" width="50" height="50" alt="이미지 업로드" />
+                <p style="padding: 0 10px;"><strong>메인으로 올라갈 이미지를 등록해 주세요.</strong><br />최대 4개까지 등록이 가능합니다.</p>
+            </div>
+            <div class="form-group">
+                <label for="input-img0"><strong>대표 이미지</strong></label><br />
+                <input type="file" id="input-img0" name="input-img0" required />
+            </div>
+            <div class="form-group">
+                <label for="input-img1"><strong>상세 이미지 1</strong></label><br />
+                <input type="file" id="input-img1" name="input-img1" required />
+            </div>
+            <div class="form-group">
+                <label for="input-img2"><strong>상세 이미지 2</strong></label><br />
+                <input type="file" id="input-img2" name="input-img2" required />
+            </div>
+            <div class="form-group">
+                <label for="input-img3"><strong>상세 이미지 3</strong></label><br />
+                <input type="file" id="input-img3" name="input-img3" required />
+            </div>
+            <div class="form-group">
+                <p class="mb-1"><strong>대표 연락처를 남겨주세요.</strong></p>
+                <label for="input-number">전화번호</label>
+                <input type="tel" class="form-control mb-2" id="input-tell" placeholder="ex. 01012345678" required />
+                <label for="input-email">이메일</label>
+                <input type="email" class="form-control" id="input-email" placeholder="ex. tamsasoo@gmail.com" required />
+            </div>
+            <div class="chiller_cb mb-3">
+                <input id="check-1" name="check-1" type="checkbox" />
+                <label for="check-1" class="text-danger"><strong>디자인 및 아이디어 등의 표절 시 책임은 판매자에게 있습니다.</strong></label>
+                <span></span>
+            </div>
+            <div class="chiller_cb mb-4">
+                <input id="check-2" name="check-2" type="checkbox" />
+                <label for="check-2"><strong>투표 랭킹 내에 들더라도, 운영진들의 판단 하에 최종 제품으로 선정되지 않을 수 있습니다.</strong></label>
+                <span></span>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" style="border-radius: 20px;"><i class="fa fa-paper-plane"></i>제출하기</button>
+        </form>
+    </div>
