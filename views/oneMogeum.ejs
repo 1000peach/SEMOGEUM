@@ -38,19 +38,19 @@
         <div id="vote-list" style="width: 100%;">
             <h5 class="font-weight-bold mt-3 mb-3">접전 끝에 선정된, 5월의 상품 후보를 소개합니다!</h5>
             <div class="row">
-                <% for (var i = 0; i < 9; i ++) { %>
+                <% prodList.forEach(function(prod, i) { %>
                 <div class="col-lg-4 col-sm-6 mb-4">
                     <div class="card h-90">
-                        <a href="#"><img class="card-img-top" src="/images/catPaw.PNG" alt=""></a>
+                        <a href="#"><img class="card-img-top" src=<%=prod.thumbnailImg%>  width="300" height="200" alt=""></a>
                         <div class="card-body">
                             <h4 class="card-title text-center">
-                                <a href="#"><strong>추억의 철필통, 어른 ver.</strong></a>
+                                <a href="#"><strong><%=prod.productName%></strong></a>
                             </h4>
-                            <p class="card-text">이거 한 번도 안 사본 사람은 없을 거예요 . 필통 사 모으던 그 때 그 시절로 돌아가고 싶다면?</p>
+                            <p class="card-text"><%=prod.productIntro%></p>
                         </div>
                     </div>
                 </div>
-                <% } %>
+                <% }); %>
             </div> <!-- /row -->
         </div> <!-- /vort-list -->
     </div> <!-- /one-div-main -->

@@ -10,7 +10,7 @@ const multer = require('multer');
 // const upload = multer({
 //     storage: multer.diskStorage({
 //         destination: function (req, file, cb) {
-//             cb(null, __dirname + '/images/uploads/voteProducts');
+//             cb(null, __dirname + '/../public/images/uploads/voteProducts');
 //         },
 //         filename: function (req, file, cb) {
 //             cb(null, new Date().valueOf() + path.extname(file.originalname));
