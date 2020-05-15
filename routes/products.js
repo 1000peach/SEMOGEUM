@@ -58,7 +58,7 @@ const getProdContest = (req, res) => {
 const handleProdContest = (req, res) => {
     let storage = multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, __dirname + '/images/uploads/voteProducts'); // 저장 경로
+            cb(null, __dirname + '/../public/images/uploads/voteProducts'); // 저장 경로
         },
         filename: function (req, file, cb) {
             var file_name = Date.now() + '-' + file.originalname;
