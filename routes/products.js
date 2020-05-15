@@ -6,13 +6,13 @@ const db = require('./db');
 const returnError = require('./error');
 const multer = require('multer');
 const path = require('path');
-const upload = multer({dest: __dirname + '/images/uploads/voteProducts'});
+const upload = multer({ dest: __dirname + '/../public/images/uploads/voteProducts'});
 // https://www.zerocho.com/category/NodeJS/post/5950a6c4f7934c001894ea83 참고
 // 파일명을 보안문자로 저장하지않고 편리함을 위해 그대로 표출하기 위함
 // const upload = multer({
 //     storage: multer.diskStorage({
 //         destination: function (req, file, cb) {
-//             cb(null, __dirname + '/images/uploads/voteProducts');
+//             cb(null, __dirname + '/../public/images/uploads/voteProducts');
 //         },
 //         filename: function (req, file, cb) {
 //             cb(null, new Date().valueOf() + path.extname(file.originalname));
@@ -46,7 +46,7 @@ const getProdContest = (req, res) => {
                 loginLabel: '장바구니',
                 logoutUrl: '/users/logout',
                 logoutLabel: '로그아웃',
-                userId: req.session.userId
+                userId: req.session.userId,
             })
         );
     } else {
@@ -66,7 +66,7 @@ const handleProdContest = (req, res) => {
     let voteCount = 5;
     let userPhone = body.userPhone;
     let userEmail = body.userEmail;
-    let prodImgRoute = /*__dirname + */ '/images/uploads/voteProducts/'; // 상품이미지 저장디렉터리
+    let prodImgRoute = '/images/uploads/voteProducts/'; // 상품이미지 저장디렉터리
     let imgFileArr = req.files;
     let str1;
     let prodImgArr = new Array(4);
@@ -79,13 +79,15 @@ const handleProdContest = (req, res) => {
         prodImgArr[i] = prodImgRoute + imgFileArr[i].filename;
     }
 
-    console.log('body: ', body);
-    console.log('imgFileArr: ', imgFileArr);
+    //console.log('body: ', body);
+    //console.log('imgFileArr: ', imgFileArr);
 
     str1 = 'INSERT INTO VOTE_PRODUCT VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
 
     if (req.session.userId) {
-        db.query(str1, [userId, prodName, prodIntro, prodDetail, voteCount, prodImgArr[0], prodImgArr[1], prodImgArr[2], prodImgArr[3], userPhone, userEmail],
+        db.query(
+            str1,
+            [userId, prodName, prodIntro, prodDetail, voteCount, prodImgArr[0], prodImgArr[1], prodImgArr[2], prodImgArr[3], userPhone, userEmail],
             (error, fields) => {
                 if (error) {
                     console.log(error);
@@ -110,9 +112,7 @@ const handleProdContest = (req, res) => {
         );
     }
 
-
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 };
 
 router.get('/prodContest', getProdContest);

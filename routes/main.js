@@ -116,6 +116,8 @@ const getCartPage = (req, res) => {
 
 /* 한 모금, 두 모금, 세 모금 페이지 출력 */
 const getMogeum = (req, res) => {
+    let str1;
+    let userId = req.session.userId;
     let mogeumStream = '';
     let title = '',
         ejsView;
@@ -139,34 +141,48 @@ const getMogeum = (req, res) => {
     mogeumStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
 
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
+    
+    str1 = "SELECT productName, productIntro, thumbnailImg FROM VOTE_PRODUCT WHERE userId=?";
 
     // // if :로그인된 상태,  else : 로그인안된 상태
     if (req.session.userId) {
-        res.end(
-            ejs.render(mogeumStream, {
-                title: title,
-                page: req.params.page,
-                userName: req.session.who,
-                signUpUrl: '/myPage',
-                signUpLabel: '마이페이지',
-                loginUrl: '/cart',
-                loginLabel: '장바구니',
-                logoutUrl: '/users/logout',
-                logoutLabel: '로그아웃'
-            })
-        );
+        db.query(str1, [userId], (error, results) => {
+            console.log('results: ', results);
+            if (error) {
+                console.log(error);
+                res.end('error');
+            } else {
+                // 입력받은 데이터가 DB에 존재하는지 판단합니다.
+                if (results[0] == null) {
+                    res.status(562).end(
+                        ejs.render(returnError(), {
+                            title: '에러 페이지',
+                            errorMessage: '아직 투표중인 상품이 존재하지 않습니다.',
+                        })
+                    );
+                } else {
+                    res.end(
+                        ejs.render(mogeumStream, {
+                            title: title,
+                            page: req.params.page,
+                            userName: req.session.who,
+                            signUpUrl: '/myPage',
+                            signUpLabel: '마이페이지',
+                            loginUrl: '/cart',
+                            loginLabel: '장바구니',
+                            logoutUrl: '/users/logout',
+                            logoutLabel: '로그아웃',
+                            prodList: results
+                        })
+                    );
+                }
+            }
+        });
     } else {
-        res.end(
-            ejs.render(mogeumStream, {
-                title: title,
-                page: req.params.page,
-                userName: '비회원',
-                signUpUrl: '/users/signUp',
-                signUpLabel: '회원가입',
-                loginUrl: '/users/login',
-                loginLabel: '로그인',
-                logoutUrl: '일단패스',
-                logoutLabel: '일단패스'
+        res.status(562).end(
+            ejs.render(returnError(), {
+                title: '에러 페이지',
+                errorMessage: '로그인이 필요합니다.',
             })
         );
     }
