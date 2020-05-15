@@ -5,8 +5,6 @@ const router = express.Router();
 const db = require('./db');
 const returnError = require('./error');
 const multer = require('multer');
-const path = require('path');
-const upload = multer({dest: __dirname + '/images/uploads/voteProducts'});
 // https://www.zerocho.com/category/NodeJS/post/5950a6c4f7934c001894ea83 참고
 // 파일명을 보안문자로 저장하지않고 편리함을 위해 그대로 표출하기 위함
 // const upload = multer({
@@ -46,7 +44,7 @@ const getProdContest = (req, res) => {
                 loginLabel: '장바구니',
                 logoutUrl: '/users/logout',
                 logoutLabel: '로그아웃',
-                userId: req.session.userId
+                userId: req.session.userId,
             })
         );
     } else {
@@ -58,64 +56,75 @@ const getProdContest = (req, res) => {
     상품공모 양식에서 입력된 상품정보를 등록합니다
 */
 const handleProdContest = (req, res) => {
-    let body = req.body;
-    let userId = body.userId;
-    let prodName = body.prodName;
-    let prodIntro = body.prodIntro;
-    let prodDetail = body.prodDetail;
-    let voteCount = 5;
-    let userPhone = body.userPhone;
-    let userEmail = body.userEmail;
-    let prodImgRoute = /*__dirname + */ '/images/uploads/voteProducts/'; // 상품이미지 저장디렉터리
-    let imgFileArr = req.files;
-    let str1;
-    let prodImgArr = new Array(4);
+    let storage = multer.diskStorage({
+        destination: function (req, file, cb) {
+            cb(null, __dirname + '/images/uploads/voteProducts'); // 저장 경로
+        },
+        filename: function (req, file, cb) {
+            var file_name = Date.now() + '-' + file.originalname;
+            cb(null, file_name);
+        },
+    });
+    let upload = multer({ storage: storage }).array('img');
+    upload(req, res, function (err) {
+        if (err) {
+            console.log('사진 업로드 에러' + err);
+        } else {
+            let body = req.body;
+            let prodDetail = body.prodDetail;
+            let voteCount = 5;
+            let userPhone = body.userPhone;
+            let userEmail = body.userEmail;
+            let prodImgRoute = /*__dirname + */ '/images/uploads/voteProducts/'; // 상품이미지 저장디렉터리
+            let imgFileArr = req.files;
+            let str1;
+            let prodImgArr = new Array(4);
 
-    for (let i = 0; i < 4; i++) {
-        prodImgArr[i] = null;
-    }
-
-    for (let i = 0; i < imgFileArr.length; i++) {
-        prodImgArr[i] = prodImgRoute + imgFileArr[i].filename;
-    }
-
-    console.log('body: ', body);
-    console.log('imgFileArr: ', imgFileArr);
-
-    str1 = 'INSERT INTO VOTE_PRODUCT VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)';
-
-    if (req.session.userId) {
-        db.query(str1, [userId, prodName, prodIntro, prodDetail, voteCount, prodImgArr[0], prodImgArr[1], prodImgArr[2], prodImgArr[3], userPhone, userEmail],
-            (error, fields) => {
-                if (error) {
-                    console.log(error);
-                    res.status(562).end(
-                        ejs.render(returnError(), {
-                            title: '제품 등록 에러',
-                            errorMessage: '제품 등록을 처리하는 과정에서 에러가 발생했습니다.',
-                        })
-                    );
-                } else {
-                    console.log('제품 등록에 성공하였으며, DB에 제품이 등록되었습니다.!');
-                    res.redirect('/');
-                }
+            for (let i = 0; i < 4; i++) {
+                prodImgArr[i] = null;
             }
-        );
-    } else {
-        res.status(562).end(
-            ejs.render(returnError, {
-                title: '제품 등록 에러',
-                errorMessage: '제품 등록을 처리하는 과정에서 에러가 발생했습니다.',
-            })
-        );
-    }
+            for (let i = 0; i < imgFileArr.length; i++) {
+                prodImgArr[i] = prodImgRoute + imgFileArr[i].filename;
+            }
+            console.log('body: ', body);
+            console.log('imgFileArr: ', imgFileArr);
 
+            str1 = `INSERT INTO VOTE_PRODUCT VALUES('${body.userId}', '${body.prodName}', '${body.prodIntro}', ?, ?, ?, ?, ?, ?, ?, ?)`;
 
+            if (req.session.userId) {
+                db.query(
+                    str1,
+                    [prodDetail, voteCount, prodImgArr[0], prodImgArr[1], prodImgArr[2], prodImgArr[3], userPhone, userEmail],
+                    (error, fields) => {
+                        if (error) {
+                            console.log('db 등록에러');
+                            console.log(error);
+                            res.status(562).end(
+                                ejs.render(returnError(), {
+                                    title: '제품 등록 에러',
+                                    errorMessage: '제품 등록을 처리하는 과정에서 에러가 발생했습니다.',
+                                })
+                            );
+                        } else {
+                            console.log('제품 등록에 성공하였으며, DB에 제품이 등록되었습니다.!');
+                            res.redirect('/');
+                        }
+                    }
+                );
+            } else {
+                res.status(562).end(
+                    ejs.render(returnError, {
+                        title: '제품 등록 에러',
+                        errorMessage: '제품 등록을 처리하는 과정에서 에러가 발생했습니다.',
+                    })
+                );
+            }
+        }
+    });
     /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
 };
 
 router.get('/prodContest', getProdContest);
-router.post('/upload', upload.array('img'), handleProdContest);
+router.post('/upload', handleProdContest);
 
 module.exports = router;
