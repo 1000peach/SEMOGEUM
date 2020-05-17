@@ -1,0 +1,67 @@
+#three-container {
+    padding-left: 15%;
+    padding-right: 15%;
+    padding-bottom: 15%;
+}
+
+#dropdown-right {
+    padding-top: 3%;
+    padding-bottom: 1%;
+    width: 95%;
+    text-align: right;
+    display: inline-block;
+}
+
+/* 상품 목록 */
+#buy-list div div > .card {
+    border: none;
+    cursor: pointer;
+}
+
+#buy-list div div > .card:hover {
+    box-shadow: 10px 10px 10px lightgray;
+    transition: 0.2s;
+}
+
+#buy-list div div > .card > .card-body > h4 > a, .card-body > p {
+    color: black;
+}
+
+.product-price {
+    color: black;
+    font-weight: 900;
+    font-size: 15px;
+}
+
+/* 달 */
+.month {
+    position: absolute; top: 10px; left: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    text-align: center;
+    width: 70px;
+    height: 30px;
+    color: white;
+}
+
+#Jan {
+    background-color: orange;
+}
+
+#Feb {
+    background-color: chartreuse;
+}
+
+#Mar {
+    background-color:royalblue;
+}
+
+#Apr {
+    background-color: palevioletred;
+}
+
+#May {
+    background-color: rebeccapurple;
+}
