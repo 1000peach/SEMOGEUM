@@ -142,7 +142,7 @@ const getMogeum = (req, res) => {
 
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
     
-    str1 = "SELECT productName, productIntro, thumbnailImg FROM VOTE_PRODUCT WHERE userId=?";
+    str1 = "SELECT productName, productIntro, thumbnailImg FROM VOTE_PRODUCT";
 
     // // if :로그인된 상태,  else : 로그인안된 상태
     if (req.session.userId) {
