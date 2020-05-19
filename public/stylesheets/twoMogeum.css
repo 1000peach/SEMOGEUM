@@ -7,6 +7,10 @@
     padding-bottom: 5px;
 }
 
+.two-image {
+    padding-bottom: 5px;
+}
+
 .two-title {
     font-size: 20px;
     padding-bottom: 5px;
@@ -21,7 +25,7 @@
     font-size: 10px;
 }
 
-.col-5 {
+.col-lg-5 {
     text-align: center;
 }
 
@@ -41,4 +45,8 @@
 .col-6 {
     text-align: center;
     font-size: 13px;
+}
+
+.content-right {
+    padding-bottom: 10px;
 }
