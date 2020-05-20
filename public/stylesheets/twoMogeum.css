@@ -1,0 +1,52 @@
+.row {
+    margin-top: 10px;
+}
+.col-9 {
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+
+.two-image {
+    padding-bottom: 5px;
+}
+
+.two-title {
+    font-size: 20px;
+    padding-bottom: 5px;
+}
+
+.two-content {
+    font-size: 15px;
+    padding-bottom: 5px;
+}
+
+#progress-content {
+    font-size: 10px;
+}
+
+.col-lg-5 {
+    text-align: center;
+}
+
+.oneword {
+    background-color: lightgray;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-right: 5px;
+    padding: 10px;
+}
+
+.oneword-content {
+    font-size: 13px;
+    padding-top: 5px;
+}
+
+.col-6 {
+    text-align: center;
+    font-size: 13px;
+}
+
+.content-right {
+    padding-bottom: 10px;
+}
