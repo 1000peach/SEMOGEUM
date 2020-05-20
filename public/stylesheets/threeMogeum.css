@@ -23,7 +23,8 @@
     transition: 0.2s;
 }
 
-#buy-list div div > .card > .card-body > h4 > a, .card-body > p {
+#buy-list div div > .card > .card-body > h4 > a,
+.card-body > p {
     color: black;
 }
 
@@ -35,7 +36,9 @@
 
 /* 달 */
 .month {
-    position: absolute; top: 10px; left: 10px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
     padding-left: 5px;
     padding-right: 5px;
     padding-top: 3px;
@@ -55,7 +58,7 @@
 }
 
 #Mar {
-    background-color:royalblue;
+    background-color: royalblue;
 }
 
 #Apr {
@@ -64,4 +67,15 @@
 
 #May {
     background-color: rebeccapurple;
+}
+
+.product-rank {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    text-align: center;
+    background-color: white;
+    color: red;
+    width: 50px;
+    border: solid black 1px;
 }
