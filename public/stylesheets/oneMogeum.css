@@ -1,10 +1,10 @@
 /* 한 모금 전체 div */
 #one-div {
-    overflow-y: scroll;
+    overflow-y: auto;
 }
 #one-div > #col-div {
-    position: fixed;
-    z-index: 3;
+    /* position: sticky;
+    top: 0; */
 }
 #one-div-main {
     display: flex;

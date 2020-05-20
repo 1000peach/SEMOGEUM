@@ -12,6 +12,14 @@
     #realtime-ranking {
         width: 100%;
     }
+    /* 한모금 상세페이지 투표 상태 */
+    #current-vote {
+        margin: 0 auto;
+    }
+    #custCarousel .carousel-item img, #detail-intro {
+        max-width: 400px;
+        max-height: 400px;
+    }
 }
 /* md 기준보다 브라우저 크기 작을 때 */
 @media screen and (max-width: 768px) {
@@ -53,12 +61,22 @@
     /* main에서 d-day 배너 삭제 */
     .d-day {
         display: none;
-    }/* 한 모금 */
+    } /* 한 모금 */
     #one-div > div {
         position: initial;
     }
     #top {
         right: 10px;
+    }
+    #current-vote {
+        width: inherit;
+    }
+    #custCarousel .carousel-item img {
+        width: inherit;
+        height: inherit;
+    }
+    #detail-intro {
+        width: inherit;
     }
 }
 /* 그 외 브라우저 크기 */

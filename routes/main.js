@@ -29,7 +29,7 @@ const getMainPage = (req, res) => {
                 loginUrl: '/cart',
                 loginLabel: '장바구니',
                 logoutUrl: '/users/logout',
-                logoutLabel: '로그아웃'
+                logoutLabel: '로그아웃',
             })
         );
     } else {
@@ -43,7 +43,7 @@ const getMainPage = (req, res) => {
                 loginUrl: '/users/login',
                 loginLabel: '로그인',
                 logoutUrl: '일단패스',
-                logoutLabel: '일단패스'
+                logoutLabel: '일단패스',
             })
         );
     }
@@ -73,7 +73,7 @@ const getMyPage = (req, res) => {
                 loginUrl: '/cart',
                 loginLabel: '장바구니',
                 logoutUrl: '/users/logout',
-                logoutLabel: '로그아웃'
+                logoutLabel: '로그아웃',
             })
         );
     } else {
@@ -106,7 +106,7 @@ const getCartPage = (req, res) => {
                 loginUrl: '/cart',
                 loginLabel: '장바구니',
                 logoutUrl: '/users/logout',
-                logoutLabel: '로그아웃'
+                logoutLabel: '로그아웃',
             })
         );
     } else {
@@ -141,8 +141,8 @@ const getMogeum = (req, res) => {
     mogeumStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
 
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
-    
-    str1 = "SELECT productName, productIntro, thumbnailImg FROM VOTE_PRODUCT WHERE userId=?";
+
+    str1 = 'SELECT productName, productIntro, thumbnailImg FROM VOTE_PRODUCT WHERE userId=?';
 
     // // if :로그인된 상태,  else : 로그인안된 상태
     if (req.session.userId) {
@@ -172,7 +172,7 @@ const getMogeum = (req, res) => {
                             loginLabel: '장바구니',
                             logoutUrl: '/users/logout',
                             logoutLabel: '로그아웃',
-                            prodList: results
+                            prodList: results,
                         })
                     );
                 }
@@ -188,9 +188,41 @@ const getMogeum = (req, res) => {
     }
 };
 
+const getDetail = (req, res) => {
+    let str1;
+    let userId = req.session.userId;
+    let detailStream = '';
+    let title = '',
+        ejsView;
+    if (req.params.page === '1') {
+        title = '상품 투표하기';
+        ejsView = 'oneDetail.ejs';
+    }
+
+    detailStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
+    detailStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
+    detailStream += fs.readFileSync(__dirname + `/../views/${ejsView}`, 'utf8');
+    detailStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
+
+    res.end(
+        ejs.render(detailStream, {
+            title: title,
+            page: req.params.page,
+            userName: req.session.who,
+            signUpUrl: '/myPage',
+            signUpLabel: '마이페이지',
+            loginUrl: '/cart',
+            loginLabel: '장바구니',
+            logoutUrl: '/users/logout',
+            logoutLabel: '로그아웃',
+        })
+    );
+};
+
 router.get('/', getMainPage);
 router.get('/myPage', getMyPage);
 router.get('/cart', getCartPage);
 router.get('/mogeum/:page', getMogeum); // 모금 페이지
+router.get('/mogeum-detail/:page', getDetail);
 
 module.exports = router;
