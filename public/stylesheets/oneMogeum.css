@@ -28,7 +28,7 @@
     box-shadow: 10px 10px 10px lightgray;
     transition: 0.2s;
 }
-.card-body > h4 > a, .card-body > p {
+.card-body > h4 > a, .card-body > p > a {
     color: black;
 }
 /* 헤더 고정 */

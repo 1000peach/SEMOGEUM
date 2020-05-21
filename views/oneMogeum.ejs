@@ -41,13 +41,16 @@
                 <% prodList.forEach(function(prod, i) { %>
                 <div class="col-lg-4 col-sm-6 mb-4">
                     <div class="card h-90">
-                        <a href="/mogeum-detail/1"><img class="card-img-top" src="<%= prod.thumbnailImg %>" alt=""></a>
-                        <div class="card-body">
-                            <h4 class="card-title text-center">
-                                <a href="#"><strong><%=prod.productName%></strong></a>
-                            </h4>
-                            <p class="card-text"><%=prod.productIntro%></p>
-                        </div>
+                        <form method="POST" action="/mogeum-detail/1" name="hiddenInput" id="one-form">
+                            <a href="#" onclick="$('#one-form').submit();"><img class="card-img-top" src="<%= prod.thumbnailImg %>" alt=""></a>
+                            <div class="card-body">
+                                <h4 class="card-title text-center">
+                                    <a href="#" onclick="$('#one-form').submit();"><strong><%=prod.productName%></strong></a>
+                                </h4>
+                                <p class="card-text"><a href="#" onclick="$('#one-form').submit();""><%=prod.productIntro%></a></p>
+                                <input type="hidden" name="prodName" value="<%=prod.productName%>" />
+                            </div>
+                        </form>
                     </div>
                 </div>
                 <% }); %>
