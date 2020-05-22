@@ -113,7 +113,7 @@ const handleProdContest = (req, res) => {
                 );
             } else {
                 res.status(562).end(
-                    ejs.render(returnError, {
+                    ejs.render(returnError(), {
                         title: '제품 등록 에러',
                         errorMessage: '제품 등록을 처리하는 과정에서 에러가 발생했습니다.',
                     })
@@ -121,7 +121,6 @@ const handleProdContest = (req, res) => {
             }
         }
     });
-    /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 };
 
 router.get('/prodContest', getProdContest);

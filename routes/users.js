@@ -2,7 +2,7 @@ const fs = require('fs');
 const express = require('express');
 const ejs = require('ejs');
 const router = express.Router();
-const   methodOverride = require('method-override');
+const methodOverride = require('method-override');
 const db = require('./db');
 const returnError = require('./error');
 
@@ -259,7 +259,6 @@ const getFindPwdPage = (req, res) => {
 */
 // 새로운 비밀번호를 설정하기 위해 데이터를 입력 즉시 변경 페이지로 이동합니다.
 const getChangePwdPage = (req, res) => {
-    console.log("비밀번호 변경 POST 요청 보냄");
     let str1 = 'SELECT * FROM USER WHERE userId=? AND userPhone=?';
     let body = req.body;
     let userId = body.userId;
