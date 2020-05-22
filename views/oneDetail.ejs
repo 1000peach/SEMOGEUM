@@ -1,13 +1,7 @@
 <script>
     const validate = () => {
-        // let userId = req.session.userId;
-        // console.log(userId);
-        // if (userId == undefined) {
-        //     alert('로그인이 필요합니다.');
-        // }
-
         if (confirm('한 번 투표하시면 취소는 불가능합니다.\n해당 상품에 정말로 투표하시겠습니까?') == true) {
-            alert('정상적으로 투표되었습니다.');
+            return true;
         } else {
             return;
         }
@@ -38,6 +32,7 @@
             <p class="text-center"><%= prodList[0].productIntro %></p>
             <form method="POST" action="/vote?_method=PUT" onsubmit="return validate()">
                 <button class="text-white">투표하기</button>
+                <input type="hidden" name="prodName" value="<%= prodList[0].productName %>" />
             </form>
             <p class="vote-state text-center">투표권이 <strong><%= voteRights %></strong>개 남았습니다.</p>
             <p class="vote-state text-center">현재 순위 <strong>5</strong>위</p>

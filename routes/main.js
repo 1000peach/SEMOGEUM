@@ -3,6 +3,7 @@ const fs = require('fs');
 const ejs = require('ejs');
 const router = express.Router();
 const db = require('./db');
+const async = require('async');
 const returnError = require('./error');
 const methodOverride = require('method-override');
 router.use(methodOverride('_method')); // put을 사용하기 위함
@@ -287,7 +288,7 @@ const postAndGetDetail = (req, res) => {
                     res.status(562).end(
                         ejs.render(returnError(), {
                             title: '에러 페이지',
-                            errorMessage: '아직 투표중인 상품이 존재하지 않습니다.',
+                            errorMessage: '에러메세지 정하자ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ',
                         })
                     );
                 } else {
@@ -320,79 +321,120 @@ const handleVote = (req, res) => {
     let body = req.body;
     let userId = req.session.userId;
     let prodName = body.prodName;
+    let voteCount;  // 받은 투표 개수
+    let voteRights; // 남은 투표권
 
-    str1 = 'UPDATE VOTE_PRODUCT SET voteCount WHERE productName=?;';
-    str2 = 'UPDATE USER SET voteRights WHERE userId=?;';
+    str1 = 'SELECT voteCount FROM VOTE_PRODUCT WHERE productName=?;'; // 투표 몇 번을 받았는지?
+    str2 = 'SELECT voteRights FROM USER WHERE userId=?;'; // 투표권이 몇 개 남았는지?
+    str3 = 'UPDATE VOTE_PRODUCT SET voteCount=? WHERE productName=?;'; // 투표 몇 번 받았는지 +1
+    str4 = 'UPDATE USER SET voteRights=? WHERE userId=?;'; // 투표권 -1
 
     if (req.session.userId) {
-        db.query(str1 + str2, [prodName, userId], (error, results) => {
-            if (error) {
-                console.log(error);
-                res.end('error');
-            } else {
-                // 입력받은 데이터가 DB에 존재하는지 판단합니다.
-                if (results[0] == null || results[1] == null) {
-                    res.status(562).end(
-                        ejs.render(returnError(), {
-                            title: '에러 페이지',
-                            errorMessage: '여기 에러메세지 뭐라고 할까ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ',
-                        })
-                    );
-                } else {
-                    res.end(
-                        ejs.render(detailStream, {
-                            title: title,
-                            page: req.params.page,
-                            userName: req.session.who,
-                            signUpUrl: '/myPage',
-                            signUpLabel: '마이페이지',
-                            loginUrl: '/cart',
-                            loginLabel: '장바구니',
-                            logoutUrl: '/users/logout',
-                            logoutLabel: '로그아웃',
-                            prodList: results[0],
-                            voteRights: results[1][0].voteRights,
-                        })
-                    );
+        async.waterfall(
+            [
+                function (callback) {
+                    db.query(str1 + str2, [prodName, userId], (error, results) => {
+                        if (error) {
+                            console.log(error);
+                            res.status(562).end(
+                                ejs.render(returnError(), {
+                                    title: '에러 페이지',
+                                    errorMessage: '쿼리문 처리 에러',
+                                })
+                            );
+                        } else {
+                            voteCount = results[0][0].voteCount;
+                            voteRights = results[1][0].voteRights;
+                            console.log('voteCount: ', voteCount);
+                            console.log('voteRights: ', voteRights);
+                        }
+                        callback(null);
+                    });
+                    
+                },
+                function (callback) {
+                    db.query(str3, [voteCount + 1, prodName], (error, results) => {
+                        if (error) {
+                            console.log(error);
+                            res.status(562).end(
+                                ejs.render(returnError(), {
+                                    title: '에러 페이지',
+                                    errorMessage: '쿼리문 처리 에러',
+                                })
+                            );
+                        } else {
+                            console.log('str3번 쿼리문 처리완료');
+                        }
+                        callback(null);
+                    });
+                },
+                function (callback) {
+                    db.query(str4, [voteRights - 1, userId], (error, results) => {
+                        if (error) {
+                            console.log(error);
+                            res.status(562).end(
+                                ejs.render(returnError(), {
+                                    title: '에러 페이지',
+                                    errorMessage: '쿼리문 처리 에러',
+                                })
+                            );
+                        } else {
+                            console.log('str4번 쿼리문 처리완료');
+                        }
+                        callback(null);
+                    });
+                },
+                function (callback) {
+                    res.redirect('/mogeum/1');
+                    callback(null);
                 }
+            ],
+            function (error, result) {
+                if (error) console.log(error);
             }
-        });
-    } else {
-        db.query(str1, [prodName], (error, results) => {
-            //console.log('prodList[0].productName: ', results[0].productName);
-            if (error) {
-                console.log(error);
-                res.end('error');
-            } else {
-                // 입력받은 데이터가 DB에 존재하는지 판단합니다.
-                if (results[0] == null) {
-                    res.status(562).end(
-                        ejs.render(returnError(), {
-                            title: '에러 페이지',
-                            errorMessage: '아직 투표중인 상품이 존재하지 않습니다.',
-                        })
-                    );
-                } else {
-                    res.status(562).end(
-                        ejs.render(detailStream, {
-                            title: title,
-                            page: req.params.page,
-                            userName: '비회원',
-                            signUpUrl: '/users/signUp',
-                            signUpLabel: '회원가입',
-                            loginUrl: '/users/login',
-                            loginLabel: '로그인',
-                            logoutUrl: '일단패스',
-                            logoutLabel: '일단패스',
-                            prodList: results,
-                            voteRights: 'X',
-                        })
-                    );
-                }
-            }
-        });
-    }
+        );
 
+        /////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        // db.query(str1 + str2 + str3 + str4, [prodName, userId, prodName, userId], (error, results) => {
+        //     if (error) {
+        //         console.log(error);
+        //         res.end('error');
+        //     } else {
+        //         // 입력받은 데이터가 DB에 존재하는지 판단합니다.
+        //         if (results[0] == null || results[1] == null || results[2] == null || results[3] == null) {
+        //             res.status(562).end(
+        //                 ejs.render(returnError(), {
+        //                     title: '에러 페이지',
+        //                     errorMessage: '여기 에러메세지 뭐라고 할까ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ',
+        //                 })
+        //             );
+        //         } else {
+        //             res.end(
+        //                 ejs.render(detailStream, {
+        //                     title: title,
+        //                     page: req.params.page,
+        //                     userName: req.session.who,
+        //                     signUpUrl: '/myPage',
+        //                     signUpLabel: '마이페이지',
+        //                     loginUrl: '/cart',
+        //                     loginLabel: '장바구니',
+        //                     logoutUrl: '/users/logout',
+        //                     logoutLabel: '로그아웃',
+        //                     prodList: results[0],
+        //                     voteRights: results[1][0].voteRights,
+        //                 })
+        //             );
+        //         }
+        //     }
+        // });
+    } else {
+        res.status(562).end(
+            ejs.render(returnError(), {
+                title: '에러 페이지',
+                errorMessage: '로그인이 필요합니다.',
+            })
+        );
+    }
     console.log('투표하기 눌렀음');
 };
 
