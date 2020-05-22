@@ -7,6 +7,7 @@ const db = mysql.createConnection({
     password: 'root', // 계정암호
     database: 'semogeum', //사용할 DB명
     charset: 'utf8',
+    multipleStatements: true
 });
 
 module.exports = db;
