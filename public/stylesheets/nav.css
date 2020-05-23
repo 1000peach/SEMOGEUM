@@ -37,7 +37,7 @@ nav {
 }
 /* 페이지 메뉴 */
 #page-menu a {
-    padding: 15px;
+    padding: 15px 15px 15px 25px;
     width: 100%;
     height: 60px;
     font-size: 19px;
@@ -71,4 +71,11 @@ button {
 /* 이름 색상 꾸미기 위함 */
 #page-userName {
     color: #80d4ff;
+}
+/* 로그아웃 */
+#logout {
+    position: absolute;
+    bottom: 15px;
+    left: 10px;
+    z-index: 4;
 }

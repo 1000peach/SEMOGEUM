@@ -1,219 +1,233 @@
 <!-- 상단 carousel : 상품 추천. 클릭 시 상품 상세 페이지 이동-->
 <div id="main-div" class="col-div" style="width: 100%; z-index: 1;">
-  <div id="main-carousel" class="carousel slide" data-ride="carousel">
-    <ol class="carousel-indicators">
-      <li data-target="#main-carousel" data-slide-to="0" class="active"></li>
-      <li data-target="#main-carousel" data-slide-to="1"></li>
-      <li data-target="#main-carousel" data-slide-to="2"></li>
-    </ol>
-    <div class="carousel-inner">
-      <div class="carousel-item active">
-        <div id="first-carousel" class="top-carousel d-block" style="width: 100%; height: 250px;">
-            <h3 class="font-weight-bold text-right">텀블러만 썼는데<br />환경을 지켰다구요?<br>
-            게다가 시.크.한 <mark class="text-white">검뚜?</mark><br />
-            3월의 상품 "이유자블컵"
-            </h3>
-        </div>
-        </div>
-        <div class="carousel-item" >
-          <div id="second-carousel" class="top-carousel d-block" style="width: 100%; height: 250px;">
-            <h3 class="font-weight-bold text-right">텀블러만 썼는데<br />환경을 지켰다구요?<br>
-            게다가 시.크.한 <mark class="text-white">검뚜?</mark><br />
-            3월의 상품 "이유자블컵"
-            </h3>
-        </div>
-        </div>
-        <div class="carousel-item" >
-          <div id="third-carousel" class="top-carousel d-block" style="width: 100%; height: 250px;">
-            <h3 class="font-weight-bold text-right">텀블러만 썼는데<br />환경을 지켰다구요?<br>
-            게다가 시.크.한 <mark class="text-white">검뚜?</mark><br />
-            3월의 상품 "이유자블컵"
-            </h3>
-        </div>
-      </div>
-    </div>
-    <a class="carousel-control-prev" href="#main-carousel" role="button" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </a>
-    <a class="carousel-control-next" href="#main-carousel" role="button" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </a>
-  </div>
-  <!-- 이벤트 기간 공지 -->
-  <ol>
-    <li class="notice-li text-center">
-      <b class="d-day text-danger bg-white">D-4</b>
-      <a href="/mogeum/1" class="text-white">5월의 상품 투표 (2020.04.20~2020.04.26)</a>
-    </li>
-    <li class="notice-li text-center">
-      <b class="d-day text-danger bg-white">D-7</b>
-      <a href="/products/prodContest" class="text-white">6월의 상품 공모 (2020.04.20~2020.05.03)</a>
-    </li>
-  </ol>
-  <!-- 중간: 이런 상품도 있어요 -->
-  <div class="container"> <!-- 이런 상품도 있어요 전체를 묶는 div -->
-    <h4 class="font-weight-bold mt-4 mb-0">이런 상품도 있어요</h4>
-    <hr class="mt-2 mb-3">
-    <div class="row text-center text-lg-left">
-      <div class="col-lg-3 col-md-4 col-6">
-        <a href="#" class="d-block mb-4 h-100">
-          <div class="col-div" style="border: none;">
-            <p class="product-title text-white text-left font-weight-bold">한 모금,</p>
-            <div class="mogeum" style="padding: 10px;">
-              <p class="product-name text-center font-weight-bold">5월의 상품</p><br/>
-              <p class="text-left product-name"><img src="/images/vote.png" width="30" height="30"/>&nbsp;상품 30개</p>
-              <p class="text-left product-name"><img src="/images/vote.png" width="30" height="30"/>&nbsp;투표 172932개</p>
-            </div>
-          </div>
-        </a>
-      </div>
-      <% for (var i = 0; i < 3; i++) { %>
-      <div class="col-lg-3 col-md-4 col-6">
-        <a href="#" class="d-block mb-4 h-100">
-              <img class="img-fluid img-thumbnail" src="/images/catPaw.PNG" alt="" style="border: none; padding: 0;">
-        </a>
-      </div>
-      <% } %>
-      <!-- 두 모금 -->
-      <div class="col-lg-3 col-md-4 col-6">
-        <a href="#" class="d-block mb-4 h-100">
-          <div class="col-div" style="border: none;">
-            <p class="product-title text-white text-left font-weight-bold">두 모금,</p>
-            <div class="mogeum" style="padding: 10px;">
-              <p class="product-name text-center font-weight-bold">4월 선정작 상품화 진행</p><br/>
-              <p class="text-left product-name"><img src="/images/vote.png" width="30" height="30"/>&nbsp;상품 30개</p>
-              <p class="text-left product-name"><img src="/images/vote.png" width="30" height="30"/>&nbsp;투표 172932개</p>
-            </div>
-          </div>
-        </a>
-      </div>
-      <% for (var i = 0; i < 3; i++) { %>
-      <div class="col-lg-3 col-md-4 col-6">
-        <a href="#" class="d-block mb-4 h-100">
-              <img class="img-fluid img-thumbnail" src="/images/catPaw.PNG" alt="" style="border: none; padding: 0;">
-        </a>
-      </div>
-      <% } %>
-      <!-- 세 모금 -->
-      <div class="col-lg-3 col-md-4 col-6">
-        <a href="#" class="d-block mb-4 h-100">
-          <div class="col-div" style="border: none;">
-            <p class="product-title text-white text-left font-weight-bold">세 모금,</p>
-            <div class="mogeum" style="padding: 10px;">
-              <p class="product-name text-center font-weight-bold">판매중인 상품</p><br/>
-            </div>
-          </div>
-        </a>
-      </div>
-      <% for (var i = 0; i < 3; i++) { %>
-      <div class="col-lg-3 col-md-4 col-6">
-        <a href="#" class="d-block mb-4 h-100">
-              <img class="img-fluid img-thumbnail" src="/images/catPaw.PNG" alt="" style="border: none; padding: 0;">
-        </a>
-      </div>
-      <% } %>
-    </div>
-  </div> <!-- 이런 상품도 있어요 끝-->
-  <!-- 중간: 꿀떡꿀떡 넘어가는 리뷰-->
-  <div class="container"> <!-- 꿀떡꿀떡 넘어가는 리뷰 전체를 묶는 div -->
-    <h4 class="font-weight-bold mt-4 mb-0">꿀떡꿀떡 넘어가는 리뷰</h4>
-    <hr class="mt-2 mb-3">
-    <% for (var i = 0; i < 3; i++) { %>
-    <div class="row">
-      <div class="col-lg-6">
-        <div class="card mb-3" style="border: none;">  <!-- 한 줄에 리뷰 2개 표시 (사진 2개, 텍스트 2개) mb는 margin bottom -->
-          <div class="row no-gutters">
-            <div class="col-6">
-              <img src="images/catPaw.PNG" alt="" class="card-img"/>
-            </div>
-            <div class="col-6">
-              <div class="card-body">
-                  <p class="review-title">너무 귀여워요!</p>
-                  <div>
-                    <span class="review-rank fa fa-star checked"></span>
-                    <span class="review-rank fa fa-star checked"></span>
-                    <span class="review-rank fa fa-star checked"></span>
-                    <span class="review-rank fa fa-star"></span>
-                    <span class="review-rank fa fa-star"></span>
-                  </div>
-                  <div style="height: 60%;">
-                    <p class="review-content">드디어 민지를 보드랍게 쓰다듬어줄 수 있게 되었어요.</p>
-                    <p class="customer-ID">- 현서 lee</p>
-                  </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-6">
-        <div class="card mb-3" style="border: none;">
-          <div class="row no-gutters">
-            <div class="col-6">
-              <img src="images/catPaw.PNG" alt="" class="card-img"/>
-            </div>
-            <div class="col-6">
-              <div class="card-body">
-                <p class="review-title">너무 귀여워요!</p>
-                <div>
-                  <span class="review-rank fa fa-star checked"></span>
-                  <span class="review-rank fa fa-star checked"></span>
-                  <span class="review-rank fa fa-star checked"></span>
-                  <span class="review-rank fa fa-star"></span>
-                  <span class="review-rank fa fa-star"></span>
+    <button type="button" id="top" style="width: 60px; height: 60px;">
+        <img src="/images/top.png" width="30" height="30" alt="scroll top" />
+    </button>
+    <div id="main-carousel" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#main-carousel" data-slide-to="0" class="active"></li>
+            <li data-target="#main-carousel" data-slide-to="1"></li>
+            <li data-target="#main-carousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div id="first-carousel" class="top-carousel d-block" style="width: 100%; height: 250px;">
+                    <h3 class="font-weight-bold text-right">
+                        텀블러만 썼는데<br />환경을 지켰다구요?<br />
+                        게다가 시.크.한 <mark class="text-white">검뚜?</mark><br />
+                        3월의 상품 "이유자블컵"
+                    </h3>
                 </div>
-                <p class="review-content">드디어 민지를 보드랍게 쓰다듬어줄 수 있게 되었어요.</p>
-                <p class="customer-ID">- 현서 lee</p>
-              </div>
             </div>
-          </div>
+            <div class="carousel-item">
+                <div id="second-carousel" class="top-carousel d-block" style="width: 100%; height: 250px;">
+                    <h3 class="font-weight-bold text-right">
+                        텀블러만 썼는데<br />환경을 지켰다구요?<br />
+                        게다가 시.크.한 <mark class="text-white">검뚜?</mark><br />
+                        3월의 상품 "이유자블컵"
+                    </h3>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div id="third-carousel" class="top-carousel d-block" style="width: 100%; height: 250px;">
+                    <h3 class="font-weight-bold text-right">
+                        텀블러만 썼는데<br />환경을 지켰다구요?<br />
+                        게다가 시.크.한 <mark class="text-white">검뚜?</mark><br />
+                        3월의 상품 "이유자블컵"
+                    </h3>
+                </div>
+            </div>
         </div>
-      </div>
+        <a class="carousel-control-prev" href="#main-carousel" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#main-carousel" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
     </div>
-    <% } %>
-  </div> <!-- 꿀떡꿀떡 넘어가는 리뷰 끝-->
-  <!-- 하단 협찬사 캐러셀-->
-  <div id="carousel-bottom" class="carousel slide" data-ride="carousel" style="width: 100%;">
-    <div class="carousel-inner" >
-      <div class="carousel-item active">
-        <div class="row">
-          <div class="col-4">
-            <img src="/images/협력사1.jpg" class="d-block w-30 mx-auto" alt="...">
-          </div>
-          <div class="col-4">
-            <img src="/images/협력사2.jpg" class="d-block w-30 mx-auto" alt="...">
-          </div>
-          <div class="col-4">
-            <img src="/images/협력사3.jpg" class="d-block w-30 mx-auto" alt="...">
-          </div>
+    <!-- 이벤트 기간 공지 -->
+    <ol>
+        <li class="notice-li text-center">
+            <b class="d-day text-danger bg-white">D-4</b>
+            <a href="/mogeum/1" class="text-white">5월의 상품 투표 (2020.04.20~2020.04.26)</a>
+        </li>
+        <li class="notice-li text-center">
+            <b class="d-day text-danger bg-white">D-7</b>
+            <a href="/products/prodContest" class="text-white">6월의 상품 공모 (2020.04.20~2020.05.03)</a>
+        </li>
+    </ol>
+    <!-- 중간: 이런 상품도 있어요 -->
+    <div class="container">
+        <!-- 이런 상품도 있어요 전체를 묶는 div -->
+        <h4 class="font-weight-bold mt-4 mb-0">이런 상품도 있어요</h4>
+        <hr class="mt-2 mb-3" />
+        <div class="row text-center text-lg-left">
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <div class="col-div" style="border: none;">
+                        <p class="product-title text-white text-left font-weight-bold">한 모금,</p>
+                        <div class="mogeum" style="padding: 10px;">
+                            <p class="product-name text-center font-weight-bold">5월의 상품</p>
+                            <br />
+                            <p class="text-left product-name"><img src="/images/vote.png" width="30" height="30" />&nbsp;상품 30개</p>
+                            <p class="text-left product-name"><img src="/images/vote.png" width="30" height="30" />&nbsp;투표 172932개</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <% for (var i = 0; i < 3; i++) { %>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="/images/catPaw.PNG" alt="" style="border: none; padding: 0;" />
+                </a>
+            </div>
+            <% } %>
+            <!-- 두 모금 -->
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <div class="col-div" style="border: none;">
+                        <p class="product-title text-white text-left font-weight-bold">두 모금,</p>
+                        <div class="mogeum" style="padding: 10px;">
+                            <p class="product-name text-center font-weight-bold">4월 선정작 상품화 진행</p>
+                            <br />
+                            <p class="text-left product-name"><img src="/images/vote.png" width="30" height="30" />&nbsp;상품 30개</p>
+                            <p class="text-left product-name"><img src="/images/vote.png" width="30" height="30" />&nbsp;투표 172932개</p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <% for (var i = 0; i < 3; i++) { %>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="/images/catPaw.PNG" alt="" style="border: none; padding: 0;" />
+                </a>
+            </div>
+            <% } %>
+            <!-- 세 모금 -->
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <div class="col-div" style="border: none;">
+                        <p class="product-title text-white text-left font-weight-bold">세 모금,</p>
+                        <div class="mogeum" style="padding: 10px;">
+                            <p class="product-name text-center font-weight-bold">판매중인 상품</p>
+                            <br />
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <% for (var i = 0; i < 3; i++) { %>
+            <div class="col-lg-3 col-md-4 col-6">
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid img-thumbnail" src="/images/catPaw.PNG" alt="" style="border: none; padding: 0;" />
+                </a>
+            </div>
+            <% } %>
         </div>
-      </div>
-      <div class="carousel-item">
-        <div class="row">
-          <div class="col-4">
-            <img src="/images/협력사1.jpg" class="d-block w-30 mx-auto" alt="...">
-          </div>
-          <div class="col-4">
-            <img src="/images/협력사2.jpg" class="d-block w-30 mx-auto" alt="...">
-          </div>
-          <div class="col-4">
-            <img src="/images/협력사3.jpg" class="d-block w-30 mx-auto" alt="...">
-          </div>
-        </div>
-      </div>
-      <div class="carousel-item">
-        <div class="row">
-          <div class="col-4">
-            <img src="/images/협력사1.jpg" class="d-block w-30 mx-auto" alt="...">
-          </div>
-          <div class="col-4">
-            <img src="/images/협력사2.jpg" class="d-block w-30 mx-auto" alt="...">
-          </div>
-          <div class="col-4">
-            <img src="/images/협력사3.jpg" class="d-block w-30 mx-auto" alt="...">
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
+    <!-- 이런 상품도 있어요 끝-->
+    <!-- 중간: 꿀떡꿀떡 넘어가는 리뷰-->
+    <div class="container">
+        <!-- 꿀떡꿀떡 넘어가는 리뷰 전체를 묶는 div -->
+        <h4 class="font-weight-bold mt-4 mb-0">꿀떡꿀떡 넘어가는 리뷰</h4>
+        <hr class="mt-2 mb-3" />
+        <% for (var i = 0; i < 3; i++) { %>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="card mb-3" style="border: none;">
+                    <!-- 한 줄에 리뷰 2개 표시 (사진 2개, 텍스트 2개) mb는 margin bottom -->
+                    <div class="row no-gutters">
+                        <div class="col-6">
+                            <img src="images/catPaw.PNG" alt="" class="card-img" />
+                        </div>
+                        <div class="col-6">
+                            <div class="card-body">
+                                <p class="review-title">너무 귀여워요!</p>
+                                <div>
+                                    <span class="review-rank fa fa-star checked"></span>
+                                    <span class="review-rank fa fa-star checked"></span>
+                                    <span class="review-rank fa fa-star checked"></span>
+                                    <span class="review-rank fa fa-star"></span>
+                                    <span class="review-rank fa fa-star"></span>
+                                </div>
+                                <div style="height: 60%;">
+                                    <p class="review-content">드디어 민지를 보드랍게 쓰다듬어줄 수 있게 되었어요.</p>
+                                    <p class="customer-ID">- 현서 lee</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <div class="card mb-3" style="border: none;">
+                    <div class="row no-gutters">
+                        <div class="col-6">
+                            <img src="images/catPaw.PNG" alt="" class="card-img" />
+                        </div>
+                        <div class="col-6">
+                            <div class="card-body">
+                                <p class="review-title">너무 귀여워요!</p>
+                                <div>
+                                    <span class="review-rank fa fa-star checked"></span>
+                                    <span class="review-rank fa fa-star checked"></span>
+                                    <span class="review-rank fa fa-star checked"></span>
+                                    <span class="review-rank fa fa-star"></span>
+                                    <span class="review-rank fa fa-star"></span>
+                                </div>
+                                <p class="review-content">드디어 민지를 보드랍게 쓰다듬어줄 수 있게 되었어요.</p>
+                                <p class="customer-ID">- 현서 lee</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } %>
+    </div>
+    <!-- 꿀떡꿀떡 넘어가는 리뷰 끝-->
+    <!-- 하단 협찬사 캐러셀-->
+    <div id="carousel-bottom" class="carousel slide" data-ride="carousel" style="width: 100%;">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <div class="row">
+                    <div class="col-4">
+                        <img src="/images/협력사1.jpg" class="d-block w-30 mx-auto" alt="..." />
+                    </div>
+                    <div class="col-4">
+                        <img src="/images/협력사2.jpg" class="d-block w-30 mx-auto" alt="..." />
+                    </div>
+                    <div class="col-4">
+                        <img src="/images/협력사3.jpg" class="d-block w-30 mx-auto" alt="..." />
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row">
+                    <div class="col-4">
+                        <img src="/images/협력사1.jpg" class="d-block w-30 mx-auto" alt="..." />
+                    </div>
+                    <div class="col-4">
+                        <img src="/images/협력사2.jpg" class="d-block w-30 mx-auto" alt="..." />
+                    </div>
+                    <div class="col-4">
+                        <img src="/images/협력사3.jpg" class="d-block w-30 mx-auto" alt="..." />
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <div class="row">
+                    <div class="col-4">
+                        <img src="/images/협력사1.jpg" class="d-block w-30 mx-auto" alt="..." />
+                    </div>
+                    <div class="col-4">
+                        <img src="/images/협력사2.jpg" class="d-block w-30 mx-auto" alt="..." />
+                    </div>
+                    <div class="col-4">
+                        <img src="/images/협력사3.jpg" class="d-block w-30 mx-auto" alt="..." />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

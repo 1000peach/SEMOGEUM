@@ -55,6 +55,11 @@
     #product-div {
         overflow-y: inherit;
     }
+    /* 로그아웃 버튼 위치 변경 */
+    #logout {
+        bottom: initial;
+        top: 15px;
+    }
 }
 /* sm 기준보다 브라우저 크기 작을 때 */
 @media screen and (max-width: 576px) {
