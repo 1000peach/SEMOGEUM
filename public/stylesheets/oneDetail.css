@@ -109,6 +109,7 @@
     width: 60px;
     height: 60px;
     border-radius: 50%;
+    border: 1px solid lightgray;
 }
 
 .be-comment-content {
@@ -187,7 +188,7 @@
 }
 
 .form-group.fl_icon .form-input {
-    padding-left: 70px;
+    padding-left: 60px;
 }
 
 .form-group input[type='text'] {

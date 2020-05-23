@@ -100,82 +100,43 @@
                 <h6 class="mb-3"><strong>유권자의 한 마디</strong> <small style="float: right;">응원 또는 개선사항을 남겨주세요!</small></h6>
                 <!-- 댓글 -->
                 <div class="container">
-                    <div class="be-comment-block">
-                        <div class="be-comment">
-                            <div class="be-img-comment">
-                                <a href="blog-detail-2.html">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="" class="be-ava-comment" />
-                                </a>
-                            </div>
-                            <div class="be-comment-content">
-                                <span class="be-comment-name">
-                                    <a href="blog-detail-2.html">김지윤</a>
-                                </span>
-                                <span class="be-comment-time">
-                                    <i class="fa fa-clock-o"></i>
-                                    May 27, 2015 at 3:14am
-                                </span>
-
-                                <p class="be-comment-text">
-                                    Pellentesque gravida tristique ultrices. Sed blandit varius mauris, vel volutpat urna hendrerit id. Curabitur
-                                    rutrum dolor gravida turpis tristique efficitur.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="be-comment">
-                            <div class="be-img-comment">
-                                <a href="blog-detail-2.html">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar2.png" alt="" class="be-ava-comment" />
-                                </a>
-                            </div>
-                            <div class="be-comment-content">
-                                <span class="be-comment-name">
-                                    <a href="blog-detail-2.html">김민지</a>
-                                </span>
-                                <span class="be-comment-time">
-                                    <i class="fa fa-clock-o"></i>
-                                    May 27, 2015 at 3:14am
-                                </span>
-                                <p class="be-comment-text">
-                                    Nunc ornare sed dolor sed mattis. In scelerisque dui a arcu mattis, at maximus eros commodo. Cras magna nunc,
-                                    cursus lobortis luctus at, sollicitudin vel neque. Duis eleifend lorem non ant. Proin ut ornare lectus, vel
-                                    eleifend est. Fusce hendrerit dui in turpis tristique blandit.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="be-comment">
-                            <div class="be-img-comment">
-                                <a href="blog-detail-2.html">
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="" class="be-ava-comment" />
-                                </a>
-                            </div>
-                            <div class="be-comment-content">
-                                <span class="be-comment-name">
-                                    <a href="blog-detail-2.html">조재희</a>
-                                </span>
-                                <span class="be-comment-time">
-                                    <i class="fa fa-clock-o"></i>
-                                    May 27, 2015 at 3:14am
-                                </span>
-                                <p class="be-comment-text">
-                                    Cras magna nunc, cursus lobortis luctus at, sollicitudin vel neque. Duis eleifend lorem non ant
-                                </p>
-                            </div>
-                        </div>
-                        <form class="form-block">
-                            <div class="row" id="comment-row">
-                                <div style="width: 100%;">
-                                    <div class="form-group">
-                                        <input type="text" placeholder="의견쓰기" required />
-                                    </div>
+                    <form id="comment-form" class="form-block mb-5" method="POST">
+                        <div class="row" id="comment-row">
+                            <div style="width: 100%;">
+                                <div class="form-group">
+                                    <input type="hidden" name="userId" value="<%= userId %>" />
+                                    <input type="hidden" name="userName" value="<%= userName %>" />
+                                    <input type="hidden" name="prodName" value="<%= prodList[0].productName %>" />
+                                    <input type="text" name="contents" placeholder="의견쓰기" required />
                                 </div>
-                                <button id="comment-input" class="btn pull-right text-white" style="height: 40px;">입력</button>
                             </div>
-                        </form>
+                            <button id="comment-input" class="btn pull-right text-white" style="height: 40px;">입력</button>
+                        </div>
+                    </form>
+                    <div id="comment-list" class="be-comment-block">
                     </div>
                 </div>
             </div>
-        </div>
-        <!-- product-detail -->
-    </div>
-    <!-- /one-div-main, one-div 닫는 태그는 footer에 -->
+        </div><!-- product-detail -->
+    </div> <!-- /one-div-main -->
+</div> <!-- /one-div -->
+</body>
+<script src="/javascripts/nav.js"></script>
+<script src="/javascripts/oneMogeum.js"></script>
+<script src="/javascripts/twoMogeum.js"></script>
+<script src="/javascripts/oneDetail.js"></script>
+<script>
+selectComment();
+$('#comment-form').on('submit', function (event) {
+    event.preventDefault();
+    addComment().then(data => {
+        if (data.status === 1) { // 의견 등록 성공
+            selectComment();
+            alert("댓글 등록에 성공했습니다!");
+        } else { // 의견 등록 실패
+            alert("댓글 등록에 실패했습니다!");
+        }
+    }); 
+});
+</script>
+</html>

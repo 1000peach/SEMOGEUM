@@ -237,7 +237,7 @@ const postAndGetDetail = (req, res) => {
     detailStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
     detailStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
     detailStream += fs.readFileSync(__dirname + `/../views/${ejsView}`, 'utf8');
-    detailStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
+    // detailStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
 
     str1 = 'SELECT * FROM VOTE_PRODUCT WHERE productName=?;'; // 다중 쿼리에서는 SQL문 내 세미콜론 꼭 써줘야함(세미콜론으로 구분하기 때문)
     str2 = 'SELECT voteRights FROM USER WHERE userId=?;';
@@ -262,6 +262,7 @@ const postAndGetDetail = (req, res) => {
                             title: title,
                             page: req.params.page,
                             userName: req.session.who,
+                            userId : req.session.userId,
                             signUpUrl: '/myPage',
                             signUpLabel: '마이페이지',
                             loginUrl: '/cart',
@@ -296,6 +297,7 @@ const postAndGetDetail = (req, res) => {
                             title: title,
                             page: req.params.page,
                             userName: '비회원',
+                            userId : '비회원',
                             signUpUrl: '/users/signUp',
                             signUpLabel: '회원가입',
                             loginUrl: '/users/login',

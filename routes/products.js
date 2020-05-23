@@ -123,7 +123,43 @@ const handleProdContest = (req, res) => {
     });
 };
 
+/*
+    한 모금 상세 페이지에서 댓글 추가
+*/
+const addComment = (req, res) => {
+    let insertSQL = `INSERT INTO COMMENT(productName, userId, userName, inputDate, Contents) VALUES('${req.body.prodName}', '${req.body.userId}','${req.body.userName}','${req.body.inputDate}', '${req.body.contents}')`;
+    db.query(insertSQL, (error) => {
+        if (error) {
+            console.log('댓글 등록 에러' + error);
+            res.json({
+                status: 0,
+            });
+        } else {
+            res.json({
+                status: 1,
+            });
+        }
+    });
+};
+
+/*
+    한 모금 상세 페이지에서 댓글 검색
+*/
+const selectComment = (req, res) => {
+    let selectSQL = 'SELECT * FROM COMMENT ORDER BY inputDate DESC';
+    db.query(selectSQL, (error, results) => {
+        if (error) {
+            console.log('댓글 검색 에러' + error);
+        } else {
+            res.send(results);
+        }
+    });
+};
+
 router.get('/prodContest', getProdContest);
 router.post('/upload', handleProdContest);
+/* 한모금 상품 댓글 기능 */
+router.post('/addComment', addComment);
+router.get('/selectComment', selectComment);
 
 module.exports = router;
