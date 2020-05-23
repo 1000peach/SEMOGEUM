@@ -1,9 +1,15 @@
 <script>
     const validate = () => {
-        if (confirm('한 번 투표하시면 취소는 불가능합니다.\n해당 상품에 정말로 투표하시겠습니까?') == true) {
-            return true;
+        if (Number($('#vote-rights').text()) <= 0) {
+            alert('사용 가능한 투표권을 모두 소진하셨습니다.\n투표권은 매월 1일에 지급됩니다.');
+            return false; // '확인' 누르면 페이지 전환 X
+        }
+
+        if (confirm('투표하신 상품에 대한 재투표와 투표 취소는 불가능합니다.\n' + 
+                `\'` + $('.prodName').text() + `\'` + ' 상품에 정말로 투표하시겠습니까?') == true) {
+            return true; // '확인' 누르면 form의 action으로 페이지 전환
         } else {
-            return;
+            return;      // '취소' 누르면 페이지 전환 X
         }
     }
 </script>
@@ -28,13 +34,13 @@
     <div id="one-div-main" class="container mb-6">
         <!-- 제품 간단 소개, 투표 상태 -->
         <div id="current-vote" class="mb-3">
-            <h5 class="font-weight-bold mt-3 mb-3 text-center"><%= prodList[0].productName %></h5>
+            <h5 class="font-weight-bold mt-3 mb-3 text-center prodName"><%= prodList[0].productName %></h5>
             <p class="text-center"><%= prodList[0].productIntro %></p>
             <form method="POST" action="/vote?_method=PUT" onsubmit="return validate()">
                 <button class="text-white">투표하기</button>
                 <input type="hidden" name="prodName" value="<%= prodList[0].productName %>" />
             </form>
-            <p class="vote-state text-center">투표권이 <strong><%= voteRights %></strong>개 남았습니다.</p>
+            <p class="vote-state text-center">투표권이 <strong id="vote-rights"><%= voteRights %></strong>개 남았습니다.</p>
             <p class="vote-state text-center">현재 순위 <strong>5</strong>위</p>
             <div>그래프 들어갈 공간</div>
         </div>
