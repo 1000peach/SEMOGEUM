@@ -2,7 +2,7 @@
     <button type="button" id="top" style="width: 60px; height: 60px;">
         <img src="/images/top.png" width="30" height="30" alt="scroll top" />
     </button>
-    <div class="col-div mb-3">
+    <div class="col-div mb-3" id="res-header">
         <ol style="margin-bottom: 0;">
             <li class="notice-li text-center" style="height: 80px; border: none; border-radius: 0; padding: 15px 0;">
                 <a href="/mogeum/1" class="text-white">
@@ -111,6 +111,9 @@
 <script src="/javascripts/twoMogeum.js"></script>
 <script src="/javascripts/oneDetail.js"></script>
 <script>
+if (checkMobile() === 'ios') {
+    $("#one-div-main").css("margin-top", "80px");
+} // ios css 고려
 selectComment();
 $('#comment-form').on('submit', function (event) {
     event.preventDefault();

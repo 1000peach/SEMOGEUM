@@ -1,5 +1,5 @@
 <div id="one-div" class="col-div" style="width: 100%;">
-    <div class="col-div">
+    <div class="col-div" id="res-header">
         <ol style="margin-bottom: 0;">
             <li class="notice-li text-center" style="height: 80px; border: none; border-radius: 0; padding: 15px 0;">
                 <a href="/mogeum/1" class="text-white">
@@ -63,3 +63,13 @@
         <!-- /vote-list -->
     </div>
     <!-- /one-div-main -->
+</div> <!-- /one-div -->
+</body>
+<script src="/javascripts/nav.js"></script>
+<script src="/javascripts/oneMogeum.js"></script>
+<script>
+    if (checkMobile() === 'ios') {
+        $("#res-header").css("margin-bottom", "80px");
+    } // ios css 고려
+</script>
+</html>

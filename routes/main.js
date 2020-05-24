@@ -31,7 +31,7 @@ const getMainPage = (req, res) => {
             if (error) {
                 console.log(error);
                 res.end('error');
-            } else { 
+            } else {
                 res.end(
                     // console.log('COUNT(productName): ', results[0]);
                     // console.log('SUM(voteCount): ', results[1]);
@@ -129,7 +129,6 @@ const getCartPage = (req, res) => {
 */
 const getMogeum = (req, res) => {
     let str1, str2;
-    let userId = req.session.userId;
     let rankArr = [];
     let mogeumStream = '';
     let title = '',
@@ -151,7 +150,9 @@ const getMogeum = (req, res) => {
     mogeumStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
     mogeumStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
     mogeumStream += fs.readFileSync(__dirname + `/../views/${ejsView}`, 'utf8');
-    mogeumStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
+    if (req.params.page !== '1') {
+        mogeumStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
+    }
 
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 
@@ -177,7 +178,7 @@ const getMogeum = (req, res) => {
                     for (let i = 0; i < results[1].length; i++) {
                         rankArr[i] = results[1][i].productName;
                     }
-
+                    console;
                     res.end(
                         ejs.render(mogeumStream, {
                             title: title,
