@@ -21,22 +21,22 @@ const getMainPage = (req, res) => {
 
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 
-    str1 = 'SELECT COUNT(productName) FROM VOTE_PRODUCT;';
-    str2 = 'SELECT SUM(voteCount) FROM VOTE_PRODUCT;';
-    str3 = 'SELECT thumbnailImg FROM VOTE_PRODUCT;';
+    str1 = 'SELECT COUNT(productName) as cnt FROM VOTE_PRODUCT;';
+    str2 = 'SELECT SUM(voteCount) as sum FROM VOTE_PRODUCT;';
+    str3 = 'SELECT thumbnailImg as thumb FROM VOTE_PRODUCT;';
+    str4 = 'SELECT thumbnailImg FROM VOTE_PRODUCT ORDER BY voteCount DESC;';
 
     // if :로그인된 상태,  else : 로그인안된 상태
     if (req.session.userId) {
-        db.query(str1 + str2 + str3, [], (error, results) => {
+        db.query(str1 + str2 + str3 + str4, [], (error, results) => {
             if (error) {
                 console.log(error);
                 res.end('error');
             } else { 
+                // console.log('COUNT(productName): ', results[0][0]);
+                // console.log('SUM(voteCount): ', results[1][0]);
+                // console.log('thumbnailImg: ', results[2]);
                 res.end(
-                    // console.log('COUNT(productName): ', results[0]);
-                    // console.log('SUM(voteCount): ', results[1]);
-                    // console.log('thumbnailImg: ', results[2]);
-
                     ejs.render(mainStream, {
                         title: '세상의 모든 금손, 세모금',
                         page: 0,
@@ -45,22 +45,38 @@ const getMainPage = (req, res) => {
                         signUpLabel: '마이페이지',
                         loginUrl: '/cart',
                         loginLabel: '장바구니',
+                        prodNameCount: results[0][0],
+                        voteCountSum: results[1][0],
+                        thumbnailImg: results[2],
+                        rankThumbnailImg: results[3],
                     })
                 );
             }
         });
     } else {
-        res.end(
-            ejs.render(mainStream, {
-                title: '세상의 모든 금손, 세모금',
-                page: 0,
-                userName: '비회원',
-                signUpUrl: '/users/signUp',
-                signUpLabel: '회원가입',
-                loginUrl: '/users/login',
-                loginLabel: '로그인',
-            })
-        );
+        db.query(str1 + str2 + str3 + str4, [], (error, results) => {
+            if (error) {
+                console.log(error);
+                res.end('error');
+            } else { 
+                res.end(
+                    ejs.render(mainStream, {
+                        title: '세상의 모든 금손, 세모금',
+                        page: 0,
+                        userName: '비회원',
+                        signUpUrl: '/users/signUp',
+                        signUpLabel: '회원가입',
+                        loginUrl: '/users/login',
+                        loginLabel: '로그인',
+                        prodNameCount: results[0][0],
+                        voteCountSum: results[1][0],
+                        thumbnailImg: results[2],
+                        rankThumbnailImg: results[3],
+                    })
+                );
+            }
+        });
+        
     }
 };
 
@@ -234,6 +250,22 @@ const getMogeum = (req, res) => {
 };
 
 /* 
+    클릭한 상품에 일치하는 순위를 호출 
+*/
+const handleRank = (prodName, rankObj) => {
+    // console.log('prodName: ', prodName);
+    // console.log('rankObj: ', rankObj);
+    // console.log('Object.keys(rankObj).length: ', Object.keys(rankObj).length);
+    // console.log('Object.keys(rankObj): ', Object.keys(rankObj));
+    // console.log('Object.keys(rankObj): ', Object.values(rankObj));
+    for (let i = 0; i < Object.keys(rankObj).length; i++) {
+        if (prodName === Object.values(rankObj)[i]) {
+            return Object.keys(rankObj)[i];
+        }
+    }
+};
+
+/* 
     한 모금 상세페이지 출력을 처리합니다.
 */
 const postAndGetDetail = (req, res) => {
@@ -241,6 +273,7 @@ const postAndGetDetail = (req, res) => {
     let body = req.body;
     let userId = req.session.userId;
     let prodName = body.prodName;
+    let rank;
     let rankObj = {};
     console.log('prodName: ', prodName);
     let detailStream = '';
@@ -282,6 +315,10 @@ const postAndGetDetail = (req, res) => {
                     // console.log('★★prodList: ', results[0]);
                     // console.log('★★rankObj: ', rankObj);
                     // console.log('★★voteRights: ', results[1][0].voteRights);
+                    //console.log('현재상품: ', results[0][0].productName);
+                    //console.log('rankObj: ', rankObj);
+                    rank = handleRank(results[0][0].productName, rankObj);
+
                     res.end(
                         ejs.render(detailStream, {
                             title: title,
@@ -292,9 +329,9 @@ const postAndGetDetail = (req, res) => {
                             signUpLabel: '마이페이지',
                             loginUrl: '/cart',
                             loginLabel: '장바구니',
-                            prodList: results[0],
+                            prodList: results[0][0],
                             voteRights: results[1][0].voteRights,
-                            rankObj: rankObj,
+                            rank: rank,
                         })
                     );
                 }
@@ -318,6 +355,7 @@ const postAndGetDetail = (req, res) => {
                     for (let i = 0; i < results[2].length; i++) {
                         rankObj[i + 1] = results[2][i].productName;
                     }
+                    rank = handleRank(results[0][0].productName, rankObj);
 
                     res.status(562).end(
                         ejs.render(detailStream, {
@@ -329,9 +367,9 @@ const postAndGetDetail = (req, res) => {
                             signUpLabel: '회원가입',
                             loginUrl: '/users/login',
                             loginLabel: '로그인',
-                            prodList: results[0],
+                            prodList: results[0][0],
                             voteRights: 'X',
-                            rankObj: rankObj,
+                            rank: rank,
                         })
                     );
                 }
