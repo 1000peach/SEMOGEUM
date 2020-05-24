@@ -3,6 +3,7 @@ const fs = require('fs');
 const ejs = require('ejs');
 const router = express.Router();
 const db = require('./db');
+const async = require('async');
 const returnError = require('./error');
 const methodOverride = require('method-override');
 router.use(methodOverride('_method')); // put을 사용하기 위함
@@ -121,6 +122,7 @@ const getCartPage = (req, res) => {
 const getMogeum = (req, res) => {
     let str1;
     let userId = req.session.userId;
+    let rankArr = [];
     let mogeumStream = '';
     let title = '',
         ejsView;
@@ -145,18 +147,18 @@ const getMogeum = (req, res) => {
 
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 
-    str1 = 'SELECT * FROM VOTE_PRODUCT';
+    str1 = 'SELECT * FROM VOTE_PRODUCT;';
+    str2 = 'SELECT productName, voteCount FROM VOTE_PRODUCT ORDER BY voteCount DESC;' // 랭킹 
 
     // // if :로그인된 상태,  else : 로그인안된 상태
     if (req.session.userId) {
-        db.query(str1, [userId], (error, results) => {
-            //console.log('results: ', results);
+        db.query(str1 + str2, [], (error, results) => {
             if (error) {
                 console.log(error);
                 res.end('error');
             } else {
                 // 입력받은 데이터가 DB에 존재하는지 판단합니다.
-                if (results[0] == null) {
+                if (results[0] == null || results[1] == null) {
                     res.status(562).end(
                         ejs.render(returnError(), {
                             title: '에러 페이지',
@@ -164,6 +166,10 @@ const getMogeum = (req, res) => {
                         })
                     );
                 } else {
+                    for (let i = 0; i < results[1].length; i++) {
+                        rankArr[i] = results[1][i].productName;
+                    }
+
                     res.end(
                         ejs.render(mogeumStream, {
                             title: title,
@@ -175,15 +181,15 @@ const getMogeum = (req, res) => {
                             loginLabel: '장바구니',
                             logoutUrl: '/users/logout',
                             logoutLabel: '로그아웃',
-                            prodList: results,
+                            prodList: results[0],
+                            rankList: rankArr,
                         })
                     );
                 }
             }
         });
     } else {
-        db.query(str1, [userId], (error, results) => {
-            //console.log('results: ', results);
+        db.query(str1 + str2, [], (error, results) => {            
             if (error) {
                 console.log(error);
                 res.end('error');
@@ -197,6 +203,11 @@ const getMogeum = (req, res) => {
                         })
                     );
                 } else {
+                    for (let i = 0; i < results[1].length; i++) {
+                        rankArr[i] = results[1][i].productName;
+                    }
+                    console.log(rankArr);
+
                     res.status(562).end(
                         ejs.render(mogeumStream, {
                             title: title,
@@ -208,7 +219,8 @@ const getMogeum = (req, res) => {
                             loginLabel: '로그인',
                             logoutUrl: '일단패스',
                             logoutLabel: '일단패스',
-                            prodList: results,
+                            prodList: results[0],
+                            rankList: rankArr,
                         })
                     );
                 }
@@ -288,7 +300,7 @@ const postAndGetDetail = (req, res) => {
                     res.status(562).end(
                         ejs.render(returnError(), {
                             title: '에러 페이지',
-                            errorMessage: '아직 투표중인 상품이 존재하지 않습니다.',
+                            errorMessage: '에러메세지 정하자ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ',
                         })
                     );
                 } else {
@@ -322,87 +334,92 @@ const handleVote = (req, res) => {
     let body = req.body;
     let userId = req.session.userId;
     let prodName = body.prodName;
+    let voteCount;  // 받은 투표 개수
+    let voteRights; // 남은 투표권 개수
 
-    str1 = 'UPDATE VOTE_PRODUCT SET voteCount WHERE productName=?;';
-    str2 = 'UPDATE USER SET voteRights WHERE userId=?;';
+    str1 = 'SELECT voteCount FROM VOTE_PRODUCT WHERE productName=?;'; // 투표 몇 번을 받았는지?
+    str2 = 'SELECT voteRights FROM USER WHERE userId=?;'; // 투표권이 몇 개 남았는지?
+    str3 = 'UPDATE VOTE_PRODUCT SET voteCount=? WHERE productName=?;'; // 투표 몇 번 받았는지 +1
+    str4 = 'UPDATE USER SET voteRights=? WHERE userId=?;'; // 투표권 -1
 
     if (req.session.userId) {
-        db.query(str1 + str2, [prodName, userId], (error, results) => {
-            if (error) {
-                console.log(error);
-                res.end('error');
-            } else {
-                // 입력받은 데이터가 DB에 존재하는지 판단합니다.
-                if (results[0] == null || results[1] == null) {
-                    res.status(562).end(
-                        ejs.render(returnError(), {
-                            title: '에러 페이지',
-                            errorMessage: '여기 에러메세지 뭐라고 할까ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ',
-                        })
-                    );
-                } else {
-                    res.end(
-                        ejs.render(detailStream, {
-                            title: title,
-                            page: req.params.page,
-                            userName: req.session.who,
-                            signUpUrl: '/myPage',
-                            signUpLabel: '마이페이지',
-                            loginUrl: '/cart',
-                            loginLabel: '장바구니',
-                            logoutUrl: '/users/logout',
-                            logoutLabel: '로그아웃',
-                            prodList: results[0],
-                            voteRights: results[1][0].voteRights,
-                        })
-                    );
-                }
-            }
-        });
-    } else {
-        db.query(str1, [prodName], (error, results) => {
-            //console.log('prodList[0].productName: ', results[0].productName);
-            if (error) {
-                console.log(error);
-                res.end('error');
-            } else {
-                // 입력받은 데이터가 DB에 존재하는지 판단합니다.
-                if (results[0] == null) {
-                    res.status(562).end(
-                        ejs.render(returnError(), {
-                            title: '에러 페이지',
-                            errorMessage: '아직 투표중인 상품이 존재하지 않습니다.',
-                        })
-                    );
-                } else {
-                    res.status(562).end(
-                        ejs.render(detailStream, {
-                            title: title,
-                            page: req.params.page,
-                            userName: '비회원',
-                            signUpUrl: '/users/signUp',
-                            signUpLabel: '회원가입',
-                            loginUrl: '/users/login',
-                            loginLabel: '로그인',
-                            logoutUrl: '일단패스',
-                            logoutLabel: '일단패스',
-                            prodList: results,
-                            voteRights: 'X',
-                        })
-                    );
-                }
-            }
-        });
-    }
+        async.waterfall(
+            [
+                function (callback) {
+                    db.query(str1 + str2, [prodName, userId], (error, results) => {
+                        if (error) {
+                            console.log(error);
+                            res.status(562).end(
+                                ejs.render(returnError(), {
+                                    title: '에러 페이지',
+                                    errorMessage: 'SELECT 쿼리문 처리 에러',
+                                })
+                            );
+                        } else {
+                            voteCount = results[0][0].voteCount;
+                            voteRights = results[1][0].voteRights;
 
-    console.log('투표하기 눌렀음');
+                            console.log(prodName, '상품의 받은 투표수: ', voteCount);
+                            console.log(userId, '님의 남은 투표권: ', voteRights);
+                        }
+                        callback(null);
+                    });
+                },
+                function (callback) {
+                    db.query(str3, [voteCount + 1, prodName], (error, results) => {
+                        if (error) {
+                            console.log(error);
+                            res.status(562).end(
+                                ejs.render(returnError(), {
+                                    title: '에러 페이지',
+                                    errorMessage: 'UPDATE 쿼리문 처리 에러',
+                                })
+                            );
+                        } else {
+                            console.log('받은 투표수 +1 수정 완료');
+                        }
+                        callback(null);
+                    });
+                },
+                function (callback) {
+                    db.query(str4, [voteRights - 1, userId], (error, results) => {
+                        if (error) {
+                            console.log(error);
+                            res.status(562).end(
+                                ejs.render(returnError(), {
+                                    title: '에러 페이지',
+                                    errorMessage: 'UPDATE 쿼리문 처리 에러',
+                                })
+                            );
+                        } else {
+                            console.log('투표권 -1 수정 완료');
+                        }
+                        callback(null);
+                    });
+                },
+                function (callback) {
+                    res.redirect('/mogeum/1');
+                    callback(null);
+                }
+            ],
+            function (error, result) {
+                if (error) console.log(error);
+            }
+        );
+    } else {
+        res.status(562).end(
+            ejs.render(returnError(), {
+                title: '에러 페이지',
+                errorMessage: '로그인이 필요합니다.',
+            })
+        );
+    }
 };
 
 router.get('/', getMainPage);
 router.get('/myPage', getMyPage);
 router.get('/cart', getCartPage);
 router.get('/mogeum/:page', getMogeum); // 모금 페이지
-//router.get('/mogeum-detail/:page', getDetail);  // 모금 상세페이지
 
 router.post('/mogeum-detail/:page', postAndGetDetail); // 모금 상세페이지 처리(이후 getDetail 함수 호출)
 
