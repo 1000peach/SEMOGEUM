@@ -38,22 +38,28 @@
         <div id="vote-list" style="width: 100%;">
             <h5 class="font-weight-bold mt-3 mb-3">접전 끝에 선정된, 5월의 상품 후보를 소개합니다!</h5>
             <div class="row">
+                <form method="POST" action="/mogeum-detail/1" name="hiddenInput" id="one-form">
+                    <input type="hidden" name="prodName" />
+                </form>
                 <% prodList.forEach(function(prod, i) { %>
                 <div class="col-lg-4 col-sm-6 mb-4">
-                    <div class="card h-90">
-                        <form method="POST" action="/mogeum-detail/1" name="hiddenInput" id="one-form">
-                            <a href="#" onclick="$('#one-form').submit();"><img class="card-img-top" src="<%= prod.thumbnailImg %>" alt=""></a>
+                    <a id="<%= i %>" onclick="showOneDetail(event)">
+                        <div class="card h-90">
+                            <input type="hidden" id="tempName-<%= i %>" value="<%=prod.productName%>" />
+                            <img class="card-img-top" src="<%= prod.thumbnailImg %>" alt="" />
                             <div class="card-body">
                                 <h4 class="card-title text-center">
-                                    <a href="#" onclick="$('#one-form').submit();"><strong><%=prod.productName%></strong></a>
+                                    <a href="#"><strong><%=prod.productName%></strong></a>
                                 </h4>
-                                <p class="card-text"><a href="#" onclick="$('#one-form').submit();"><%=prod.productIntro%></a></p>
-                                <input type="hidden" name="prodName" value="<%=prod.productName%>" />
+                                <p class="card-text"><a href="#"><%=prod.productIntro%></a></p>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </a>
                 </div>
                 <% }); %>
-            </div> <!-- /row -->
-        </div> <!-- /vote-list -->
-    </div> <!-- /one-div-main -->
+            </div>
+            <!-- /row -->
+        </div>
+        <!-- /vote-list -->
+    </div>
+    <!-- /one-div-main -->
