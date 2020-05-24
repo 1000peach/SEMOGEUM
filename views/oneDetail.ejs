@@ -18,14 +18,14 @@
     <div id="one-div-main" class="container mb-6">
         <!-- 제품 간단 소개, 투표 상태 -->
         <div id="current-vote" class="mb-3">
-            <h5 class="font-weight-bold mt-3 mb-3 text-center prodName"><%= prodList[0].productName %></h5>
-            <p class="text-center"><%= prodList[0].productIntro %></p>
+            <h5 class="font-weight-bold mt-3 mb-3 text-center prodName"><%= prodList.productName %></h5>
+            <p class="text-center"><%= prodList.productIntro %></p>
             <form method="POST" action="/vote?_method=PUT" onsubmit="return validate()">
                 <button class="text-white">투표하기</button>
-                <input type="hidden" name="prodName" value="<%= prodList[0].productName %>" />
+                <input type="hidden" name="prodName" value="<%= prodList.productName %>" />
             </form>
             <p class="vote-state text-center">투표권이 <strong id="vote-rights"><%= voteRights %></strong>개 남았습니다.</p>
-            <p class="vote-state text-center">현재 순위 <strong><%= Object.keys(rankObj)[0] %></strong>위</p>
+            <p class="vote-state text-center">현재 순위 <strong><%= rank %></strong>위</p> 
             <div>그래프 들어갈 공간</div>
         </div>
         <div id="product-detail" class="mb-50" style="z-index: 0;">
@@ -36,10 +36,10 @@
                         <div id="custCarousel" class="carousel slide text-center" data-ride="carousel">
                             <!-- slides -->
                             <div class="carousel-inner">
-                                <div class="carousel-item active"><img src="<%= prodList[0].thumbnailImg %>" alt="Hills" /></div>
-                                <div class="carousel-item"><img src="<%= prodList[0].detailImg1 %>" width="500" height="500" alt="Hills" /></div>
-                                <div class="carousel-item"><img src="<%= prodList[0].detailImg2 %>" width="500" height="500" alt="Hills" /></div>
-                                <div class="carousel-item"><img src="<%= prodList[0].detailImg3 %>" width="500" height="500" alt="Hills" /></div>
+                                <div class="carousel-item active"><img src="<%= prodList.thumbnailImg %>" alt="Hills" /></div>
+                                <div class="carousel-item"><img src="<%= prodList.detailImg1 %>" width="500" height="500" alt="Hills" /></div>
+                                <div class="carousel-item"><img src="<%= prodList.detailImg2 %>" width="500" height="500" alt="Hills" /></div>
+                                <div class="carousel-item"><img src="<%= prodList.detailImg3 %>" width="500" height="500" alt="Hills" /></div>
                             </div>
                             <!-- Left right -->
                             <a class="carousel-control-prev" href="#custCarousel" data-slide="prev">
@@ -52,22 +52,22 @@
                             <ol class="carousel-indicators list-inline">
                                 <li class="list-inline-item active">
                                     <a id="carousel-selector-0" class="selected" data-slide-to="0" data-target="#custCarousel">
-                                        <img src="<%= prodList[0].thumbnailImg %>" class="img-fluid" width="100" height="100"/>
+                                        <img src="<%= prodList.thumbnailImg %>" class="img-fluid" width="100" height="100"/>
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
                                     <a id="carousel-selector-1" data-slide-to="1" data-target="#custCarousel">
-                                        <img src="<%= prodList[0].detailImg1 %>" class="img-fluid" width="100" height="100"/>
+                                        <img src="<%= prodList.detailImg1 %>" class="img-fluid" width="100" height="100"/>
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
                                     <a id="carousel-selector-2" data-slide-to="2" data-target="#custCarousel">
-                                        <img src="<%= prodList[0].detailImg2 %>" class="img-fluid" width="100" height="100"/>
+                                        <img src="<%= prodList.detailImg2 %>" class="img-fluid" width="100" height="100"/>
                                     </a>
                                 </li>
                                 <li class="list-inline-item">
                                     <a id="carousel-selector-2" data-slide-to="3" data-target="#custCarousel">
-                                        <img src="<%= prodList[0].detailImg3 %>" class="img-fluid" width="100" height="100"/>
+                                        <img src="<%= prodList.detailImg3 %>" class="img-fluid" width="100" height="100"/>
                                     </a>
                                 </li>
                             </ol>
@@ -78,9 +78,9 @@
             <!-- 제품 소개 -->
             <div id="detail-intro">
                 <hr class="mb-3" />
-                <h6 class="text-center text-dark font-weight-bold mb-0">제품명 : <%= prodList[0].productName %></h6>
+                <h6 class="text-center text-dark font-weight-bold mb-0">제품명 : <%= prodList.productName %></h6>
                 <hr class="mt-3" />
-                <p class="text-dark"><%= prodList[0].productDetail %></p>
+                <p class="text-dark"><%= prodList.productDetail %></p>
                 <hr class="mt-3" />
                 <h6 class="mb-3"><strong>유권자의 한 마디</strong> <small style="float: right;">응원 또는 개선사항을 남겨주세요!</small></h6>
                 <!-- 댓글 -->
@@ -91,7 +91,7 @@
                                 <div class="form-group">
                                     <input type="hidden" name="userId" value="<%= userId %>" />
                                     <input type="hidden" name="userName" value="<%= userName %>" />
-                                    <input type="hidden" name="prodName" value="<%= prodList[0].productName %>" />
+                                    <input type="hidden" name="prodName" value="<%= prodList.productName %>" />
                                     <input type="text" name="contents" placeholder="의견쓰기" required />
                                 </div>
                             </div>

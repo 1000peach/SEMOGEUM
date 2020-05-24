@@ -250,6 +250,22 @@ const getMogeum = (req, res) => {
 };
 
 /* 
+    클릭한 상품에 일치하는 순위를 호출 
+*/
+const handleRank = (prodName, rankObj) => {
+    // console.log('prodName: ', prodName);
+    // console.log('rankObj: ', rankObj);
+    // console.log('Object.keys(rankObj).length: ', Object.keys(rankObj).length);
+    // console.log('Object.keys(rankObj): ', Object.keys(rankObj));
+    // console.log('Object.keys(rankObj): ', Object.values(rankObj));
+    for (let i = 0; i < Object.keys(rankObj).length; i++) {
+        if (prodName === Object.values(rankObj)[i]) {
+            return Object.keys(rankObj)[i];
+        }
+    }
+};
+
+/* 
     한 모금 상세페이지 출력을 처리합니다.
 */
 const postAndGetDetail = (req, res) => {
@@ -257,6 +273,7 @@ const postAndGetDetail = (req, res) => {
     let body = req.body;
     let userId = req.session.userId;
     let prodName = body.prodName;
+    let rank;
     let rankObj = {};
     console.log('prodName: ', prodName);
     let detailStream = '';
@@ -298,6 +315,10 @@ const postAndGetDetail = (req, res) => {
                     // console.log('★★prodList: ', results[0]);
                     // console.log('★★rankObj: ', rankObj);
                     // console.log('★★voteRights: ', results[1][0].voteRights);
+                    //console.log('현재상품: ', results[0][0].productName);
+                    //console.log('rankObj: ', rankObj);
+                    rank = handleRank(results[0][0].productName, rankObj);
+
                     res.end(
                         ejs.render(detailStream, {
                             title: title,
@@ -308,9 +329,9 @@ const postAndGetDetail = (req, res) => {
                             signUpLabel: '마이페이지',
                             loginUrl: '/cart',
                             loginLabel: '장바구니',
-                            prodList: results[0],
+                            prodList: results[0][0],
                             voteRights: results[1][0].voteRights,
-                            rankObj: rankObj,
+                            rank: rank,
                         })
                     );
                 }
@@ -334,6 +355,7 @@ const postAndGetDetail = (req, res) => {
                     for (let i = 0; i < results[2].length; i++) {
                         rankObj[i + 1] = results[2][i].productName;
                     }
+                    rank = handleRank(results[0][0].productName, rankObj);
 
                     res.status(562).end(
                         ejs.render(detailStream, {
@@ -345,9 +367,9 @@ const postAndGetDetail = (req, res) => {
                             signUpLabel: '회원가입',
                             loginUrl: '/users/login',
                             loginLabel: '로그인',
-                            prodList: results[0],
+                            prodList: results[0][0],
                             voteRights: 'X',
-                            rankObj: rankObj,
+                            rank: rank,
                         })
                     );
                 }
