@@ -42,8 +42,6 @@ const getProdContest = (req, res) => {
                 signUpLabel: '마이페이지',
                 loginUrl: '/cart',
                 loginLabel: '장바구니',
-                logoutUrl: '/users/logout',
-                logoutLabel: '로그아웃',
                 userId: req.session.userId,
             })
         );
