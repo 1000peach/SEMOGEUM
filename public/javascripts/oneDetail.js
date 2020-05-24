@@ -5,19 +5,34 @@ const validate = () => {
         return false; // '확인' 누르면 페이지 전환 X
     }
 
-    if (confirm('투표하신 상품에 대한 재투표와 투표 취소는 불가능합니다.\n' + 
-            `\'` + $('.prodName').text() + `\'` + ' 상품에 정말로 투표하시겠습니까?') == true) {
+    if (
+        confirm(
+            '투표하신 상품에 대한 재투표와 투표 취소는 불가능합니다.\n' + `\'` + $('.prodName').text() + `\'` + ' 상품에 정말로 투표하시겠습니까?'
+        ) == true
+    ) {
         return true; // '확인' 누르면 form의 action으로 페이지 전환
     } else {
-        return false;      // '취소' 누르면 페이지 전환 X
+        return false; // '취소' 누르면 페이지 전환 X
     }
-}
+};
 
 /* 한 모금 상품 의견 추가 */
 const addComment = () => {
     return new Promise((resolve) => {
         let date = new Date();
-        let dateStr = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+        let month = date.getMonth() + 1;
+        let day = date.getDate();
+        let hour = date.getHours();
+        let minute = date.getMinutes();
+        let second = date.getSeconds();
+
+        month = month < 10 ? `0${month}` : month;
+        day = day < 10 ? `0${day}` : day;
+        hour = hour < 10 ? `0${hour}` : hour;
+        minute = minute < 10 ? `0${minute}` : minute;
+        second = second < 10 ? `0${second}` : second;
+
+        let dateStr = `${date.getFullYear()}-${month}-${day} ${hour}:${minute}:${second}`;
         $.ajax({
             url: '/products/addComment',
             method: 'POST',
@@ -71,6 +86,7 @@ const selectComment = () => {
                 `;
                 commentList.push(comment);
             }
+            console.log(commentList);
             $('#comment-list').html(commentList);
         },
         error: function (err) {
