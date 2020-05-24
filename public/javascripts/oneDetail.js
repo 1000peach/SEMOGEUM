@@ -1,3 +1,18 @@
+/* 로그인, 비로그인 나눠 투표처리 */
+const validate = () => {
+    if (Number($('#vote-rights').text()) <= 0) {
+        alert('사용 가능한 투표권을 모두 소진하셨습니다.\n투표권은 매월 1일에 지급됩니다.');
+        return false; // '확인' 누르면 페이지 전환 X
+    }
+
+    if (confirm('투표하신 상품에 대한 재투표와 투표 취소는 불가능합니다.\n' + 
+            `\'` + $('.prodName').text() + `\'` + ' 상품에 정말로 투표하시겠습니까?') == true) {
+        return true; // '확인' 누르면 form의 action으로 페이지 전환
+    } else {
+        return false;      // '취소' 누르면 페이지 전환 X
+    }
+}
+
 /* 한 모금 상품 의견 추가 */
 const addComment = () => {
     return new Promise((resolve) => {
