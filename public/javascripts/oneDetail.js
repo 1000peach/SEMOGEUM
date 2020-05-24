@@ -49,7 +49,7 @@ const addComment = () => {
                 resolve(data);
             },
             error: function (err) {
-                console.log('client 댓글 등록 에러' + err);
+                console.log('client 의견 등록 에러' + err);
             },
         });
     });
@@ -59,8 +59,12 @@ const addComment = () => {
 const selectComment = () => {
     $.ajax({
         url: '/products/selectComment',
-        method: 'GET',
+        method: 'POST',
         dataType: 'json',
+        contentType: 'application/json',
+        data: JSON.stringify({
+            prodName: $('[name="prodName"]').val(),
+        }),
         success: function (data) {
             let commentList = new Array();
             let comment;
@@ -86,7 +90,6 @@ const selectComment = () => {
                 `;
                 commentList.push(comment);
             }
-            console.log(commentList);
             $('#comment-list').html(commentList);
         },
         error: function (err) {

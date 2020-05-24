@@ -144,7 +144,7 @@ const addComment = (req, res) => {
     한 모금 상세 페이지에서 댓글 검색
 */
 const selectComment = (req, res) => {
-    let selectSQL = 'SELECT * FROM COMMENT ORDER BY inputDate DESC';
+    let selectSQL = `SELECT * FROM COMMENT WHERE productName='${req.body.prodName}' ORDER BY inputDate DESC`;
     db.query(selectSQL, (error, results) => {
         if (error) {
             console.log('댓글 검색 에러' + error);
@@ -158,6 +158,6 @@ router.get('/prodContest', getProdContest);
 router.post('/upload', handleProdContest);
 /* 한모금 상품 댓글 기능 */
 router.post('/addComment', addComment);
-router.get('/selectComment', selectComment);
+router.post('/selectComment', selectComment);
 
 module.exports = router;
