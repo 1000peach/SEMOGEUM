@@ -29,7 +29,7 @@
             <h6 class="font-weight-bold text-black">조금만 더 힘내요!</h6>
             <ol>
                 <li>
-                    <% for (var num = rankList.length - (rankList.length - 3); num < rankList.length - (rankList.length - 10); num++) { %>
+                    <% for (var num = rankList.length - (rankList.length - 3); num < rankList.length - (rankList.length - 6); num++) { %>
                     <p class="ranking-item mt-2"><%= num + 1 %>. <%=rankList[num]%></p>
                     <% } %>
                 </li>
@@ -45,6 +45,7 @@
                 <div class="col-lg-4 col-sm-6 mb-4">
                     <a id="<%= i %>" onclick="showOneDetail(event)">
                         <div class="card h-90">
+                            <input type="hidden" id="tempName-<%= i %>" value="<%=prod.productName%>" />
                             <input type="hidden" id="tempName-<%= i %>" value="<%=prod.productName%>" />
                             <img class="card-img-top" src="<%= prod.thumbnailImg %>" alt="" />
                             <div class="card-body">
