@@ -43,7 +43,7 @@
                 </form>
                 <% prodList.forEach(function(prod, i) { %>
                 <div class="col-lg-4 col-sm-6 mb-4">
-                    <a id="<%= i %>" onclick="showOneDetail(event)">
+                    <a href="/mogeum-detail/1/<%= prod.productNum %>">
                         <div class="card h-90">
                             <input type="hidden" id="tempName-<%= i %>" value="<%=prod.productName%>" />
                             <input type="hidden" id="tempName-<%= i %>" value="<%=prod.productName%>" />

@@ -87,28 +87,24 @@ const handleProdContest = (req, res) => {
             console.log('body: ', body);
             console.log('imgFileArr: ', imgFileArr);
 
-            str1 = `INSERT INTO VOTE_PRODUCT VALUES('${body.userId}', '${body.prodName}', '${body.prodIntro}', ?, ?, ?, ?, ?, ?, ?, ?)`;
+            str1 = `INSERT INTO VOTE_PRODUCT(userId, productName, productIntro, productDetail, thumbnailImg, detailImg1, detailImg2, detailImg3, userPhone, userEmail) VALUES('${body.userId}', '${body.prodName}', '${body.prodIntro}', ?, ?, ?, ?, ?, ?, ?)`;
 
             if (req.session.userId) {
-                db.query(
-                    str1,
-                    [prodDetail, voteCount, prodImgArr[0], prodImgArr[1], prodImgArr[2], prodImgArr[3], userPhone, userEmail],
-                    (error, fields) => {
-                        if (error) {
-                            console.log('db 등록에러');
-                            console.log(error);
-                            res.status(562).end(
-                                ejs.render(returnError(), {
-                                    title: '제품 등록 에러',
-                                    errorMessage: '제품 등록을 처리하는 과정에서 에러가 발생했습니다.',
-                                })
-                            );
-                        } else {
-                            console.log('제품 등록에 성공하였으며, DB에 제품이 등록되었습니다.!');
-                            res.redirect('/');
-                        }
+                db.query(str1, [prodDetail, prodImgArr[0], prodImgArr[1], prodImgArr[2], prodImgArr[3], userPhone, userEmail], (error, fields) => {
+                    if (error) {
+                        console.log('db 등록에러');
+                        console.log(error);
+                        res.status(562).end(
+                            ejs.render(returnError(), {
+                                title: '제품 등록 에러',
+                                errorMessage: '제품 등록을 처리하는 과정에서 에러가 발생했습니다.',
+                            })
+                        );
+                    } else {
+                        console.log('제품 등록에 성공하였으며, DB에 제품이 등록되었습니다.!');
+                        res.redirect('/');
                     }
-                );
+                });
             } else {
                 res.status(562).end(
                     ejs.render(returnError(), {
@@ -125,7 +121,7 @@ const handleProdContest = (req, res) => {
     한 모금 상세 페이지에서 댓글 추가
 */
 const addComment = (req, res) => {
-    let insertSQL = `INSERT INTO COMMENT(productName, userId, userName, inputDate, Contents) VALUES('${req.body.prodName}', '${req.body.userId}','${req.body.userName}','${req.body.inputDate}', '${req.body.contents}')`;
+    let insertSQL = `INSERT INTO COMMENT(productNum, userId, userName, inputDate, Contents) VALUES('${req.body.productNum}', '${req.body.userId}','${req.body.userName}','${req.body.inputDate}', '${req.body.contents}')`;
     db.query(insertSQL, (error) => {
         if (error) {
             console.log('댓글 등록 에러' + error);
@@ -144,7 +140,7 @@ const addComment = (req, res) => {
     한 모금 상세 페이지에서 댓글 검색
 */
 const selectComment = (req, res) => {
-    let selectSQL = `SELECT * FROM COMMENT WHERE productName='${req.body.prodName}' ORDER BY inputDate DESC`;
+    let selectSQL = `SELECT * FROM COMMENT WHERE productNum='${req.body.productNum}' ORDER BY inputDate DESC`;
     db.query(selectSQL, (error, results) => {
         if (error) {
             console.log('댓글 검색 에러' + error);

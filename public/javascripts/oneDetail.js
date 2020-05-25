@@ -39,7 +39,7 @@ const addComment = () => {
             dataType: 'json', // server가 보내는 data type
             contentType: 'application/json', // client가 보내는 data type
             data: JSON.stringify({
-                prodName: $('[name="prodName"]').val(),
+                productNum: $('[name="productNum"]').val(),
                 userId: $('[name="userId"]').val(),
                 userName: $('[name="userName"]').val(),
                 contents: $('[name="contents"]').val(),
@@ -63,7 +63,7 @@ const selectComment = () => {
         dataType: 'json',
         contentType: 'application/json',
         data: JSON.stringify({
-            prodName: $('[name="prodName"]').val(),
+            productNum: $('[name="productNum"]').val(),
         }),
         success: function (data) {
             let commentList = new Array();
