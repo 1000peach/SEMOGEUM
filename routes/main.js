@@ -178,7 +178,6 @@ const getMogeum = (req, res) => {
                     for (let i = 0; i < results[1].length; i++) {
                         rankArr[i] = results[1][i].productName;
                     }
-                    console;
                     res.end(
                         ejs.render(mogeumStream, {
                             title: title,
