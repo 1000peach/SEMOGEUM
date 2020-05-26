@@ -155,7 +155,7 @@ const getMogeum = (req, res) => {
         title = '두 모금, 선정결과';
         ejsView = 'twoMogeum.ejs';
     } else if (req.params.page === '3') {
-        title = '세 모금, 투표하기';
+        title = '세 모금, 구매하기';
         ejsView = 'threeMogeum.ejs';
     } else {
         res.end(ejs.render(returnError(), { title: '에러 페이지', errorMessage: '존재하지 않는 페이지입니다.' }));
@@ -171,28 +171,113 @@ const getMogeum = (req, res) => {
 
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 
-    str1 = 'SELECT * FROM VOTE_PRODUCT;';
-    str2 = 'SELECT productName FROM VOTE_PRODUCT ORDER BY voteCount DESC;'; // 랭킹
+    if (req.params.page === '1') {
+        str1 = 'SELECT * FROM VOTE_PRODUCT;';
+        str2 = 'SELECT productName FROM VOTE_PRODUCT ORDER BY voteCount DESC;'; // 랭킹
 
-    // // if :로그인된 상태,  else : 로그인안된 상태
-    if (req.session.userId) {
-        db.query(str1 + str2, [], (error, results) => {
-            if (error) {
-                console.log(error);
-                res.end('error');
-            } else {
-                // 입력받은 데이터가 DB에 존재하는지 판단합니다.
-                if (results[0] == null || results[1] == null) {
-                    res.status(562).end(
-                        ejs.render(returnError(), {
-                            title: '에러 페이지',
-                            errorMessage: '아직 투표중인 상품이 존재하지 않습니다.',
-                        })
-                    );
+        // // if :로그인된 상태,  else : 로그인안된 상태
+        if (req.session.userId) {
+            db.query(str1 + str2, [], (error, results) => {
+                if (error) {
+                    console.log(error);
+                    res.end('error');
                 } else {
-                    for (let i = 0; i < results[1].length; i++) {
-                        rankArr[i] = results[1][i].productName;
+                    // 입력받은 데이터가 DB에 존재하는지 판단합니다.
+                    if (results[0] == null || results[1] == null) {
+                        res.status(562).end(
+                            ejs.render(returnError(), {
+                                title: '에러 페이지',
+                                errorMessage: '아직 투표중인 상품이 존재하지 않습니다.',
+                            })
+                        );
+                    } else {
+                        for (let i = 0; i < results[1].length; i++) {
+                            rankArr[i] = results[1][i].productName;
+                        }
+                        res.end(
+                            ejs.render(mogeumStream, {
+                                title: title,
+                                page: req.params.page,
+                                userName: req.session.who,
+                                signUpUrl: '/myPage',
+                                signUpLabel: '마이페이지',
+                                loginUrl: '/cart',
+                                loginLabel: '장바구니',
+                                prodList: results[0],
+                                rankList: rankArr,
+                            })
+                        );
                     }
+                }
+            });
+        } else {
+            db.query(str1 + str2, [], (error, results) => {
+                if (error) {
+                    console.log(error);
+                    res.end('error');
+                } else {
+                    // 입력받은 데이터가 DB에 존재하는지 판단합니다.
+                    if (results[0] == null) {
+                        res.status(562).end(
+                            ejs.render(returnError(), {
+                                title: '에러 페이지',
+                                errorMessage: '아직 투표중인 상품이 존재하지 않습니다.',
+                            })
+                        );
+                    } else {
+                        for (let i = 0; i < results[1].length; i++) {
+                            rankArr[i] = results[1][i].productName;
+                        }
+                        res.status(562).end(
+                            ejs.render(mogeumStream, {
+                                title: title,
+                                page: req.params.page,
+                                userName: '비회원',
+                                signUpUrl: '/users/signUp',
+                                signUpLabel: '회원가입',
+                                loginUrl: '/users/login',
+                                loginLabel: '로그인',
+                                prodList: results[0],
+                                rankList: rankArr,
+                            })
+                        );
+                    }
+                }
+            });
+        }
+    } else if (req.params.page === '2') {
+        if (req.session.userId) {
+            res.end(
+                ejs.render(mogeumStream, {
+                    title: title,
+                    page: req.params.page,
+                    userName: req.session.who,
+                    signUpUrl: '/myPage',
+                    signUpLabel: '마이페이지',
+                    loginUrl: '/cart',
+                    loginLabel: '장바구니',
+                })
+            );
+        } else {
+            res.end(
+                ejs.render(mogeumStream, {
+                    title: title,
+                    page: req.params.page,
+                    userName: '비회원',
+                    signUpUrl: '/users/signUp',
+                    signUpLabel: '회원가입',
+                    loginUrl: '/users/login',
+                    loginLabel: '로그인',
+                })
+            );
+        }
+    } else if (req.params.page === '3') {
+        let selectSQL = 'SELECT * FROM SELL_PRODUCT';
+        db.query(selectSQL, (error, products) => {
+            if (error) {
+                console.log('세모금 상세 페이지 에러' + error);
+            } else {
+                if (req.session.userId) {
                     res.end(
                         ejs.render(mogeumStream, {
                             title: title,
@@ -202,34 +287,11 @@ const getMogeum = (req, res) => {
                             signUpLabel: '마이페이지',
                             loginUrl: '/cart',
                             loginLabel: '장바구니',
-                            prodList: results[0],
-                            rankList: rankArr,
-                        })
-                    );
-                }
-            }
-        });
-    } else {
-        db.query(str1 + str2, [], (error, results) => {
-            if (error) {
-                console.log(error);
-                res.end('error');
-            } else {
-                // 입력받은 데이터가 DB에 존재하는지 판단합니다.
-                if (results[0] == null) {
-                    res.status(562).end(
-                        ejs.render(returnError(), {
-                            title: '에러 페이지',
-                            errorMessage: '아직 투표중인 상품이 존재하지 않습니다.',
+                            products: products,
                         })
                     );
                 } else {
-                    for (let i = 0; i < results[1].length; i++) {
-                        rankArr[i] = results[1][i].productName;
-                    }
-                    //console.log(rankArr);
-
-                    res.status(562).end(
+                    res.end(
                         ejs.render(mogeumStream, {
                             title: title,
                             page: req.params.page,
@@ -238,8 +300,7 @@ const getMogeum = (req, res) => {
                             signUpLabel: '회원가입',
                             loginUrl: '/users/login',
                             loginLabel: '로그인',
-                            prodList: results[0],
-                            rankList: rankArr,
+                            products: products,
                         })
                     );
                 }

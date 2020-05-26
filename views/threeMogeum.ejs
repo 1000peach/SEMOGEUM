@@ -19,80 +19,61 @@
             <div class="col-md-12 order-md-3 col-lg-12">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-md-4 order-md-1 col-lg-4">
-                            <div class="best-sell card h-100 border-0">
-                                <div class="card-img-top">
-                                    <p class="product-rank text-white text-center">
-                                        1위
-                                    </p>
-                                    <img
-                                        src="/images/catPaw.PNG"
-                                        class="img-fluid mx-auto d-block"
-                                        alt="Card image cap"  
-                                    />
+                        <% for (var i = 0; i < 3; i++) { %>
+                            <% if (products[i] !== undefined) { %>
+                                <div class="col-md-4 order-md-1 col-lg-4">
+                                    <a href="/mogeum-detail/3/<%= products[i].productNum %>">
+                                        <div class="best-sell card h-100 border-0">
+                                            <div class="card-img-top">
+                                                <p class="product-rank text-white text-center">
+                                                    <%= i + 1 %>위
+                                                </p>
+                                                <img
+                                                    src="<%= products[i].thumbnailImg %>"
+                                                    class="img-fluid mx-auto d-block"
+                                                    alt="Card image cap"  
+                                                />
+                                            </div>
+                                            <div class="card-body text-left">
+                                                <p class="mb-0"><small><%= products[i].productMaker %></small></p>
+                                                <h6 class="font-weight-bold"><%= products[i].productName %></h6>
+                                                <p class="mb-0 text-dark" style="padding: 5px 0;"><small><%= products[i].productIntro %></small></p>
+                                                <p class="card-price mb-0 font-weight-bold"><%= products[i].productPrice %>원</p>
+                                            </div>
+                                            <span id="click-cnt">
+                                                <img src="/images/cnt.png" width="20" height="10" alt="조회수" />
+                                                <small class="text-black"><%= products[i].clickCnt %></small>
+                                            </span>
+                                        </div>
+                                    </a>
                                 </div>
-                                <div class="card-body text-left">
-                                    <p class="mb-0"><small>주식회사 탐사수</small></p>
-                                    <h6 class="font-weight-bold">탐사수의 비보트 텀블러</h6>
-                                    <p class="mb-0 text-dark" style="padding: 5px 0;"><small>어디가서 저어어어얼대 살 수 없는 비보트 텀블러... 기획대상 탐사수에게는?!</small></p>
-                                    <p class="card-price mb-0 font-weight-bold">10,000원</p>
+                            <% } else { %>
+                                <div class="col-md-4 order-md-1 col-lg-4">
+                                    <div class="best-sell card h-100 border-0">
+                                        <div class="card-img-top">
+                                            <p class="product-rank text-white text-center">
+                                                <%= i + 1 %>위
+                                            </p>
+                                            <img
+                                                src="/images/catPaw.PNG"
+                                                class="img-fluid mx-auto d-block"
+                                                alt="Card image cap"  
+                                            />
+                                        </div>
+                                        <div class="card-body text-left">
+                                            <p class="mb-0"><small>주식회사 탐사수</small></p>
+                                            <h6 class="font-weight-bold">탐사수의 비보트 텀블러</h6>
+                                            <p class="mb-0 text-dark" style="padding: 5px 0;"><small>어디가서 저어어어얼대 살 수 없는 비보트 텀블러... 기획대상 탐사수에게는?!</small></p>
+                                            <p class="card-price mb-0 font-weight-bold">10,000원</p>
+                                        </div>
+                                        <span id="click-cnt">
+                                            <img src="/images/cnt.png" width="20" height="10" alt="조회수" />
+                                            <small>123</small>
+                                        </span>
+                                    </div>
                                 </div>
-                                <span id="click-cnt">
-                                    <img src="/images/cnt.png" width="20" height="10" alt="조회수" />
-                                    <small>123</small>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 order-md-1 col-lg-4">
-                            <div class="best-sell card h-100 border-0">
-                                <div class="card-img-top">
-                                    <p class="product-rank text-white text-center">
-                                        2위
-                                    </p>
-                                    <img
-                                        src="/images/catPaw.PNG"
-                                        class="img-fluid mx-auto d-block"
-                                        alt="Card image cap"
-                                    />
-                                </div>
-                                <div class="card-body text-left">
-                                    <p class="mb-0"><small>주식회사 탐사수</small></p>
-                                    <h6 class="font-weight-bold">탐사수의 비보트 텀블러</h6>
-                                    <p class="mb-0 text-dark" style="padding: 5px 0;"><small>어디가서 저어어어얼대 살 수 없는 비보트 텀블러... 기획대상 탐사수에게는?!</small></p>
-                                    <p class="card-price mb-0 font-weight-bold">
-                                    <p class="card-price mb-0 font-weight-bold">10,000원</p>
-                                </div>
-                                <span id="click-cnt">
-                                    <img src="/images/cnt.png" width="20" height="10" alt="조회수" />
-                                    <small>123</small>
-                                </span>
-                            </div>
-                        </div>
-                        <div class="col-md-4 order-md-1 col-lg-4">
-                            <div class="best-sell card h-100 border-0">
-                                <div class="card-img-top">
-                                    <p class="product-rank text-white text-center">
-                                        3위
-                                    </p>
-                                    <img
-                                        src="/images/catPaw.PNG"
-                                        class="img-fluid mx-auto d-block"
-                                        alt="Card image cap"
-                                        
-                                    />
-                                </div>
-                                <div class="card-body text-left">
-                                    <p class="mb-0"><small>주식회사 탐사수</small></p>
-                                    <h6 class="font-weight-bold">탐사수의 비보트 텀블러</h6>
-                                    <p class="mb-0 text-dark" style="padding: 5px 0;"><small>어디가서 저어어어얼대 살 수 없는 비보트 텀블러... 기획대상 탐사수에게는?!</small></p>
-                                    <p class="card-price mb-0 font-weight-bold">10,000원</p>
-                                </div>
-                                <span id="click-cnt">
-                                    <img src="/images/cnt.png" width="20" height="10" alt="조회수" />
-                                    <small>123</small>
-                                </span>
-                            </div>
-                        </div>
+                            <% } %>
+                        <% } %>
                     </div>
                 </div>
             </div>
