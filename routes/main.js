@@ -280,6 +280,9 @@ const postAndGetDetail = (req, res) => {
     if (req.params.page === '1') {
         title = '상품 투표하기';
         ejsView = 'oneDetail.ejs';
+    } else if (req.params.page === '3') {
+        title = '상품 구매하기';
+        ejsView = 'threeDetail.ejs';
     }
 
     detailStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
@@ -287,88 +290,125 @@ const postAndGetDetail = (req, res) => {
     detailStream += fs.readFileSync(__dirname + `/../views/${ejsView}`, 'utf8');
     // detailStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
 
-    str1 = 'SELECT * FROM VOTE_PRODUCT WHERE productNum=?;'; // 다중 쿼리에서는 SQL문 내 세미콜론 꼭 써줘야함(세미콜론으로 구분하기 때문)
-    str2 = 'SELECT voteRights FROM USER WHERE userId=?;';
-    str3 = 'SELECT productNum FROM VOTE_PRODUCT ORDER BY voteCount DESC;'; // 랭킹
-
-    if (req.session.userId) {
-        db.query(str1 + str2 + str3, [req.params.productNum, userId], (error, results) => {
-            if (error) {
-                console.log(error);
-                res.end('error');
-            } else {
-                // 입력받은 데이터가 DB에 존재하는지 판단합니다.
-                if (results[0] == null || results[1] == null) {
-                    res.status(562).end(
-                        ejs.render(returnError(), {
-                            title: '에러 페이지',
-                            errorMessage: '여기 에러메세지 뭐라고 할까ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ',
-                        })
-                    );
+    if (req.params.page === '1') {
+        str1 = 'SELECT * FROM VOTE_PRODUCT WHERE productNum=?;'; // 다중 쿼리에서는 SQL문 내 세미콜론 꼭 써줘야함(세미콜론으로 구분하기 때문)
+        str2 = 'SELECT voteRights FROM USER WHERE userId=?;';
+        str3 = 'SELECT productNum FROM VOTE_PRODUCT ORDER BY voteCount DESC;'; // 랭킹
+        if (req.session.userId) {
+            db.query(str1 + str2 + str3, [req.params.productNum, userId], (error, results) => {
+                if (error) {
+                    console.log(error);
+                    res.end('error');
                 } else {
-                    // {'1': '아름다운 목걸이'}와 같이 key, value 삽입
-                    for (let i = 0; i < results[2].length; i++) {
-                        rankObj[i + 1] = results[2][i].productNum;
-                    }
-                    console.log(rankObj);
-                    // console.log('★★prodList: ', results[0]);
-                    // console.log('★★rankObj: ', rankObj);
-                    // console.log('★★voteRights: ', results[1][0].voteRights);
-                    //console.log('현재상품: ', results[0][0].productName);
-                    //console.log('rankObj: ', rankObj);
-                    rank = handleRank(results[0][0].productNum, rankObj);
+                    // 입력받은 데이터가 DB에 존재하는지 판단합니다.
+                    if (results[0] == null || results[1] == null) {
+                        res.status(562).end(
+                            ejs.render(returnError(), {
+                                title: '에러 페이지',
+                                errorMessage: '여기 에러메세지 뭐라고 할까ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ',
+                            })
+                        );
+                    } else {
+                        // {'1': '아름다운 목걸이'}와 같이 key, value 삽입
+                        for (let i = 0; i < results[2].length; i++) {
+                            rankObj[i + 1] = results[2][i].productNum;
+                        }
+                        console.log(rankObj);
+                        // console.log('★★prodList: ', results[0]);
+                        // console.log('★★rankObj: ', rankObj);
+                        // console.log('★★voteRights: ', results[1][0].voteRights);
+                        //console.log('현재상품: ', results[0][0].productName);
+                        //console.log('rankObj: ', rankObj);
+                        rank = handleRank(results[0][0].productNum, rankObj);
 
+                        res.end(
+                            ejs.render(detailStream, {
+                                title: title,
+                                page: req.params.page,
+                                userName: req.session.who,
+                                userId: req.session.userId,
+                                signUpUrl: '/myPage',
+                                signUpLabel: '마이페이지',
+                                loginUrl: '/cart',
+                                loginLabel: '장바구니',
+                                prodList: results[0][0],
+                                voteRights: results[1][0].voteRights,
+                                rank: rank,
+                            })
+                        );
+                    }
+                }
+            });
+        } else {
+            db.query(str1 + str2 + str3, [req.params.productNum, userId], (error, results) => {
+                if (error) {
+                    console.log(error);
+                    res.end('error');
+                } else {
+                    // 입력받은 데이터가 DB에 존재하는지 판단합니다.
+                    if (results[0] == null) {
+                        res.status(562).end(
+                            ejs.render(returnError(), {
+                                title: '에러 페이지',
+                                errorMessage: '에러메세지 정하자ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ',
+                            })
+                        );
+                    } else {
+                        for (let i = 0; i < results[2].length; i++) {
+                            rankObj[i + 1] = results[2][i].productNum;
+                        }
+                        rank = handleRank(results[0][0].productNum, rankObj);
+
+                        res.status(562).end(
+                            ejs.render(detailStream, {
+                                title: title,
+                                page: req.params.page,
+                                userName: '비회원',
+                                userId: '비회원',
+                                signUpUrl: '/users/signUp',
+                                signUpLabel: '회원가입',
+                                loginUrl: '/users/login',
+                                loginLabel: '로그인',
+                                prodList: results[0][0],
+                                voteRights: 'X',
+                                rank: rank,
+                            })
+                        );
+                    }
+                }
+            });
+        }
+    } else if (req.params.page === '3') {
+        let clickSQL = `SELECT * FROM SELL_PRODUCT WHERE productNum='${req.params.productNum}'`;
+        // 후에 리뷰도 다중 쿼리로 추가 예정
+        db.query(clickSQL, (error, product) => {
+            if (error) {
+                console.log('세모금 상세 페이지 에러' + error);
+            } else {
+                if (req.session.userId) {
                     res.end(
                         ejs.render(detailStream, {
                             title: title,
                             page: req.params.page,
                             userName: req.session.who,
-                            userId: req.session.userId,
                             signUpUrl: '/myPage',
                             signUpLabel: '마이페이지',
                             loginUrl: '/cart',
                             loginLabel: '장바구니',
-                            prodList: results[0][0],
-                            voteRights: results[1][0].voteRights,
-                            rank: rank,
-                        })
-                    );
-                }
-            }
-        });
-    } else {
-        db.query(str1 + str2 + str3, [req.params.productNum, userId], (error, results) => {
-            if (error) {
-                console.log(error);
-                res.end('error');
-            } else {
-                // 입력받은 데이터가 DB에 존재하는지 판단합니다.
-                if (results[0] == null) {
-                    res.status(562).end(
-                        ejs.render(returnError(), {
-                            title: '에러 페이지',
-                            errorMessage: '에러메세지 정하자ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ',
+                            product: product[0],
                         })
                     );
                 } else {
-                    for (let i = 0; i < results[2].length; i++) {
-                        rankObj[i + 1] = results[2][i].productNum;
-                    }
-                    rank = handleRank(results[0][0].productNum, rankObj);
-
-                    res.status(562).end(
+                    res.end(
                         ejs.render(detailStream, {
                             title: title,
                             page: req.params.page,
                             userName: '비회원',
-                            userId: '비회원',
                             signUpUrl: '/users/signUp',
                             signUpLabel: '회원가입',
                             loginUrl: '/users/login',
                             loginLabel: '로그인',
-                            prodList: results[0][0],
-                            voteRights: 'X',
-                            rank: rank,
+                            product: product[0],
                         })
                     );
                 }

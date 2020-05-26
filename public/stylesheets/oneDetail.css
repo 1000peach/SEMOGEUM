@@ -8,7 +8,8 @@
     border-image: linear-gradient(to right, #80d4ff, #cc66ff);
     border-image-slice: 2;
 }
-#current-vote > form > button {
+#current-vote > form > button,
+#current-vote > form > div > button {
     width: 100%;
     border-radius: 20px;
     height: 40px;
@@ -27,6 +28,9 @@
     font-weight: bold;
 }
 #product-detail {
+    width: 100%;
+}
+#current-vote > div[class="btn-group"] > button {
     width: 100%;
 }
 /* 제품 소개 */
