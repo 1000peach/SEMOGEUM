@@ -1,9 +1,25 @@
-#dropdown-right {
-    padding-top: 3%;
-    padding-bottom: 1%;
-    width: 95%;
-    text-align: right;
-    display: inline-block;
+/* 조회수 높은 인기 상품 */
+#top-sell {
+    border-width: 6px;
+    border-image: linear-gradient(to right, #80d4ff, #cc66ff);
+    border-image-slice: 2;
+}
+/* 조회수 표시 */
+#click-cnt {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+}
+
+/* 랭킹 라벨 */
+.product-rank {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 50px;
+    background-image: linear-gradient(to right, #80d4ff, #cc66ff);
+    border: none;
+    width: 50px;
 }
 
 /* 상품 목록 */
@@ -12,8 +28,9 @@
     cursor: pointer;
 }
 
-#buy-list div div > .card:hover {
-    box-shadow: 10px 10px 10px lightgray;
+#buy-list div div > .card:hover h6,
+.best-sell:hover h6 {
+    color: #D1B2FF;
     transition: 0.2s;
 }
 
@@ -61,20 +78,4 @@
 
 #May {
     background-color: rebeccapurple;
-}
-
-.product-rank {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    text-align: center;
-    background-color: white;
-    color: red;
-    width: 50px;
-    border: solid black 1px;
-}
-
-/* 베스트 랭킹 */
-.best-sell {
-    padding: 20px;
 }

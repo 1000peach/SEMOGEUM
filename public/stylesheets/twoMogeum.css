@@ -1,5 +1,5 @@
 .row {
-    margin-top: 10px;
+    /* margin-top: 10px; */
 }
 .col-9 {
     padding-left: 5px;
@@ -44,7 +44,7 @@
 
 .col-6 {
     text-align: center;
-    font-size: 13px;
+    /* font-size: 13px; */
 }
 
 .content-right {
