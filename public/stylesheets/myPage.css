@@ -1,0 +1,125 @@
+.mypage-header {
+    text-align: center;
+    font-size: 30px;
+    font-weight: 600;
+    color: white;
+    background-image: linear-gradient(to right, #66ccff, #cc66ff);
+    padding: 20px;
+    display: block;
+}
+
+#profile-info {
+    background-color: lightgray;
+    margin: 5px;
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+#profile {
+    text-align: center;
+}
+
+#profile-img {
+    text-align: center;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+.profile-sep1 {
+    background-color: white;
+    padding: 20px;
+    margin: 5px;
+}
+
+.profile-sep2 {
+    background-color: white;
+    padding: 20px;
+    margin: 5px;
+}
+
+.contact {
+    font-size: 20px;
+}
+
+.edit {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.vote-product {
+    text-align: center;
+}
+
+.rank {
+    text-align: center;
+    background-color: aliceblue;
+    padding: 2px;
+    width: 150px;
+    position: absolute;
+}
+
+.title-left {
+    text-align: left;
+    font-size: 20px;
+}
+
+.title-right {
+    text-align: right;
+    cursor: pointer;
+}
+
+.title {
+    margin-top: 30px;
+}
+.current-rank {
+    text-align: center;
+}
+
+.buy-list {
+    text-align: center;
+    font-weight: 500;
+    font-size: 17px;
+}
+
+.buy-specific {
+    text-align: center;
+}
+
+.semi-title {
+    text-align: center;
+    font-size: 17px;
+    font-weight: 500;
+}
+
+.cart-img {
+    text-align: center;
+    padding-left: 20px;
+}
+
+.cart-price {
+    text-align: center;
+}
+
+.cart-check {
+    text-align: center;
+}
+
+.extra-menu {
+    border: 1px solid #66ccff;
+    text-align: center;
+    font-size: 17px;
+    font-weight: 600;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+}
