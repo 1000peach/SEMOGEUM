@@ -120,7 +120,6 @@ $('#comment-form').on('submit', function (event) {
     addComment().then(data => {
         if (data.status === 1) { // 의견 등록 성공
             selectComment();
-            alert("댓글 등록에 성공했습니다!");
         } else { // 의견 등록 실패
             alert("로그인이 필요합니다!");
         }

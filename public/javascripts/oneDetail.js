@@ -46,6 +46,7 @@ const addComment = () => {
                 inputDate: dateStr,
             }),
             success: function (data) {
+                $('[name="contents"]').val('');
                 resolve(data);
             },
             error: function (err) {

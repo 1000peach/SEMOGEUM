@@ -3,7 +3,6 @@ const updateCnt = () => {
     return new Promise((resolve) => {
         let productNum = $('[name="product-num"]').val();
         let currentCnt = $('[name="click-cnt"]').val();
-        console.log('client cnt' + currentCnt)
         $.ajax({
             url: `/products/updateCnt/${productNum}/${currentCnt}`,
             method: 'PUT',
