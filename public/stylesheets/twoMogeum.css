@@ -30,7 +30,7 @@
 }
 
 .oneword {
-    background-color: lightgray;
+    background-color: gainsboro;
     margin-top: 10px;
     margin-left: 10px;
     margin-right: 5px;
@@ -43,8 +43,14 @@
 }
 
 .oneword-bottom {
+    margin-top: 5px;
     text-align: center;
+    justify-content: center;
     /* font-size: 13px; */
+}
+
+.oneword-img {
+    margin-right: 10px;
 }
 
 .content-right {

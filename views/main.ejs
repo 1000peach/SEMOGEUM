@@ -71,28 +71,19 @@
                         <div class="mogeum" style="padding: 10px;">
                             <p class="product-name text-center font-weight-bold">5월의 상품</p>
                             <br />
-                            <p class="text-left product-name"><img src="/images/vote.png" width="30" height="30" />&nbsp;상품 <%= prodNameCount.cnt %>개</p>
-                            <p class="text-left product-name"><img src="/images/vote.png" width="30" height="30" />&nbsp;투표 <%= voteCountSum.sum %>개</p>
+                            <p class="text-left product-name"><img src="/images/vote.png" width="30" height="30" />&nbsp;상품 30개</p>
+                            <p class="text-left product-name"><img src="/images/vote.png" width="30" height="30" />&nbsp;투표 172932개</p>
                         </div>
                     </div>
                 </a>
             </div>
-            <!-- 여기 나중에 for문으로 바꾸기, 지금은 뭐가 잘안돼서; -->
+            <% for (var i = 0; i < 3; i++) { %>
             <div class="col-lg-3 col-md-4 col-6">
                 <a href="#" class="d-block mb-4 h-100">
-                    <img class="img-fluid img-thumbnail" src="<%= Object.values(thumbnailImg[0])[0] %>" alt="" style="border: none; padding: 0;" />
+                    <img class="img-fluid img-thumbnail" src="/images/catPaw.PNG" alt="" style="border: none; padding: 0;" />
                 </a>
             </div>
-            <div class="col-lg-3 col-md-4 col-6">
-                <a href="#" class="d-block mb-4 h-100">
-                    <img class="img-fluid img-thumbnail" src="<%= Object.values(thumbnailImg[1])[0] %>" alt="" style="border: none; padding: 0;" />
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-                <a href="#" class="d-block mb-4 h-100">
-                    <img class="img-fluid img-thumbnail" src="<%= Object.values(thumbnailImg[2])[0] %>" alt="" style="border: none; padding: 0;" />
-                </a>
-            </div>
+            <% } %>
             <!-- 두 모금 -->
             <div class="col-lg-3 col-md-4 col-6">
                 <a href="#" class="d-block mb-4 h-100">
@@ -101,27 +92,19 @@
                         <div class="mogeum" style="padding: 10px;">
                             <p class="product-name text-center font-weight-bold">4월 선정작 상품화 진행</p>
                             <br />
-                            <p class="text-left product-name"><img src="/images/vote.png" width="30" height="30" />&nbsp;상품 <%= prodNameCount.cnt %>개</p>
+                            <p class="text-left product-name"><img src="/images/vote.png" width="30" height="30" />&nbsp;상품 30개</p>
+                            <p class="text-left product-name"><img src="/images/vote.png" width="30" height="30" />&nbsp;투표 172932개</p>
                         </div>
                     </div>
                 </a>
             </div>
-            <!-- 여기 나중에 for문으로 바꾸기, 지금은 뭐가 잘안돼서; -->
+            <% for (var i = 0; i < 3; i++) { %>
             <div class="col-lg-3 col-md-4 col-6">
                 <a href="#" class="d-block mb-4 h-100">
-                    <img class="img-fluid img-thumbnail" src="<%= Object.values(rankThumbnailImg[0])[0] %>" alt="" style="border: none; padding: 0;" />
+                    <img class="img-fluid img-thumbnail" src="/images/catPaw.PNG" alt="" style="border: none; padding: 0;" />
                 </a>
             </div>
-            <div class="col-lg-3 col-md-4 col-6">
-                <a href="#" class="d-block mb-4 h-100">
-                    <img class="img-fluid img-thumbnail" src="<%= Object.values(rankThumbnailImg[1])[0] %>" alt="" style="border: none; padding: 0;" />
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-                <a href="#" class="d-block mb-4 h-100">
-                    <img class="img-fluid img-thumbnail" src="<%= Object.values(rankThumbnailImg[2])[0] %>" alt="" style="border: none; padding: 0;" />
-                </a>
-            </div>
+            <% } %>
             <!-- 세 모금 -->
             <div class="col-lg-3 col-md-4 col-6">
                 <a href="#" class="d-block mb-4 h-100">
