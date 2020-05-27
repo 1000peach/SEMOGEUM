@@ -20,29 +20,29 @@
                 <div class="container-fluid">
                     <div class="row">
                         <% for (var i = 0; i < 3; i++) { %>
-                            <% if (products[i] !== undefined) { %>
+                            <% if (topProducts[i] !== undefined) { %>
                                 <div class="col-md-4 order-md-1 col-lg-4">
-                                    <a href="/mogeum-detail/3/<%= products[i].productNum %>">
+                                    <a href="/mogeum-detail/3/<%= topProducts[i].productNum %>">
                                         <div class="best-sell card h-100 border-0">
                                             <div class="card-img-top">
                                                 <p class="product-rank text-white text-center">
                                                     <%= i + 1 %>위
                                                 </p>
                                                 <img
-                                                    src="<%= products[i].thumbnailImg %>"
+                                                    src="<%= topProducts[i].thumbnailImg %>"
                                                     class="img-fluid mx-auto d-block"
                                                     alt="Card image cap"  
                                                 />
                                             </div>
                                             <div class="card-body text-left">
-                                                <p class="mb-0"><small><%= products[i].productMaker %></small></p>
-                                                <h6 class="font-weight-bold"><%= products[i].productName %></h6>
-                                                <p class="mb-0 text-dark" style="padding: 5px 0;"><small><%= products[i].productIntro %></small></p>
-                                                <p class="card-price mb-0 font-weight-bold"><%= products[i].productPrice %>원</p>
+                                                <p class="mb-0"><small><%= topProducts[i].productMaker %></small></p>
+                                                <h6 class="font-weight-bold"><%= topProducts[i].productName %></h6>
+                                                <p class="mb-0 text-dark" style="padding: 5px 0;"><small><%= topProducts[i].productIntro %></small></p>
+                                                <p class="card-price mb-0 font-weight-bold"><%= topProducts[i].productPrice %>원</p>
                                             </div>
                                             <span id="click-cnt">
                                                 <img src="/images/cnt.png" width="20" height="10" alt="조회수" />
-                                                <small class="text-black"><%= products[i].clickCnt %></small>
+                                                <small class="text-black"><%= topProducts[i].clickCnt %></small>
                                             </span>
                                         </div>
                                     </a>
@@ -93,61 +93,31 @@
                     <button class="dropdown-item" type="button">낮은가격순</button>
                     <button class="dropdown-item" type="button">높은가격순</button>
                     <button class="dropdown-item" type="button">판매순</button>
+                    <!-- 판매순을 발표 위해 조회순으로 대체할 것 -->
                 </div>
             </div>
         </div>
+        <!-- 판매 상품 목록 (기본 정렬: 오래된 순) -->
         <div id="buy-list" style="width: 100%;">
             <div class="row">
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="card">
-                        <div class="card-img-top">
-                        <div class="month" id="Jan">1월</div>
-                        <img class="card-img-top" src="/images/catPaw.PNG"></a>
-                        </div>
-                        <div class="card-body text-left">
-                            <p class="mb-0"><small>주식회사 탐사수</small></p>
-                            <h6 class="font-weight-bold">탐사수의 비보트 텀블러</h6>
-                            <p class="mb-0 text-dark" style="padding: 5px 0;"><small>어디가서 저어어어얼대 살 수 없는 비보트 텀블러... 기획대상 탐사수에게는?!</small></p>
-                            <p class="card-price mb-0 font-weight-bold">10,000원</p>
-                        </div>
+                <% for (var i = 0; i < products.length; i++) { %>
+                    <div class="col-lg-3 col-md-4 col-6">
+                        <a href="/mogeum-detail/3/<%= products[i].productNum %>">
+                            <div class="card">
+                                <div class="card-img-top">
+                                <div class="month month-<%=products[i].productMonth %>"><%= products[i].productMonth %>월</div>
+                                <img class="card-img-top" src="/images/catPaw.PNG"></a>
+                                </div>
+                                <div class="card-body text-left">
+                                    <p class="mb-0"><small><%= products[i].productMaker %></small></p>
+                                    <h6 class="font-weight-bold"><%= products[i].productName %></h6>
+                                    <p class="mb-0 text-dark" style="padding: 5px 0;"><small><%= products[i].productIntro %></small></p>
+                                    <p class="card-price mb-0 font-weight-bold"><%= products[i].productPrice %>원</p>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="card">
-                        <div class="month" id="Jan">1월</div>
-                        <img class="card-img-top" src="/images/catPaw.PNG"></a>
-                        <div class="card-body text-left">
-                            <p class="mb-0"><small>주식회사 탐사수</small></p>
-                            <h6 class="font-weight-bold">탐사수의 비보트 텀블러</h6>
-                            <p class="mb-0 text-dark" style="padding: 5px 0;"><small>어디가서 저어어어얼대 살 수 없는 비보트 텀블러... 기획대상 탐사수에게는?!</small></p>
-                            <p class="card-price mb-0 font-weight-bold">10,000원</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="card">
-                        <div class="month" id="Jan">1월</div>
-                        <img class="card-img-top" src="/images/catPaw.PNG"></a>
-                        <div class="card-body text-left">
-                            <p class="mb-0"><small>주식회사 탐사수</small></p>
-                            <h6 class="font-weight-bold">탐사수의 비보트 텀블러</h6>
-                            <p class="mb-0 text-dark" style="padding: 5px 0;"><small>어디가서 저어어어얼대 살 수 없는 비보트 텀블러... 기획대상 탐사수에게는?!</small></p>
-                            <p class="card-price mb-0 font-weight-bold">10,000원</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-6">
-                    <div class="card">
-                        <div class="month" id="Jan">1월</div>
-                        <img class="card-img-top" src="/images/catPaw.PNG"></a>
-                        <div class="card-body text-left">
-                            <p class="mb-0"><small>주식회사 탐사수</small></p>
-                            <h6 class="font-weight-bold">탐사수의 비보트 텀블러</h6>
-                            <p class="mb-0 text-dark" style="padding: 5px 0;"><small>어디가서 저어어어얼대 살 수 없는 비보트 텀블러... 기획대상 탐사수에게는?!</small></p>
-                            <p class="card-price mb-0 font-weight-bold">10,000원</p>
-                        </div>
-                    </div>
-                </div>
+                <% } %>
             </div>
         </div>
     </div>

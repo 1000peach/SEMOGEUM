@@ -272,8 +272,9 @@ const getMogeum = (req, res) => {
             );
         }
     } else if (req.params.page === '3') {
-        let selectSQL = 'SELECT * FROM SELL_PRODUCT';
-        db.query(selectSQL, (error, products) => {
+        let topSQL = 'SELECT * FROM SELL_PRODUCT ORDER BY clickCnt DESC;';
+        let selectSQL = 'SELECT * FROM SELL_PRODUCT ORDER BY productMonth;';
+        db.query(topSQL + selectSQL, (error, products) => {
             if (error) {
                 console.log('세모금 상세 페이지 에러' + error);
             } else {
@@ -287,7 +288,8 @@ const getMogeum = (req, res) => {
                             signUpLabel: '마이페이지',
                             loginUrl: '/cart',
                             loginLabel: '장바구니',
-                            products: products,
+                            topProducts: products[0],
+                            products: products[1],
                         })
                     );
                 } else {
@@ -300,7 +302,8 @@ const getMogeum = (req, res) => {
                             signUpLabel: '회원가입',
                             loginUrl: '/users/login',
                             loginLabel: '로그인',
-                            products: products,
+                            topProducts: products[0],
+                            products: products[1],
                         })
                     );
                 }

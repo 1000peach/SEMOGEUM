@@ -60,22 +60,22 @@
     color: white;
 }
 
-#Jan {
+.month-1 {
     background-color: orange;
 }
 
-#Feb {
+.month-2 {
     background-color: chartreuse;
 }
 
-#Mar {
+.month-3 {
     background-color: royalblue;
 }
 
-#Apr {
+.month-4 {
     background-color: palevioletred;
 }
 
-#May {
+.month-5 {
     background-color: rebeccapurple;
 }
