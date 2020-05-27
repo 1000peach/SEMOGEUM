@@ -21,7 +21,7 @@
         <div id="current-vote" class="mb-3">
             <h5 class="font-weight-bold mt-3 mb-3 text-center prodName"><%= product.productName %></h5>
             <p class="text-center"><%= product.productIntro %></p>
-            <h5 class="text-dark font-weight-bold text-right"><%= product.productPrice %>원</h5>
+            <h5 class="text-dark font-weight-bold text-right"><%= Number(product.productPrice).toLocaleString("en") %>원</h5>
             <form method="POST" action="">
                 <div style="display: flex;">
                     <button class="text-white">구매하기</button>

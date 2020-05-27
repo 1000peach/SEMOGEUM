@@ -49,18 +49,21 @@ nav {
 }
 /* 로그인 메뉴 마우스 오버 시 */
 .login-menu a:hover {
-    color: #80d4ff;
-    text-decoration: none;
+    color: #D1B2FF;
+    transition: 0.2s;
 }
 /* 페이지 메뉴 마우스 오버 시 */
 #page-1:hover {
-    color: #80d4ff;
+    color: #D1B2FF;
+    transition: 0.2s;
 }
 #page-2:hover {
-    color: #80d4ff;
+    color: #D1B2FF;
+    transition: 0.2s;
 }
 #page-3:hover {
-    color: #80d4ff;
+    color: #D1B2FF;
+    transition: 0.2s;
 }
 /* 기본 태그 설정 */
 button {
@@ -70,7 +73,7 @@ button {
 }
 /* 이름 색상 꾸미기 위함 */
 #page-userName {
-    color: #80d4ff;
+    color: #D1B2FF;
 }
 /* 로그아웃 */
 #logout {
