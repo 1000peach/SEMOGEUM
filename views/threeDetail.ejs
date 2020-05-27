@@ -1,4 +1,6 @@
 <div id="one-div" class="col-div" style="width: 100%;">
+    <input type="hidden" name="product-num" value="<%= product.productNum %>"/>
+    <input type="hidden" name="click-cnt" value="<%= product.clickCnt %>"/>
     <button type="button" id="top" style="width: 60px; height: 60px;">
         <img src="/images/top.png" width="30" height="30" alt="scroll top" />
     </button>
@@ -95,9 +97,12 @@
 <script src="/javascripts/oneMogeum.js"></script>
 <script src="/javascripts/twoMogeum.js"></script>
 <script src="/javascripts/oneDetail.js"></script>
+<script src="/javascripts/threeDetail.js"></script>
 <script>
-if (checkMobile() === 'ios') {
-    $("#one-div-main").css("margin-top", "80px");
-} // ios css 고려
+    console.log('실행됐음')
+    updateCnt();
+    if (checkMobile() === 'ios') {
+        $("#one-div-main").css("margin-top", "80px");
+    } // ios css 고려
 </script>
 </html>

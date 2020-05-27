@@ -150,10 +150,34 @@ const selectComment = (req, res) => {
     });
 };
 
+/*
+    세 모금 등록 상품 조회수 증가
+*/
+const updateCnt = (req, res) => {
+    let updateCnt = Number(req.params.currentCnt) + 1;
+    let updateSQL = `UPDATE SELL_PRODUCT SET clickCnt = ${updateCnt} WHERE productNum = ${req.params.productNum}`;
+    db.query(updateSQL, (error) => {
+        if (error) {
+            console.log('세모금 상품 조회수 증가 에러' + error);
+            res.json({
+                status: 0,
+            });
+        } else {
+            res.json({
+                status: 1,
+            });
+        }
+    });
+};
+
 router.get('/prodContest', getProdContest);
 router.post('/upload', handleProdContest);
+
 /* 한모금 상품 댓글 기능 */
 router.post('/addComment', addComment);
 router.post('/selectComment', selectComment);
+
+/* 세모금 조회수 증가 */
+router.put('/updateCnt/:productNum/:currentCnt', updateCnt);
 
 module.exports = router;

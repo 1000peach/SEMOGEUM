@@ -347,6 +347,9 @@ const postAndGetDetail = (req, res) => {
     } else if (req.params.page === '3') {
         title = '상품 구매하기';
         ejsView = 'threeDetail.ejs';
+    } else {
+        res.end(ejs.render(returnError(), { title: '에러 페이지', errorMessage: '존재하지 않는 페이지입니다.' }));
+        return;
     }
 
     detailStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
