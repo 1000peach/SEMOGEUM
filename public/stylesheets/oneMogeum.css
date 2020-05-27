@@ -24,8 +24,8 @@
     border: none;
     cursor: pointer;
 }
-#vote-list div div > .card:hover {
-    box-shadow: 10px 10px 10px lightgray;
+#vote-list div div:hover h6 {
+    color: #D1B2FF;
     transition: 0.2s;
 }
 .card-body > h4 > a, .card-body > p > a {
