@@ -92,7 +92,7 @@ const getMyPage = (req, res) => {
 
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 
-    str1= 'SELECT voteRights, userName, userEmail, userPhone FROM user;';
+    str1= 'SELECT voteRights, userName, userEmail, userPhone FROM USER;';
 
     // if :로그인된 상태,  else : 로그인안된 상태
     if (req.session.userId) {

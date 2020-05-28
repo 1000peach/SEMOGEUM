@@ -9,7 +9,7 @@
 }
 
 #profile-info {
-    background-color: lightgray;
+    background-color: gainsboro;
     margin: 5px;
     padding: 10px;
     display: flex;
@@ -27,6 +27,10 @@
     margin-bottom: 10px;
 }
 
+#level {
+    font-size: smaller;
+}
+
 .profile-sep1 {
     background-color: white;
     padding: 20px;
@@ -41,6 +45,7 @@
 
 .contact {
     font-size: 20px;
+    padding-bottom: 5px;
 }
 
 .edit {
@@ -52,6 +57,12 @@
 
 .vote-product {
     text-align: center;
+    margin: 5px;
+}
+
+.product-name {
+    padding: 5px;
+    font-size: large;
 }
 
 .rank {
@@ -75,18 +86,33 @@
 .title {
     margin-top: 30px;
 }
-.current-rank {
+.rank {
+    position: absolute;
+    top: 5px;
+    left: 20px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-top: 3px;
+    padding-bottom: 3px;
     text-align: center;
+    width: 70px;
+    height: 30px;
+    color: white;
+    background-color: #D1B2FF;
 }
 
 .buy-list {
     text-align: center;
-    font-weight: 500;
+    font-weight: 600;
     font-size: 17px;
 }
 
 .buy-specific {
     text-align: center;
+}
+
+.col-sm-12 {
+    margin-top: 10px;
 }
 
 .semi-title {
@@ -110,6 +136,7 @@
 
 .extra-menu {
     border: 1px solid #66ccff;
+    margin-top: 5px;
     text-align: center;
     font-size: 17px;
     font-weight: 600;
@@ -122,4 +149,28 @@
 .row {
     display: flex;
     /* align-items: center; */
+}
+
+@media screen and (max-width: 768px) {
+    .product-name {
+        font-size: 16px;
+    }
+    .buy-list {
+        font-size: 15px;
+        font-weight: 600;
+    }
+    .buy-specific {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .buy-list {
+        font-size: 13px;
+        font-weight: 600;
+    }
+    .buy-specific {
+        text-align: center;
+        font-size: 12px;
+    }
 }

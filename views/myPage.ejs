@@ -8,12 +8,13 @@
 
 <div class = "container">
     <div class = "row" id = "profile-info" style="justify-content: center; align-items: center;">
-        <div class = "col-6 profile-sep1" id = "profile">
+        <div class = "col-lg-6 col-sm-12 profile-sep1" id = "profile">
             <img src = "/images/man.png" id = "profile-img"> <br>
+            <div id = "level">골드피커: Lv.3 <br> </div>
             닉네임: <%= userName %> <br>
             <button type = "button" class = "btn btn-outline-dark btn-sm edit">수정</button>
         </div>
-        <div class = "col-6 profile-sep2">
+        <div class = "col-lg-6 col-sm-12 profile-sep2">
             <div class = "contact"><strong>연락처</strong> <br></div>
             이메일: <%= userEmail %> <br>
             휴대전화: +82 <%= userPhone %> <br>
@@ -35,21 +36,25 @@
     </div>
     <hr style="border: 0.5px solid black;">
     <div class = "row vote-product">
-        <div class = "col-3">
+        <div class = "col-md-4 col-lg-3 col-sm-6 col-xs-6">
             <img src = "/images/catPaw.PNG" class="img-fluid">
             <div class = "rank">현재 9위</div>
+            <div class = "product-name">제품명</div>
         </div>
-        <div class = "col-3">
+        <div class = "col-md-4 col-lg-3 col-sm-6 col-xs-6">
             <img src = "/images/catPaw.PNG" class="img-fluid">
             <div class = "rank">현재 5위</div>
+            <div class = "product-name">제품명</div>
         </div>
-        <div class = "col-3">
+        <div class = "col-md-4 col-lg-3 col-sm-6 col-xs-6">
             <img src = "/images/catPaw.PNG" class="img-fluid">
             <div class = "rank">현재 1위</div>
+            <div class = "product-name">제품명</div>
         </div>
-        <div class = "col-3">
+        <div class = "col-md-4 col-lg-3 col-sm-6 col-xs-6">
             <img src = "/images/catPaw.PNG" class="img-fluid">
             <div class = "rank">현재 3위</div>
+            <div class = "product-name">제품명</div>
         </div>
         <hr>
     </div>
@@ -71,25 +76,25 @@
             주문일자
         </div>
         <div class = "col-2">
-            주문금액(수량)
+            주문금액<br>(수량)
         </div>
         <div class = "col-2">
             주문 상태
         </div>
     </div>
-    <div class = "row buy-specific">
+    <div class = "row buy-specific" style="align-items: center;">
         <div class = "col-6">
             <div class = "row" style="align-items: center;">
-                <div class = "col-5">
+                <div class = "col-xl-5 col-sm-12">
                     <img src = "/images/catPaw.PNG" class = "img-fluid buy-img">
                 </div>
-                <div class = "col-7">
+                <div class = "col-xl-7 col-sm-12">
                     귀여운 민지를 만져봐요!
                 </div>
             </div>
         </div>
         <div class = "col-2">
-            2020.05.25
+            2020년 <br> 5월 25일
         </div>
         <div class = "col-2">
             15,000 <br>
@@ -110,7 +115,7 @@
     </div>
     <hr style="border: 0.5px solid black;">
     <div class = "row" style="align-items: center;">
-        <div class = "col-6">
+        <div class = "col-lg-6 col-sm-12">
             <div class = "row" style="align-items: center;">
                 <div class = "col-5">
                     <img src = "/images/catPaw.PNG" class = "img-fluid">
@@ -120,12 +125,42 @@
                 </div>
             </div>
         </div>
-        <div class = "col-6 buy-review">
+        <div class = "col-lg-6 col-sm-12 buy-review">
+            <button type = "button" class = "btn btn-outline-dark btn-lg btn-block">구매 후기 작성</button>
+        </div>
+    </div>
+    <div class = "row" style="align-items: center;">
+        <div class = "col-lg-6 col-sm-12">
+            <div class = "row" style="align-items: center;">
+                <div class = "col-5">
+                    <img src = "/images/catPaw.PNG" class = "img-fluid">
+                </div>
+                <div class = "col-7">
+                    귀민쓰 장갑
+                </div>
+            </div>
+        </div>
+        <div class = "col-lg-6 col-sm-12 buy-review">
+            <button type = "button" class = "btn btn-outline-dark btn-lg btn-block">구매 후기 작성</button>
+        </div>
+    </div>
+    <div class = "row" style="align-items: center;">
+        <div class = "col-lg-6 col-sm-12">
+            <div class = "row" style="align-items: center;">
+                <div class = "col-5">
+                    <img src = "/images/catPaw.PNG" class = "img-fluid">
+                </div>
+                <div class = "col-7">
+                    귀민쓰 장갑
+                </div>
+            </div>
+        </div>
+        <div class = "col-lg-6 col-sm-12 buy-review">
             <button type = "button" class = "btn btn-outline-dark btn-lg btn-block">구매 후기 작성</button>
         </div>
     </div>
 
-    <div class = "row title">
+    <!-- <div class = "row title">
         <div class = "col-6 title-left">
             <strong>장바구니</strong>
         </div>
@@ -206,34 +241,34 @@
             19,800원 <br>
             (2개)
         </div>
-    </div>
-    <hr style="border: 0.5px solid grey;">
+    </div> -->
 
     <div class = "row title">
         <div class = "col title-left">
             <strong>이 외 도움이 필요하시다면?</strong>
         </div>
     </div>
+    <hr style="border: 0.5px solid grey;">
     <div class = "row" style="align-items: center;">
-        <div class = "col-4 extra-menu">
-            최근 본 상품
+        <div class = "col-4">
+            <button type="button" class="btn btn-outline-primary btn-block extra-menu">최근 본 상품</button>
         </div>
-        <div class = "col-4 extra-menu">
-            구매 후기
+        <div class = "col-4">
+            <button type="button" class="btn btn-outline-primary btn-block extra-menu">구매 후기</button>
         </div>
-        <div class = "col-4 extra-menu">
-            1:1 문의
+        <div class = "col-4">
+            <button type="button" class="btn btn-outline-primary btn-block extra-menu">1:1 문의</button>
         </div>
     </div>
     <div class = "row" style="align-items: center;">
-        <div class = "col-4 extra-menu">
-            취소/환불 문의
+        <div class = "col-4">
+            <button type="button" class="btn btn-outline-primary btn-block extra-menu">취소/환불 문의</button>
         </div>
-        <div class = "col-4 extra-menu">
-            쿠폰함
+        <div class = "col-4">
+            <button type="button" class="btn btn-outline-primary btn-block extra-menu">쿠폰함</button>
         </div>
-        <div class = "col-4 extra-menu">
-            세모금에게 <br> 후원하기
+        <div class = "col-4">
+            <button type="button" class="btn btn-outline-primary btn-block extra-menu">세모금에게 <br> 후원하기</button>
         </div>
     </div>
 </div>
