@@ -2,7 +2,7 @@
 <div class = "container-fluid"> <!--헤더 부분-->
     <div class = "row mypage-header" style="justify-content: center;">
         마이페이지 <br>
-        이현서님의 남은 투표수 (6월) : 2개
+        <%= userId %>님의 남은 투표수 (6월) : <%= voteRights %>개
     </div>
 </div>
 
@@ -10,13 +10,13 @@
     <div class = "row" id = "profile-info" style="justify-content: center; align-items: center;">
         <div class = "col-6 profile-sep1" id = "profile">
             <img src = "/images/man.png" id = "profile-img"> <br>
-            닉네임: 현더 LEE <br>
+            닉네임: <%= userName %> <br>
             <button type = "button" class = "btn btn-outline-dark btn-sm edit">수정</button>
         </div>
         <div class = "col-6 profile-sep2">
             <div class = "contact"><strong>연락처</strong> <br></div>
-            이메일: hyundeo***@n****.com <br>
-            휴대전화: +82 10-5**-1**8 <br>
+            이메일: <%= userEmail %> <br>
+            휴대전화: +82 <%= userPhone %> <br>
             <button type = "button" class = "btn btn-outline-dark btn-sm edit">수정</button>
         </div>
     </div>

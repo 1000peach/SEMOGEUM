@@ -83,6 +83,7 @@ const getMainPage = (req, res) => {
     마이페이지를 출력합니다.
 */
 const getMyPage = (req, res) => {
+    str1 = '';
     let myPageStream = '';
     myPageStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
     myPageStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
@@ -91,19 +92,38 @@ const getMyPage = (req, res) => {
 
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 
+    str1= 'SELECT voteRights, userName, userEmail, userPhone FROM user;';
+
     // if :로그인된 상태,  else : 로그인안된 상태
     if (req.session.userId) {
-        res.end(
-            ejs.render(myPageStream, {
-                title: '마이페이지',
-                page: 0,
-                userName: req.session.who,
-                signUpUrl: '/myPage',
-                signUpLabel: '마이페이지',
-                loginUrl: '/cart',
-                loginLabel: '장바구니',
-            })
-        );
+        db.query(str1, [], (error, results) => {
+            console.log('results: ', results);
+            if (error) {
+                console.log(error);
+                res.status(562).end(
+                    ejs.render(returnError(), {
+                        title: '에러 페이지',
+                        errorMessage: '마이 페이지를 불러오는 과정에서 에러가 발생했습니다.',
+                    })
+                );
+            } else {
+                res.end(
+                    ejs.render(myPageStream, {
+                        title: '마이페이지',
+                        page: 0,
+                        signUpUrl: '/myPage',
+                        signUpLabel: '마이페이지',
+                        loginUrl: '/cart',
+                        loginLabel: '장바구니',
+                        userId: req.session.userId,
+                        voteRights: results[0].voteRights,
+                        userName: results[0].userName,
+                        userEmail: results[0].userEmail,
+                        userPhone: results[0].userPhone,
+                    })
+                );
+            }
+        });
     } else {
         res.end(ejs.render(returnError(), { title: '에러 페이지', errorMessage: '로그인이 필요합니다.' }));
     }
@@ -177,7 +197,7 @@ const getMogeum = (req, res) => {
 
         // // if :로그인된 상태,  else : 로그인안된 상태
         if (req.session.userId) {
-            db.query(str1 + str2, [], (error, results) => {
+            db.query(str1 + str2, (error, results) => {
                 if (error) {
                     console.log(error);
                     res.end('error');
@@ -211,7 +231,7 @@ const getMogeum = (req, res) => {
                 }
             });
         } else {
-            db.query(str1 + str2, [], (error, results) => {
+            db.query(str1 + str2, (error, results) => {
                 if (error) {
                     console.log(error);
                     res.end('error');
@@ -316,11 +336,6 @@ const getMogeum = (req, res) => {
     클릭한 상품에 일치하는 순위를 호출 
 */
 const handleRank = (productNum, rankObj) => {
-    // console.log('prodName: ', prodName);
-    // console.log('rankObj: ', rankObj);
-    // console.log('Object.keys(rankObj).length: ', Object.keys(rankObj).length);
-    // console.log('Object.keys(rankObj): ', Object.keys(rankObj));
-    // console.log('Object.keys(rankObj): ', Object.values(rankObj));
     for (let i = 0; i < Object.keys(rankObj).length; i++) {
         if (productNum === Object.values(rankObj)[i]) {
             return Object.keys(rankObj)[i];
@@ -329,14 +344,11 @@ const handleRank = (productNum, rankObj) => {
 };
 
 /* 
-    한 모금 상세페이지 출력을 처리합니다.
+    모금 상세페이지 출력을 처리합니다.
 */
-const postAndGetDetail = (req, res) => {
-    let str1, str2, str3;
+const getDetail = (req, res) => {
     let body = req.body;
     let userId = req.session.userId;
-    let rank;
-    let rankObj = {};
     console.log('상품 번호 : ' + req.params.productNum);
     let detailStream = '';
     let title = '',
@@ -358,11 +370,17 @@ const postAndGetDetail = (req, res) => {
     // detailStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
 
     if (req.params.page === '1') {
+        let rank;
+        let rankObj = {};
+        let str1, str2, str3, str4, str5;
+        let isVote = '';
         str1 = 'SELECT * FROM VOTE_PRODUCT WHERE productNum=?;'; // 다중 쿼리에서는 SQL문 내 세미콜론 꼭 써줘야함(세미콜론으로 구분하기 때문)
         str2 = 'SELECT voteRights FROM USER WHERE userId=?;';
         str3 = 'SELECT productNum FROM VOTE_PRODUCT ORDER BY voteCount DESC;'; // 랭킹
+        str4 = 'SELECT productNum, userId FROM IS_VOTE;';
+        str5 = 'SELECT COUNT(num) as cnt FROM IS_VOTE;';
         if (req.session.userId) {
-            db.query(str1 + str2 + str3, [req.params.productNum, userId], (error, results) => {
+            db.query(str1 + str2 + str3 + str4 + str5, [req.params.productNum, userId], (error, results) => {
                 if (error) {
                     console.log(error);
                     res.end('error');
@@ -380,13 +398,20 @@ const postAndGetDetail = (req, res) => {
                         for (let i = 0; i < results[2].length; i++) {
                             rankObj[i + 1] = results[2][i].productNum;
                         }
-                        console.log(rankObj);
-                        // console.log('★★prodList: ', results[0]);
-                        // console.log('★★rankObj: ', rankObj);
-                        // console.log('★★voteRights: ', results[1][0].voteRights);
-                        //console.log('현재상품: ', results[0][0].productName);
-                        //console.log('rankObj: ', rankObj);
+                        //console.log(rankObj);
                         rank = handleRank(results[0][0].productNum, rankObj);
+
+
+                        //console.log('###########33', results[3]);
+                        for (let i = 0; i < results[4][0].cnt; i++) {
+                            if (userId == results[3][i].userId && req.params.productNum == results[3][i].productNum) {
+                                //console.log('results[3][%d]: ', i, results[3][i].productNum);
+                                isVote = '이미 투표 완료된 상품입니다.';
+                                break;
+                            } else {
+                                isVote = '투표하기';
+                            }
+                        }
 
                         res.end(
                             ejs.render(detailStream, {
@@ -401,6 +426,7 @@ const postAndGetDetail = (req, res) => {
                                 prodList: results[0][0],
                                 voteRights: results[1][0].voteRights,
                                 rank: rank,
+                                isVote: isVote,
                             })
                         );
                     }
@@ -488,7 +514,7 @@ const postAndGetDetail = (req, res) => {
     투표를 처리하는 함수
 */
 const handleVote = (req, res) => {
-    let str1, str2, str3, str4;
+    let str1, str2, str3, str4, str5;
     let body = req.body;
     let userId = req.session.userId;
     let productNum = body.productNum;
@@ -499,6 +525,7 @@ const handleVote = (req, res) => {
     str2 = 'SELECT voteRights FROM USER WHERE userId=?;'; // 투표권이 몇 개 남았는지?
     str3 = 'UPDATE VOTE_PRODUCT SET voteCount=? WHERE productNum=?;'; // 투표 몇 번 받았는지 +1
     str4 = 'UPDATE USER SET voteRights=? WHERE userId=?;'; // 투표권 -1
+    str5 = 'INSERT INTO IS_VOTE(productNum, userId) VALUES(?, ?);';
 
     if (req.session.userId) {
         async.waterfall(
@@ -556,6 +583,22 @@ const handleVote = (req, res) => {
                     });
                 },
                 function (callback) {
+                    db.query(str5, [productNum, userId], (error, results) => {
+                        if (error) {
+                            console.log(error);
+                            res.status(562).end(
+                                ejs.render(returnError(), {
+                                    title: '에러 페이지',
+                                    errorMessage: '투표권 개수를 처리하는 과정에서 에러가 발생했습니다.',
+                                })
+                            );
+                        } else {
+                            console.log('투표완료!(해당 상품에 재투표 불가)');
+                        }
+                        callback(null);
+                    });
+                },
+                function (callback) {
                     res.redirect('/mogeum/1');
                     callback(null);
                 },
@@ -579,7 +622,7 @@ router.get('/myPage', getMyPage);
 router.get('/cart', getCartPage);
 router.get('/mogeum/:page', getMogeum); // 모금 페이지
 
-router.get('/mogeum-detail/:page/:productNum', postAndGetDetail); // 모금 상세페이지 처리(이후 getDetail 함수 호출)
+router.get('/mogeum-detail/:page/:productNum', getDetail); // 모금 상세페이지 처리(이후 getDetail 함수 호출)
 
 router.put('/vote', handleVote);
 
