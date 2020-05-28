@@ -53,7 +53,19 @@
     margin-right: 10px;
 }
 
+.oneword-menu {
+    margin-top: 5px;
+    margin-bottom: 10px;
+}
+
 .content-right {
+    padding-bottom: 10px;
+}
+
+.sub-title {
+    font-size: x-large;
+    font-weight: 600;
+    padding-top: 15px;
     padding-bottom: 10px;
 }
 

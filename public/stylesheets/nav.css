@@ -42,6 +42,9 @@ nav {
     height: 60px;
     font-size: 19px;
 }
+.icon {
+    margin-right: 5px;
+}
 /* 로그인, 페이지 메뉴 기본 스타일 */
 .login-menu a,
 #page-menu a {
@@ -79,6 +82,15 @@ button {
 #logout {
     position: absolute;
     bottom: 15px;
-    left: 10px;
+    left: 210px;
     z-index: 4;
+}
+
+@media screen and (max-width: 768px) {
+    #logout {
+        position: absolute;
+        bottom: 15px;
+        left: 10px;
+        z-index: 4;
+    }
 }
