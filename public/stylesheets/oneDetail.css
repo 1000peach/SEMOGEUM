@@ -33,6 +33,16 @@
 #current-vote > div[class="btn-group"] > button {
     width: 100%;
 }
+/* 제품 구입 옵션 */
+#purchase-option {
+    cursor: pointer;
+    width: 100%;
+    height: 35px;
+    padding: 0 10px;
+}
+#purchase-option option {
+    font-size: 17px;
+}
 /* 제품 소개 */
 #product-detail > .container {
     margin-bottom: 100px;

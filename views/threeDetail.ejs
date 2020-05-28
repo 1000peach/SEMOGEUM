@@ -21,12 +21,21 @@
         <div id="current-vote" class="mb-3">
             <h5 class="font-weight-bold mt-3 mb-3 text-center prodName"><%= product.productName %></h5>
             <p class="text-center"><%= product.productIntro %></p>
-            <h5 class="text-dark font-weight-bold text-right"><%= Number(product.productPrice).toLocaleString("en") %>원</h5>
+            <h5 class="text-dark font-weight-bold text-right mb-3"><%= Number(product.productPrice).toLocaleString("en") %>원</h5>
             <form method="POST" action="">
                 <div style="display: flex;">
                     <button class="text-white">구매하기</button>
                     <button class="text-white">장바구니</button>
                 </div>
+                <select id="purchase-option" class="mt-3" value="0" onchange="updatePrice();"> 
+                    <option value='0'>옵션 없음</option>
+                    <option value='3000'>선물 포장 (+3000)</option>
+                    <option value='5000'>세모금 스티커 (+5000)</option>
+                </select>
+                <hr />
+                <input id="origin-price" type="hidden" value="<%= product.productPrice %>" />
+                <input id="result-price" type="hidden" value=""/>
+                <h5 id="result-print" class="text-right font-weight-bold">총 금액 <%= Number(product.productPrice).toLocaleString("en") %>원</h5>
                 <input type="hidden" name="productNum" value="" />
             </form>
         </div>
@@ -81,13 +90,23 @@
             <div id="detail-intro" style="padding: 0 20px;">
                 <hr class="mb-3" />
                 <ul style="display: flex; justify-content: space-between;">
-                    <li><button class="text-muted" type="button">상품 정보</button></li>
-                    <li><button class="text-muted" type="button">배송/교환/환불</button></li>
-                    <li><button class="text-muted" type="button">후기</button></li>
+                    <li><a href="#sell-info" class="text-muted">상품 정보</a></li>
+                    <li><a href="#sell-deli" class="text-muted">배송/교환/환불</a></li>
+                    <li><a href="#sell-review" class="text-muted">후기</a></li>
                 </ul>
                 <hr class="mt-3" />
-                <p id="sell-info" class="text-dark">구구절절</p>
-                <p id="sell-qna" class="text-dark">구구절절</p>
+                <!-- 상품 정보 -->
+                <div id="sell-info" class="mb-5" >
+                    <img src="/images/sample.png" style="width: 100%; margin-bottom: 50px;"/>
+                    <img src="/images/sample2.png" style="width: 100%;"/>
+                </div>
+                <!-- 배송 관련 -->
+                <div id="sell-deli" class="mb-5">
+                    <img src="/images/deli.png" style="width: 100%;"/>
+                </div>
+                <!-- 리뷰 -->
+                <div id="sell-review">
+                </div>
             </div>
         </div><!-- product-detail -->
     </div> <!-- /one-div-main -->
@@ -103,5 +122,6 @@
     if (checkMobile() === 'ios') {
         $("#one-div-main").css("margin-top", "80px");
     } // ios css 고려
+    moveSection();
 </script>
 </html>

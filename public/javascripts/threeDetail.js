@@ -16,3 +16,11 @@ const updateCnt = () => {
         });
     });
 };
+
+const updatePrice = (e) => {
+    let originPrice = document.getElementById('origin-price').value;
+    let select = document.getElementById('purchase-option');
+    let currentPrice = select.options[select.selectedIndex].value;
+    let resultPrice = (Number(originPrice) + Number(currentPrice)).toLocaleString("en");
+    $('#result-print').html(`총 금액 ${resultPrice}원`);
+};
