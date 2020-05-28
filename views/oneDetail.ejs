@@ -20,8 +20,8 @@
         <div id="current-vote" class="mb-3">
             <h5 class="font-weight-bold mt-3 mb-3 text-center prodName"><%= prodList.productName %></h5>
             <p class="text-center"><%= prodList.productIntro %></p>
-            <form method="POST" action="/vote?_method=PUT" onsubmit="return validate()">
-                <button class="text-white">투표하기</button>
+            <form id="vote-form" method="POST" action="/vote?_method=PUT" onsubmit="return validate();">
+                <button id="is-vote" class="text-white"><%= isVote %></button>
                 <input type="hidden" name="productNum" value="<%= prodList.productNum %>" />
             </form>
             <p class="vote-state text-center">투표권이 <strong id="vote-rights"><%= voteRights %></strong>개 남았습니다.</p>
