@@ -197,7 +197,7 @@ const getMogeum = (req, res) => {
 
         // // if :로그인된 상태,  else : 로그인안된 상태
         if (req.session.userId) {
-            db.query(str1 + str2, [], (error, results) => {
+            db.query(str1 + str2, (error, results) => {
                 if (error) {
                     console.log(error);
                     res.end('error');
@@ -231,7 +231,7 @@ const getMogeum = (req, res) => {
                 }
             });
         } else {
-            db.query(str1 + str2, [], (error, results) => {
+            db.query(str1 + str2, (error, results) => {
                 if (error) {
                     console.log(error);
                     res.end('error');
@@ -336,11 +336,6 @@ const getMogeum = (req, res) => {
     클릭한 상품에 일치하는 순위를 호출 
 */
 const handleRank = (productNum, rankObj) => {
-    // console.log('prodName: ', prodName);
-    // console.log('rankObj: ', rankObj);
-    // console.log('Object.keys(rankObj).length: ', Object.keys(rankObj).length);
-    // console.log('Object.keys(rankObj): ', Object.keys(rankObj));
-    // console.log('Object.keys(rankObj): ', Object.values(rankObj));
     for (let i = 0; i < Object.keys(rankObj).length; i++) {
         if (productNum === Object.values(rankObj)[i]) {
             return Object.keys(rankObj)[i];
@@ -403,12 +398,7 @@ const getDetail = (req, res) => {
                         for (let i = 0; i < results[2].length; i++) {
                             rankObj[i + 1] = results[2][i].productNum;
                         }
-                        console.log(rankObj);
-                        // console.log('★★prodList: ', results[0]);
-                        // console.log('★★rankObj: ', rankObj);
-                        // console.log('★★voteRights: ', results[1][0].voteRights);
-                        //console.log('현재상품: ', results[0][0].productName);
-                        //console.log('rankObj: ', rankObj);
+                        //console.log(rankObj);
                         rank = handleRank(results[0][0].productNum, rankObj);
 
 
