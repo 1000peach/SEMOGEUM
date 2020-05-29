@@ -3,6 +3,9 @@ const validate = () => {
     if($('#is-vote').text() === '이미 투표 완료된 상품입니다.') {
         alert('해당 상품에 대한 재투표는 불가능합니다.');
         return false;
+    } else if ($('#is-vote').text() === '로그인이 필요합니다.') {
+        alert('해당 기능을 이용하려면 로그인이 필요합니다.');
+        return false;
     }
 
     if (Number($('#vote-rights').text()) <= 0) {
