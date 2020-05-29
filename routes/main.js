@@ -465,6 +465,7 @@ const getDetail = (req, res) => {
                                 prodList: results[0][0],
                                 voteRights: 'X',
                                 rank: rank,
+                                isVote: '로그인이 필요합니다.',
                             })
                         );
                     }
