@@ -373,7 +373,7 @@ const getDetail = (req, res) => {
         let rank;
         let rankObj = {};
         let str1, str2, str3, str4, str5;
-        let isVote = '';
+        let isVote = '투표하기';
         str1 = 'SELECT * FROM VOTE_PRODUCT WHERE productNum=?;'; // 다중 쿼리에서는 SQL문 내 세미콜론 꼭 써줘야함(세미콜론으로 구분하기 때문)
         str2 = 'SELECT voteRights FROM USER WHERE userId=?;';
         str3 = 'SELECT productNum FROM VOTE_PRODUCT ORDER BY voteCount DESC;'; // 랭킹
@@ -408,9 +408,7 @@ const getDetail = (req, res) => {
                                 //console.log('results[3][%d]: ', i, results[3][i].productNum);
                                 isVote = '이미 투표 완료된 상품입니다.';
                                 break;
-                            } else {
-                                isVote = '투표하기';
-                            }
+                            } 
                         }
 
                         res.end(
