@@ -92,7 +92,7 @@ const getMyPage = (req, res) => {
 
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 
-    str1= 'SELECT voteRights, userName, userEmail, userPhone FROM USER;';
+    str1 = 'SELECT voteRights, userName, userEmail, userPhone FROM USER;';
 
     // if :로그인된 상태,  else : 로그인안된 상태
     if (req.session.userId) {
@@ -401,14 +401,13 @@ const getDetail = (req, res) => {
                         //console.log(rankObj);
                         rank = handleRank(results[0][0].productNum, rankObj);
 
-
                         //console.log('###########33', results[3]);
                         for (let i = 0; i < results[4][0].cnt; i++) {
                             if (userId == results[3][i].userId && req.params.productNum == results[3][i].productNum) {
                                 //console.log('results[3][%d]: ', i, results[3][i].productNum);
                                 isVote = '이미 투표 완료된 상품입니다.';
                                 break;
-                            } 
+                            }
                         }
 
                         res.end(

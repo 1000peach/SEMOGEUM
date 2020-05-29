@@ -60,7 +60,7 @@
     </ol>
     <!-- 중간: 이런 상품도 있어요 -->
     <div class="container">
-        <!-- 이런 상품도 있어요 전체를 묶는 div -->
+        <!-- 한 모금 -->
         <h4 class="font-weight-bold mt-4 mb-0">이런 상품도 있어요</h4>
         <hr class="mt-2 mb-3" />
         <div class="row text-center text-lg-left">
@@ -77,22 +77,17 @@
                     </div>
                 </a>
             </div>
-            <!-- 여기 나중에 for문으로 바꾸기, 지금은 뭐가 잘안돼서; -->
-            <div class="col-lg-3 col-md-4 col-6">
-                <a href="#" class="d-block mb-4 h-100">
-                    <img class="img-fluid img-thumbnail" src="<%= Object.values(thumbnailImg[0])[0] %>" alt="" style="border: none; padding: 0;" />
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-                <a href="#" class="d-block mb-4 h-100">
-                    <img class="img-fluid img-thumbnail" src="<%= Object.values(thumbnailImg[1])[0] %>" alt="" style="border: none; padding: 0;" />
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-                <a href="#" class="d-block mb-4 h-100">
-                    <img class="img-fluid img-thumbnail" src="<%= Object.values(thumbnailImg[2])[0] %>" alt="" style="border: none; padding: 0;" />
-                </a>
-            </div>
+            <% for (var i = 0; i < 3; i++) { %>
+                <div class="col-lg-3 col-md-4 col-6">
+                    <a href="#" class="d-block mb-4 h-100">
+                        <% if (thumbnailImg[i] !== undefined) { %>
+                            <img class="img-fluid img-thumbnail" src="<%= Object.values(thumbnailImg[i])[0] %>" alt="한 모금 상품" style="border: none; padding: 0;" />
+                        <% } else { %>
+                            <img class="img-fluid img-thumbnail" src="/images/catPaw.PNG" alt="기본 이미지" style="border: none; padding: 0;" />
+                        <% } %>
+                    </a>
+                </div>
+            <% } %>
             <!-- 두 모금 -->
             <div class="col-lg-3 col-md-4 col-6">
                 <a href="#" class="d-block mb-4 h-100">
@@ -106,22 +101,17 @@
                     </div>
                 </a>
             </div>
-            <!-- 여기 나중에 for문으로 바꾸기, 지금은 뭐가 잘안돼서; -->
-            <div class="col-lg-3 col-md-4 col-6">
-                <a href="#" class="d-block mb-4 h-100">
-                    <img class="img-fluid img-thumbnail" src="<%= Object.values(rankThumbnailImg[0])[0] %>" alt="" style="border: none; padding: 0;" />
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-                <a href="#" class="d-block mb-4 h-100">
-                    <img class="img-fluid img-thumbnail" src="<%= Object.values(rankThumbnailImg[1])[0] %>" alt="" style="border: none; padding: 0;" />
-                </a>
-            </div>
-            <div class="col-lg-3 col-md-4 col-6">
-                <a href="#" class="d-block mb-4 h-100">
-                    <img class="img-fluid img-thumbnail" src="<%= Object.values(rankThumbnailImg[2])[0] %>" alt="" style="border: none; padding: 0;" />
-                </a>
-            </div>
+            <% for (var i = 0; i < 3; i++) { %>
+                <div class="col-lg-3 col-md-4 col-6">
+                    <a href="#" class="d-block mb-4 h-100">
+                        <% if (thumbnailImg[i] !== undefined) { %>
+                            <img class="img-fluid img-thumbnail" src="<%= Object.values(rankThumbnailImg[i])[0] %>" alt="두 모금 상품" style="border: none; padding: 0;" />
+                        <% } else { %>
+                            <img class="img-fluid img-thumbnail" src="/images/catPaw.PNG" alt="기본 이미지" style="border: none; padding: 0;" />
+                        <% } %>
+                    </a>
+                </div>
+            <% } %>
             <!-- 세 모금 -->
             <div class="col-lg-3 col-md-4 col-6">
                 <a href="#" class="d-block mb-4 h-100">
