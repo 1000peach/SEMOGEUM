@@ -22,7 +22,9 @@
             <ol>
                 <li>
                     <% for (var num = 0; num < 3; num++) { %>
-                    <p class="ranking-item mt-2"><%= num + 1 %>. <%=rankList[num]%></p>
+                        <a href="/mogeum-detail/1/<%= rankList[num].productNum %>">
+                            <p class="ranking-item mt-2"><%= num + 1 %>. <%=rankList[num].productName%></p>
+                        </a>
                     <% } %>
                 </li>
             </ol>
@@ -30,7 +32,9 @@
             <ol>
                 <li>
                     <% for (var num = rankList.length - (rankList.length - 3); num < rankList.length - (rankList.length - 6); num++) { %>
-                    <p class="ranking-item mt-2"><%= num + 1 %>. <%=rankList[num]%></p>
+                        <a href="/mogeum-detail/1/<%= rankList[num].productNum %>">
+                            <p class="ranking-item mt-2"><%= num + 1 %>. <%=rankList[num].productName%></p>
+                        </a>
                     <% } %>
                 </li>
             </ol>
