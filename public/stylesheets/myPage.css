@@ -65,6 +65,11 @@
     font-size: large;
 }
 
+.product-name:hover{
+    color: #D1B2FF;
+    transition: 0.2s;
+}
+
 .rank {
     text-align: center;
     background-color: aliceblue;
@@ -110,6 +115,10 @@
 .buy-specific {
     text-align: center;
 }
+
+.buy-product:hover {
+    color: #D1B2FF;
+    transition: 0.2s;
 
 .col-sm-12 {
     margin-top: 10px;

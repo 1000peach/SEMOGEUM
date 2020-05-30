@@ -16,9 +16,20 @@
     padding-bottom: 5px;
 }
 
+.two-title:hover {
+    color: #D1B2FF;
+    transition: 0.2s;
+}
+
 .two-content {
     font-size: 15px;
     padding-bottom: 5px;
+}
+
+.progress-bar-custom {
+    background: #cc66ff;
+    background: -webkit-linear-gradient(top, #66ccff) 0%, #cc66ff 100%);
+    background: linear-gradient(to right, #66ccff 0%, #cc66ff 100%);
 }
 
 #progress-content {
@@ -47,6 +58,11 @@
     text-align: center;
     justify-content: center;
     /* font-size: 13px; */
+}
+
+.oneword-bottom > p:hover {
+    color: #D1B2FF;
+    transition: 0.2s;
 }
 
 .oneword-img {
