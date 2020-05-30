@@ -4,9 +4,9 @@ body {
 .page-content {
 	width: 100%;
 	margin:  0 auto;
-	background-image: -moz-linear-gradient( 136deg, rgb(254,225,64) 0%, rgb(250,112,154) 100%);
-    background-image: -webkit-linear-gradient( 136deg, rgb(254,225,64) 0%, rgb(250,112,154) 100%);
-    background-image: -ms-linear-gradient( 136deg, rgb(254,225,64) 0%, rgb(250,112,154) 100%);
+	background-image: -moz-linear-gradient(360deg, #66ccff 0%, #cc66ff 100%);
+    background-image: -webkit-linear-gradient(360deg, #66ccff 0%, #cc66ff 100%);
+    background-image: -ms-linear-gradient(360deg, #66ccff 0%, #cc66ff 100%);
 	display: flex;
 	display: -webkit-flex;
 	justify-content: center;
@@ -30,19 +30,25 @@ body {
 }
 .form-v7-content .form-left {
 	position: relative;
-	color: #fff;
+	background-color: #fff;
 	font-weight: 400;
-    width: 92.5%;
-    margin-top: 32px;
+    width: 75%;
+	margin-top: 40px;
+	margin-bottom: 40px;
 }
 .form-v7-content .form-left img {
 	width: 100%;
+	display: block;
+	
 }
 .form-v7-content .form-left .text-1,
 .form-v7-content .form-left .text-2 {
 	position: absolute;
 	text-align: center;
 	width: 100%;
+	color: #9354ed;
+	margin-top: 20px;
+	font-weight: 600;
 }
 .form-v7-content .form-left .text-1 {
 	font-size: 38px;
@@ -192,8 +198,8 @@ body {
 	font-size: 15px;
 	float: left;
 }
-.form-v7-content .form-detail .register:hover {
-	background: #2a2cb0;
+.form-v7-content .form-detail .register {
+	background: linear-gradient(to right, #66ccff, #cc66ff);
 }
 .form-v7-content .form-detail .form-row-last {
     margin-top: 35px;
@@ -209,7 +215,7 @@ body {
 }
 .form-v7-content .form-detail .form-row-last a {
 	font-size: 16px;
-	color: #373be3;
+	color: #9354ed;
 	padding-left: 15px;
 }
 

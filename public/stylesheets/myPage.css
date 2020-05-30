@@ -116,12 +116,18 @@
     text-align: center;
 }
 
-.buy-product:hover {
+#buy-product:hover {
     color: #D1B2FF;
     transition: 0.2s;
+}
 
 .col-sm-12 {
     margin-top: 10px;
+}
+
+.buy-list-title:hover {
+    color: #D1B2FF;
+    transition: 0.2s;
 }
 
 .semi-title {

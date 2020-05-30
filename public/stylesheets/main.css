@@ -10,15 +10,23 @@
 }
 /* 상단 상품 추천 carousel item */
 .top-carousel {
-    background-size: 300px 300px;
+    background-size: 280px 280px;
     background-position: left bottom;
     background-repeat: no-repeat;
 }
 /* carousel item 삽입 이미지 */
-#first-carousel,
-#second-carousel,
+#first-carousel {
+    background-image: url('/images/main3.png');
+    background-color: #eaeaea;
+    background-size: 350px 250px;
+}
+#second-carousel {
+    background-image: url('/images/main2.png');
+    background-color: #eaeaea;
+    background-size: 250px 250px;
+}
 #third-carousel {
-    background-image: url('/images/main1-bg.png');
+    background-image: url('/images/main1.png');
     background-color: #eaeaea;
     background-size: 250px 250px;
 }
@@ -109,6 +117,10 @@ mark {
     font-size: 20px;
     font-weight: bold;
     color: black;
+}
+.review-title:hover {
+    color: #D1B2FF;
+    transition: 0.2s;
 }
 .review-content {
     color: black;

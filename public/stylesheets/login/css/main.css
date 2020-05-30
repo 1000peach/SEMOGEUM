@@ -165,9 +165,9 @@ iframe {
   justify-content: center;
   align-items: center;
   padding: 15px;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
+  background-image: -moz-linear-gradient(360deg, #66ccff 0%, #cc66ff 100%);
+    background-image: -webkit-linear-gradient(360deg, #66ccff 0%, #cc66ff 100%);
+    background-image: -ms-linear-gradient(360deg, #66ccff 0%, #cc66ff 100%);
 }
 
 .wrap-login100 {
@@ -325,11 +325,10 @@ iframe {
   z-index: -1;
   width: 300%;
   height: 100%;
-  background: #a64bf4;
-  background: -webkit-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
-  background: -o-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
-  background: -moz-linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
-  background: linear-gradient(right, #00dbde, #fc00ff, #00dbde, #fc00ff);
+  background: -moz-linear-gradient(90deg, #66ccff, #cc66ff, #66ccff, #cc66ff);
+  background: -webkit-linear-gradient(90deg #66ccff, #cc66ff, #66ccff, #cc66ff);
+  background: linear-gradient(90deg, #66ccff, #cc66ff, #66ccff, #cc66ff);
+
   top: 0;
   left: -100%;
 
