@@ -83,7 +83,10 @@ const getMainPage = (req, res) => {
     마이페이지를 출력합니다.
 */
 const getMyPage = (req, res) => {
-    str1 = '';
+    let str1, str2;
+    let productNumArr = []; // 사용자가 투표한 상품만 모아 놓은 상품번호 배열
+    //let allRankObj = {}; // 모든 상품의 순위
+    //let myRankObj = {}; // 내가 투표한 상품들의 순위
     let myPageStream = '';
     myPageStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
     myPageStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
@@ -93,11 +96,11 @@ const getMyPage = (req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 
     str1 = 'SELECT voteRights, userName, userEmail, userPhone FROM USER;';
+    str2 = 'SELECT productName, thumbnailImg FROM VOTE_PRODUCT a INNER JOIN IS_VOTE b On a.productNum = b.productNum WHERE b.userId=?';
 
     // if :로그인된 상태,  else : 로그인안된 상태
     if (req.session.userId) {
-        db.query(str1, [], (error, results) => {
-            console.log('results: ', results);
+        db.query(str1 + str2, [req.session.userId], (error, results) => {
             if (error) {
                 console.log(error);
                 res.status(562).end(
@@ -107,6 +110,26 @@ const getMyPage = (req, res) => {
                     })
                 );
             } else {
+                //console.log(results[1]);
+                // 투표한 상품번호들을 배열에 넣는다.
+                // for (let i = 0; i < results[1].length; i++) {
+                //     productNumArr[i] = results[1][i].productNum;
+                // }
+
+                // 모든 상품번호들을 순위에 맞춰 객체에 넣는다.
+                // for (let i = 0; i < results[2].length; i++) {
+                //     allRankObj[i + 1] = results[2][i].productNum;
+                // }
+
+                // 내가 투표한 상품번호들만 순위에 맞춰 객체에 넣는다.
+                // for (let i = 0; i < results[1].length; i++) {
+                //     for (let j = 0; j < results[2].length; j++) { 
+                //         if (productNumArr[i] === Object.values(allRankObj)[j]) {
+                //             myRankObj[productNumArr[i]] = Object.keys(allRankObj)[j]; // 상품번호: 순위
+                //         }
+                //     }
+                // }
+
                 res.end(
                     ejs.render(myPageStream, {
                         title: '마이페이지',
@@ -116,10 +139,11 @@ const getMyPage = (req, res) => {
                         loginUrl: '/cart',
                         loginLabel: '장바구니',
                         userId: req.session.userId,
-                        voteRights: results[0].voteRights,
-                        userName: results[0].userName,
-                        userEmail: results[0].userEmail,
-                        userPhone: results[0].userPhone,
+                        voteRights: results[0][0].voteRights,
+                        userName: results[0][0].userName,
+                        userEmail: results[0][0].userEmail,
+                        userPhone: results[0][0].userPhone,
+                        voteData: results[1],
                     })
                 );
             }
@@ -469,6 +493,8 @@ const getDetail = (req, res) => {
                 }
             });
         }
+    } else if (req.params.page === '2') {
+        
     } else if (req.params.page === '3') {
         let clickSQL = `SELECT * FROM SELL_PRODUCT WHERE productNum='${req.params.productNum}'`;
         // 후에 리뷰도 다중 쿼리로 추가 예정
