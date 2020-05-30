@@ -20,16 +20,22 @@
             <div class="col-lg-7 col-sm-12">
                 <div class="row">
                     <div class="col-lg-4 col-sm-4 col-xs-4 two-image">
-                        <a href="/mogeum-detail/1/<%= selectResults[i].productNum %>">
-                            <img src="<%= selectResults[i].thumbnailImg %>" class="img-fluid" />
-                        </a>
+                        <% if (selectResults[i] !== undefined) { %>
+                            <a href="/mogeum-detail/1/<%= selectResults[i].productNum %>">
+                                <img src="<%= selectResults[i].thumbnailImg %>" class="img-fluid" />
+                            </a>
+                        <% } %>
                     </div>
                     <div class="col-lg-8 col-sm-8 col-xs-8">
                         <div class="two-title">
-                            <strong><%= selectResults[i].productName %></strong>
+                            <% if (selectResults[i] !== undefined) { %>
+                                <strong><%= selectResults[i].productName %></strong>
+                            <% } %>
                         </div>
                         <div class="two-content">
-                            <%= selectResults[i].productIntro %>
+                            <% if (selectResults[i] !== undefined) { %>
+                                <%= selectResults[i].productIntro %>
+                            <% } %>
                         </div>
                         <div class="progress">
                             <div

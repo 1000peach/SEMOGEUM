@@ -37,13 +37,17 @@
     <hr style="border: 0.5px solid black;">
     <div class = "row vote-product">
         <% for (var i = 0; i < 4; i++) { %>
-            <a href="/mogeum-detail/1/<%= myVoteData[i].productNum %>">
-                <div class="col-md-4 col-lg-3 col-sm-6 col-xs-6">
-                    <img src="<%= myVoteData[i].thumbnailImg%>" class="img-fluid" />
-                    <div class="rank">현재 1위</div>
-                    <div class="product-name"><%= myVoteData[i].productName %></div>
-                </div>
-            </a>
+            <% if (myVoteData[i] !== undefined) { %>
+                <a href="/mogeum-detail/1/<%= myVoteData[i].productNum %>">
+                    <div class="col-md-4 col-lg-3 col-sm-6 col-xs-6">
+                        <img src="<%= myVoteData[i].thumbnailImg%>" class="img-fluid" />
+                        <div class="rank">현재 1위</div>
+                        <div class="product-name"><%= myVoteData[i].productName %></div>
+                    </div>
+                </a>
+            <% } else { %>
+                <p>투표 리스트 없음</p>
+            <% } %>
         <% } %>
         <hr>
     </div>
