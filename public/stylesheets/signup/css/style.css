@@ -218,6 +218,10 @@ body {
 	color: #9354ed;
 	padding-left: 15px;
 }
+.form-row-last{
+	text-align: center;
+	justify-content: center;
+}
 
 /* Responsive */
 @media screen and (max-width: 991px) {
@@ -256,6 +260,6 @@ body {
 	}
 	.form-v7-content .form-detail .form-row-last p {
 	    margin-left: 0px;
-	    margin-bottom: 50px;
+		margin-bottom: 50px;
 	}
 }
