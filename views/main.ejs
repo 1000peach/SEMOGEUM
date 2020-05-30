@@ -75,7 +75,7 @@
             </div>
             <% for (var i = 0; i < 3; i++) { %>
                 <div class="col-lg-3 col-md-4 col-6">
-                    <a href="#" class="d-block mb-4 h-100">
+                    <a href="/mogeum-detail/1/<%= productNum[i].productNum %>" class="d-block mb-4 h-100">
                         <% if (thumbnailImg[i] !== undefined) { %>
                             <img class="img-fluid img-thumbnail" src="<%= Object.values(thumbnailImg[i])[0] %>" alt="한 모금 상품" style="border: none; padding: 0;" />
                         <% } else { %>
@@ -99,9 +99,9 @@
             </div>
             <% for (var i = 0; i < 3; i++) { %>
                 <div class="col-lg-3 col-md-4 col-6">
-                    <a href="#" class="d-block mb-4 h-100">
+                    <a href="/mogeum-detail/1/<%= rankInfo[i].productNum %>" class="d-block mb-4 h-100">
                         <% if (thumbnailImg[i] !== undefined) { %>
-                            <img class="img-fluid img-thumbnail" src="<%= Object.values(rankThumbnailImg[i])[0] %>" alt="두 모금 상품" style="border: none; padding: 0;" />
+                            <img class="img-fluid img-thumbnail" src="<%= Object.values(rankInfo)[i].thumbnailImg %>" alt="두 모금 상품" style="border: none; padding: 0;" />
                         <% } else { %>
                             <img class="img-fluid img-thumbnail" src="/images/catPaw.PNG" alt="기본 이미지" style="border: none; padding: 0;" />
                         <% } %>

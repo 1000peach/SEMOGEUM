@@ -20,14 +20,16 @@
             <div class="col-lg-7 col-sm-12">
                 <div class="row">
                     <div class="col-lg-4 col-sm-4 col-xs-4 two-image">
-                        <img src="/images/catPaw.PNG" class="img-fluid" />
+                        <a href="/mogeum-detail/1/<%= selectResults[i].productNum %>">
+                            <img src="<%= selectResults[i].thumbnailImg %>" class="img-fluid" />
+                        </a>
                     </div>
                     <div class="col-lg-8 col-sm-8 col-xs-8">
                         <div class="two-title">
-                            <strong>귀여운 민지를 쓰다듬자</strong>
+                            <strong><%= selectResults[i].productName %></strong>
                         </div>
                         <div class="two-content">
-                            가끔씩 민지가 단톡방에 이모티콘 수줍게 보내는 게 너무 귀여워요.. 쓰다듬고 싶을 때는?
+                            <%= selectResults[i].productIntro %>
                         </div>
                         <div class="progress">
                             <div
