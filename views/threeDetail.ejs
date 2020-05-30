@@ -1,5 +1,5 @@
 <div id="one-div" class="col-div" style="width: 100%;">
-    <input type="hidden" name="product-num" value="<%= product.productNum %>"/>
+    <input type="hidden" name="productNum" value="<%= product.productNum %>"/>
     <input type="hidden" name="click-cnt" value="<%= product.clickCnt %>"/>
     <button type="button" id="top" style="width: 60px; height: 60px;">
         <img src="/images/top.png" width="30" height="30" alt="scroll top" />
@@ -27,7 +27,7 @@
                     <button class="text-white">구매하기</button>
                     <button class="text-white">장바구니</button>
                 </div>
-                <select id="purchase-option" class="mt-3" value="0" onchange="updatePrice();"> 
+                <select id="purchase-option" class="mt-3 sel-css" value="0" onchange="updatePrice();"> 
                     <option value='0'>옵션 없음</option>
                     <option value='3000'>선물 포장 (+3000)</option>
                     <option value='5000'>세모금 스티커 (+5000)</option>
@@ -101,11 +101,37 @@
                     <img src="/images/sample2.png" style="width: 100%;"/>
                 </div>
                 <!-- 배송 관련 -->
-                <div id="sell-deli" class="mb-5">
+                <div id="sell-deli" class="mb-2">
                     <img src="/images/deli.png" style="width: 100%;"/>
                 </div>
                 <!-- 리뷰 -->
-                <div id="sell-review">
+                <hr />
+                <h6 class="mb-3"><strong>상품 리뷰</strong><small style="float: right;">상품에 대한 리뷰를 남겨주세요!</small></h6>
+                <div id="sell-review" class="container">
+                    <form id="review-form" class="form-block mb-5" method="POST">
+                        <div class="row" id="comment-row">
+                            <div style="width: 100%;">
+                                <div class="form-group">
+                                    <input type="hidden" name="userId" value="<%= userId %>" />
+                                    <input type="hidden" name="userName" value="<%= userName %>" />
+                                    <input type="hidden" name="prodName" value="<%= product.productName %>" />
+                                    <textarea name="contents" placeholder="리뷰쓰기" style="padding: 3px 10px; width: 100%; border: 1px solid lightgray; height: 80px; resize: none;"></textarea>
+                                </div>
+                            </div>
+                            <div style="width: 100%;">
+                                <select id="product-star" class="sel-css" value="5" style="width: 15%; height: 40px;">
+                                    <option value='1'>1점</option>
+                                    <option value='2'>2점</option>
+                                    <option value='3'>3점</option>
+                                    <option value='4'>4점</option>
+                                    <option value='5' selected>5점</option>
+                                </select>
+                                <button id="comment-input" class="btn pull-right text-white" style="width: 80%; height: 40px;">입력</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div id="comment-list" class="be-comment-block">
+                    </div>
                 </div>
             </div>
         </div><!-- product-detail -->
@@ -122,6 +148,17 @@
     if (checkMobile() === 'ios') {
         $("#one-div-main").css("margin-top", "80px");
     } // ios css 고려
-    moveSection();
+    // moveSection();
+    selectReview();
+    $('#review-form').on('submit', function (event) {
+    event.preventDefault();
+    addReview().then(data => {
+        if (data.status === 1) { // 의견 등록 성공
+            selectReview();
+        } else { // 의견 등록 실패
+            alert("로그인이 필요합니다!");
+        }
+    }); 
+});
 </script>
 </html>

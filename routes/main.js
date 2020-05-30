@@ -480,6 +480,7 @@ const getDetail = (req, res) => {
                         ejs.render(detailStream, {
                             title: title,
                             page: req.params.page,
+                            userId: req.session.userId,
                             userName: req.session.who,
                             signUpUrl: '/myPage',
                             signUpLabel: '마이페이지',
@@ -493,6 +494,7 @@ const getDetail = (req, res) => {
                         ejs.render(detailStream, {
                             title: title,
                             page: req.params.page,
+                            userId: req.session.userId,
                             userName: '비회원',
                             signUpUrl: '/users/signUp',
                             signUpLabel: '회원가입',

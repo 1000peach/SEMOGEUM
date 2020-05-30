@@ -170,6 +170,39 @@ const updateCnt = (req, res) => {
     });
 };
 
+/*
+    세 모금 상세 페이지에서 리뷰 추가
+*/
+const addReview = (req, res) => {
+    let insertSQL = `INSERT INTO REVIEW(productNum, userId, userName, inputDate, Contents, star) VALUES('${req.body.productNum}', '${req.body.userId}','${req.body.userName}','${req.body.inputDate}', '${req.body.contents}', '${req.body.star}')`;
+    db.query(insertSQL, (error) => {
+        if (error) {
+            console.log('리뷰 등록 에러' + error);
+            res.json({
+                status: 0,
+            });
+        } else {
+            res.json({
+                status: 1,
+            });
+        }
+    });
+};
+
+/*
+    세 모금 상세 페이지에서 리뷰 검색
+*/
+const selectReview = (req, res) => {
+    let selectSQL = `SELECT * FROM REVIEW WHERE productNum='${req.body.productNum}' ORDER BY inputDate DESC`;
+    db.query(selectSQL, (error, results) => {
+        if (error) {
+            console.log('댓글 검색 에러' + error);
+        } else {
+            res.send(results);
+        }
+    });
+};
+
 router.get('/prodContest', getProdContest);
 router.post('/upload', handleProdContest);
 
@@ -179,5 +212,8 @@ router.post('/selectComment', selectComment);
 
 /* 세모금 조회수 증가 */
 router.put('/updateCnt/:productNum/:currentCnt', updateCnt);
+/* 세모금 상품 리뷰 기능 */
+router.post('/addReview', addReview);
+router.post('/selectReview', selectReview);
 
 module.exports = router;
