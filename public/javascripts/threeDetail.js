@@ -130,3 +130,26 @@ const addReview = () => {
         });
     });
 };
+
+/* 세 모금 상품 장바구니 추가 */
+const addCart = () => {
+    return new Promise((resolve) => {
+        let userId = $('[name="userId"]').val();
+        if (userId === '비회원') {
+            alert('로그인 해주세요!');
+            return;
+        }
+        let productNum = $('[name="productNum"]').val();
+        $.ajax({
+            url: `/products/insertCart/${userId}/${productNum}`,
+            method: 'PUT',
+            dataType: 'json',
+            success: function (data) {
+                resolve(data);
+            },
+            error: function (err) {
+                console.log('client 장바구니 추가 에러' + err);
+            },
+        });
+    });
+};

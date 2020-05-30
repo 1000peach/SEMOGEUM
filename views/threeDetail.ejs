@@ -22,9 +22,9 @@
             <h5 class="font-weight-bold mt-3 mb-3 text-center prodName"><%= product.productName %></h5>
             <p class="text-center"><%= product.productIntro %></p>
             <h5 class="text-dark font-weight-bold text-right mb-3"><%= Number(product.productPrice).toLocaleString("en") %>원</h5>
-            <form method="POST" action="">
+            <form id="cart-form" method="PUT">
                 <div style="display: flex;">
-                    <button class="text-white">구매하기</button>
+                    <button type="button" class="text-white" onclick="alert('준비 중인 서비스 입니다.');">구매하기</button>
                     <button class="text-white">장바구니</button>
                 </div>
                 <select id="purchase-option" class="mt-3 sel-css" value="0" onchange="updatePrice();"> 
@@ -148,7 +148,6 @@
     if (checkMobile() === 'ios') {
         $("#one-div-main").css("margin-top", "80px");
     } // ios css 고려
-    // moveSection();
     selectReview();
     $('#review-form').on('submit', function (event) {
     event.preventDefault();
@@ -157,6 +156,18 @@
             selectReview();
         } else { // 의견 등록 실패
             alert("로그인이 필요합니다!");
+        }
+    }); 
+});
+$('#cart-form').on('submit', function (event) {
+    event.preventDefault();
+    addCart().then(data => {
+        if (data.status === 1) { // 의견 등록 성공
+            alert("해당 상품을 장바구니에 담았습니다!");
+        } else if (data.status === 0) { // 의견 등록 실패
+            alert("이미 장바구니에 담긴 상품입니다!");
+        } else {
+            alert("장바구니 담기 중 문제가 발생했습니다.");
         }
     }); 
 });

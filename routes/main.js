@@ -512,7 +512,7 @@ const getDetail = (req, res) => {
                         ejs.render(detailStream, {
                             title: title,
                             page: req.params.page,
-                            userId: req.session.userId,
+                            userId: '비회원',
                             userName: '비회원',
                             signUpUrl: '/users/signUp',
                             signUpLabel: '회원가입',
