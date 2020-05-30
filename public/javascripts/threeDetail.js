@@ -53,7 +53,6 @@ const selectReview = () => {
                         starDiv += `<span class="fa fa-star"></span>`;
                     }
                 }
-                console.log(starDiv)
                 comment = `
                 <div class="be-comment">
                     <div class="be-img-comment">
