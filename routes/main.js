@@ -24,11 +24,13 @@ const getMainPage = (req, res) => {
     str1 = 'SELECT COUNT(productName) as cnt FROM VOTE_PRODUCT;';
     str2 = 'SELECT SUM(voteCount) as sum FROM VOTE_PRODUCT;';
     str3 = 'SELECT thumbnailImg as thumb FROM VOTE_PRODUCT;';
-    str4 = 'SELECT thumbnailImg FROM VOTE_PRODUCT ORDER BY voteCount DESC;';
+    str4 = 'SELECT productNum, thumbnailImg FROM VOTE_PRODUCT ORDER BY voteCount DESC;'; // 랭킹순으로 
+    str5 = 'SELECT productNum FROM VOTE_PRODUCT;';
+
 
     // if :로그인된 상태,  else : 로그인안된 상태
     if (req.session.userId) {
-        db.query(str1 + str2 + str3 + str4, [], (error, results) => {
+        db.query(str1 + str2 + str3 + str4 + str5, (error, results) => {
             if (error) {
                 console.log(error);
                 res.end('error');
@@ -48,13 +50,14 @@ const getMainPage = (req, res) => {
                         prodNameCount: results[0][0],
                         voteCountSum: results[1][0],
                         thumbnailImg: results[2],
-                        rankThumbnailImg: results[3],
+                        rankInfo: results[3],
+                        productNum: results[4],
                     })
                 );
             }
         });
     } else {
-        db.query(str1 + str2 + str3 + str4, [], (error, results) => {
+        db.query(str1 + str2 + str3 + str4 + str5, (error, results) => {
             if (error) {
                 console.log(error);
                 res.end('error');
@@ -71,7 +74,8 @@ const getMainPage = (req, res) => {
                         prodNameCount: results[0][0],
                         voteCountSum: results[1][0],
                         thumbnailImg: results[2],
-                        rankThumbnailImg: results[3],
+                        rankInfo: results[3],
+                        productNum: results[4],
                     })
                 );
             }
@@ -83,7 +87,7 @@ const getMainPage = (req, res) => {
     마이페이지를 출력합니다.
 */
 const getMyPage = (req, res) => {
-    str1 = '';
+    let str1, str2;
     let myPageStream = '';
     myPageStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
     myPageStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
@@ -93,11 +97,11 @@ const getMyPage = (req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 
     str1 = 'SELECT voteRights, userName, userEmail, userPhone FROM USER;';
+    str2 = 'SELECT a.productNum, a.productName, a.thumbnailImg FROM VOTE_PRODUCT a INNER JOIN IS_VOTE b On a.productNum = b.productNum WHERE b.userId=?;';
 
     // if :로그인된 상태,  else : 로그인안된 상태
     if (req.session.userId) {
-        db.query(str1, [], (error, results) => {
-            console.log('results: ', results);
+        db.query(str1 + str2, [req.session.userId], (error, results) => {
             if (error) {
                 console.log(error);
                 res.status(562).end(
@@ -116,10 +120,11 @@ const getMyPage = (req, res) => {
                         loginUrl: '/cart',
                         loginLabel: '장바구니',
                         userId: req.session.userId,
-                        voteRights: results[0].voteRights,
-                        userName: results[0].userName,
-                        userEmail: results[0].userEmail,
-                        userPhone: results[0].userPhone,
+                        voteRights: results[0][0].voteRights,
+                        userName: results[0][0].userName,
+                        userEmail: results[0][0].userEmail,
+                        userPhone: results[0][0].userPhone,
+                        myVoteData: results[1],
                     })
                 );
             }
@@ -164,7 +169,6 @@ const getCartPage = (req, res) => {
 */
 const getMogeum = (req, res) => {
     let str1, str2;
-    let rankArr = [];
     let mogeumStream = '';
     let title = '',
         ejsView;
@@ -193,7 +197,7 @@ const getMogeum = (req, res) => {
 
     if (req.params.page === '1') {
         str1 = 'SELECT * FROM VOTE_PRODUCT;';
-        str2 = 'SELECT productName FROM VOTE_PRODUCT ORDER BY voteCount DESC;'; // 랭킹
+        str2 = 'SELECT productNum, productName FROM VOTE_PRODUCT ORDER BY voteCount DESC;'; // 랭킹
 
         // // if :로그인된 상태,  else : 로그인안된 상태
         if (req.session.userId) {
@@ -211,9 +215,6 @@ const getMogeum = (req, res) => {
                             })
                         );
                     } else {
-                        for (let i = 0; i < results[1].length; i++) {
-                            rankArr[i] = results[1][i].productName;
-                        }
                         res.end(
                             ejs.render(mogeumStream, {
                                 title: title,
@@ -224,7 +225,7 @@ const getMogeum = (req, res) => {
                                 loginUrl: '/cart',
                                 loginLabel: '장바구니',
                                 prodList: results[0],
-                                rankList: rankArr,
+                                rankList: results[1],
                             })
                         );
                     }
@@ -245,9 +246,6 @@ const getMogeum = (req, res) => {
                             })
                         );
                     } else {
-                        for (let i = 0; i < results[1].length; i++) {
-                            rankArr[i] = results[1][i].productName;
-                        }
                         res.status(562).end(
                             ejs.render(mogeumStream, {
                                 title: title,
@@ -258,7 +256,7 @@ const getMogeum = (req, res) => {
                                 loginUrl: '/users/login',
                                 loginLabel: '로그인',
                                 prodList: results[0],
-                                rankList: rankArr,
+                                rankList: results[1],
                             })
                         );
                     }
@@ -266,30 +264,47 @@ const getMogeum = (req, res) => {
             });
         }
     } else if (req.params.page === '2') {
+        let str1 = 'SELECT productNum, productName, productIntro, thumbnailImg FROM VOTE_PRODUCT ORDER BY voteCount DESC;';
         if (req.session.userId) {
-            res.end(
-                ejs.render(mogeumStream, {
-                    title: title,
-                    page: req.params.page,
-                    userName: req.session.who,
-                    signUpUrl: '/myPage',
-                    signUpLabel: '마이페이지',
-                    loginUrl: '/cart',
-                    loginLabel: '장바구니',
-                })
-            );
+            db.query(str1, (error, results) => {
+                if (error) {
+                    console.log(error);
+                    res.end('error');
+                } else {
+                    res.end(
+                        ejs.render(mogeumStream, {
+                            title: title,
+                            page: req.params.page,
+                            userName: req.session.who,
+                            signUpUrl: '/myPage',
+                            signUpLabel: '마이페이지',
+                            loginUrl: '/cart',
+                            loginLabel: '장바구니',
+                            selectResults: results,
+                        })
+                    );
+                }
+            });
         } else {
-            res.end(
-                ejs.render(mogeumStream, {
-                    title: title,
-                    page: req.params.page,
-                    userName: '비회원',
-                    signUpUrl: '/users/signUp',
-                    signUpLabel: '회원가입',
-                    loginUrl: '/users/login',
-                    loginLabel: '로그인',
-                })
-            );
+            db.query(str1, (error, results) => {
+                if (error) {
+                    console.log(error);
+                    res.end('error');
+                } else {
+                    res.end(
+                        ejs.render(mogeumStream, {
+                            title: title,
+                            page: req.params.page,
+                            userName: '비회원',
+                            signUpUrl: '/users/signUp',
+                            signUpLabel: '회원가입',
+                            loginUrl: '/users/login',
+                            loginLabel: '로그인',
+                            selectResults: results,
+                        })
+                    );
+                }
+            });
         }
     } else if (req.params.page === '3') {
         let topSQL = 'SELECT * FROM SELL_PRODUCT ORDER BY clickCnt DESC;';
@@ -469,6 +484,8 @@ const getDetail = (req, res) => {
                 }
             });
         }
+    } else if (req.params.page === '2') {
+        
     } else if (req.params.page === '3') {
         let clickSQL = `SELECT * FROM SELL_PRODUCT WHERE productNum='${req.params.productNum}'`;
         // 후에 리뷰도 다중 쿼리로 추가 예정
