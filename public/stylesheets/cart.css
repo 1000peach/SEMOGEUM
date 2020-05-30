@@ -46,7 +46,7 @@
     text-decoration: none;
 }
 .product-card .product-title > a:hover {
-    color: #ac32e4;
+    color: #D1B2FF;
 }
 .product-card .product-price {
     display: block;
@@ -95,7 +95,7 @@
     text-decoration: none;
 }
 .product-card .product-button > a:hover {
-    background-color: #ac32e4;
+    background-color: #D1B2FF;
     color: #fff;
 }
 .product-card:hover {
@@ -153,7 +153,7 @@
     font-size: 18px;
 }
 .product-category-card:hover .product-category-card-title {
-    color: #ac32e4;
+    color: #D1B2FF;
 }
 .product-gallery {
     position: relative;
@@ -207,7 +207,7 @@
     opacity: 1;
 }
 .product-gallery .product-thumbnails > li.active > a {
-    border-color: #ac32e4;
+    border-color: #D1B2FF;
     cursor: default;
     opacity: 1;
 }
@@ -235,6 +235,7 @@
 }
 .cart-item {
     position: relative;
+    margin-top: 10px;
     margin-bottom: 30px;
     padding: 0 50px 0 10px;
     background-color: #fff;
@@ -283,7 +284,7 @@
     font-weight: bold;
 }
 .cart-item .cart-item-product:hover .cart-item-product-title {
-    color: #ac32e4;
+    color: #D1B2FF;
 }
 .cart-item .count-input {
     display: inline-block;
@@ -357,7 +358,11 @@
     text-decoration: none;
 }
 .comparison-table .comparison-item .comparison-item-title:hover {
-    color: #ac32e4;
+    color: #D1B2FF;
+}
+.buy {
+    color: white;
+    background: linear-gradient(to right, #66ccff, #cc66ff);
 }
 .remove-item {
     display: block;
@@ -385,4 +390,8 @@
     .card-wrapper .jp-card {
         min-width: 250px !important;
     }
+}
+
+.order-form {
+    width: 100%;
 }
