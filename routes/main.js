@@ -24,9 +24,8 @@ const getMainPage = (req, res) => {
     str1 = 'SELECT COUNT(productName) as cnt FROM VOTE_PRODUCT;';
     str2 = 'SELECT SUM(voteCount) as sum FROM VOTE_PRODUCT;';
     str3 = 'SELECT thumbnailImg as thumb FROM VOTE_PRODUCT;';
-    str4 = 'SELECT productNum, thumbnailImg FROM VOTE_PRODUCT ORDER BY voteCount DESC;'; // 랭킹순으로 
+    str4 = 'SELECT productNum, thumbnailImg FROM VOTE_PRODUCT ORDER BY voteCount DESC;'; // 랭킹순으로
     str5 = 'SELECT productNum FROM VOTE_PRODUCT;';
-
 
     // if :로그인된 상태,  else : 로그인안된 상태
     if (req.session.userId) {
@@ -97,7 +96,8 @@ const getMyPage = (req, res) => {
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 
     str1 = 'SELECT voteRights, userName, userEmail, userPhone FROM USER;';
-    str2 = 'SELECT a.productNum, a.productName, a.thumbnailImg FROM VOTE_PRODUCT a INNER JOIN IS_VOTE b On a.productNum = b.productNum WHERE b.userId=?;';
+    str2 =
+        'SELECT a.productNum, a.productName, a.thumbnailImg FROM VOTE_PRODUCT a INNER JOIN IS_VOTE b On a.productNum = b.productNum WHERE b.userId=?;';
 
     // if :로그인된 상태,  else : 로그인안된 상태
     if (req.session.userId) {
@@ -485,7 +485,6 @@ const getDetail = (req, res) => {
             });
         }
     } else if (req.params.page === '2') {
-        
     } else if (req.params.page === '3') {
         let clickSQL = `SELECT * FROM SELL_PRODUCT WHERE productNum='${req.params.productNum}'`;
         // 후에 리뷰도 다중 쿼리로 추가 예정
@@ -634,6 +633,10 @@ const handleVote = (req, res) => {
     }
 };
 
+/* 프리뷰 페이지 */
+router.get('/preview', function (req, res) {
+    res.render('preview', { title: '세상의 모든 금손, 세모금' });
+});
 router.get('/', getMainPage);
 router.get('/myPage', getMyPage);
 router.get('/cart', getCartPage);
