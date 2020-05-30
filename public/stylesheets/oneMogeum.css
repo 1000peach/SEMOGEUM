@@ -2,10 +2,6 @@
 #one-div {
     overflow-y: auto;
 }
-#one-div > #col-div {
-    /* position: sticky;
-    top: 0; */
-}
 #one-div-main {
     display: flex;
     flex-direction: row-reverse;

@@ -17,17 +17,18 @@
 /* carousel item 삽입 이미지 */
 #first-carousel {
     background-image: url('/images/main3.png');
-    background-color: #eaeaea;
+    background-color: seashell;
     background-size: 350px 250px;
+    color: black;
 }
 #second-carousel {
     background-image: url('/images/main2.png');
-    background-color: #eaeaea;
+    background-color: seashell;
     background-size: 250px 250px;
 }
 #third-carousel {
     background-image: url('/images/main1.png');
-    background-color: #eaeaea;
+    background-color: seashell;
     background-size: 250px 250px;
 }
 h3 {
