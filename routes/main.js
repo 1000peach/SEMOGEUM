@@ -12,7 +12,7 @@ router.use(methodOverride('_method')); // put을 사용하기 위함
     메인 화면을 출력합니다.
 */
 const getMainPage = (req, res) => {
-    let str1, str2, str3;
+    let str1, str2, str3, str4, str5, str6, str7, str8;
     let mainStream = '';
     mainStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
     mainStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
@@ -21,22 +21,25 @@ const getMainPage = (req, res) => {
 
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 
-    str1 = 'SELECT COUNT(productName) as cnt FROM VOTE_PRODUCT;';
-    str2 = 'SELECT SUM(voteCount) as sum FROM VOTE_PRODUCT;';
-    str3 = 'SELECT thumbnailImg as thumb FROM VOTE_PRODUCT;';
-    str4 = 'SELECT productNum, thumbnailImg FROM VOTE_PRODUCT ORDER BY voteCount DESC;'; // 랭킹순으로
-    str5 = 'SELECT productNum FROM VOTE_PRODUCT;';
+    str1 = 'SELECT COUNT(productName) as cnt FROM VOTE_PRODUCT;'; // 총 상품 개수
+    str2 = 'SELECT SUM(voteCount) as sum FROM VOTE_PRODUCT;'; // 상품의 받은 투표수 합
+    str3 = 'SELECT thumbnailImg as thumb FROM VOTE_PRODUCT;'; // 상품 이미지
+    str4 = 'SELECT productNum, thumbnailImg FROM VOTE_PRODUCT ORDER BY voteCount DESC;'; // 랭킹순으로 
+    str5 = 'SELECT productNum FROM VOTE_PRODUCT;'; // 한 모금, 두 모금 부분 
+    str6 = 'SELECT productNum, productName, productIntro, thumbnailImg FROM SELL_PRODUCT;'; // 세 모금 부분
+    str7 = 'SELECT Contents, userName FROM REVIEW;';
+    str8 = 'SELECT COUNT(productNum) as cnt FROM SELL_PRODUCT;';
+    //str7 = 'SELECT a.Contents, a.userName FROM REVIEW a INNER JOIN SELL_PRODUCT b ON a.productNum = b.productNum;';
+    //str2 = 'SELECT a.productNum, a.productName, a.thumbnailImg FROM VOTE_PRODUCT a INNER JOIN IS_VOTE b ON a.productNum = b.productNum WHERE b.userId=?;';
 
     // if :로그인된 상태,  else : 로그인안된 상태
     if (req.session.userId) {
-        db.query(str1 + str2 + str3 + str4 + str5, (error, results) => {
+        db.query(str1 + str2 + str3 + str4 + str5 + str6 + str7 + str8, (error, results) => {
             if (error) {
                 console.log(error);
                 res.end('error');
             } else {
-                // console.log('COUNT(productName): ', results[0][0]);
-                // console.log('SUM(voteCount): ', results[1][0]);
-                // console.log('thumbnailImg: ', results[2]);
+                console.log('sellProducts: ', results[5]);
                 res.end(
                     ejs.render(mainStream, {
                         title: '세상의 모든 금손, 세모금',
@@ -51,16 +54,21 @@ const getMainPage = (req, res) => {
                         thumbnailImg: results[2],
                         rankInfo: results[3],
                         productNum: results[4],
+                        sellProducts: results[5],
+                        reviews: results[6],
+                        sellProductCntSum: results[7],
                     })
                 );
             }
         });
     } else {
-        db.query(str1 + str2 + str3 + str4 + str5, (error, results) => {
+        db.query(str1 + str2 + str3 + str4 + str5 + str6 + str7 + str8, (error, results) => {
             if (error) {
                 console.log(error);
                 res.end('error');
             } else {
+                console.log('reviews: ', results[6]);
+                console.log('상품판매개수: ', results[7]);
                 res.end(
                     ejs.render(mainStream, {
                         title: '세상의 모든 금손, 세모금',
@@ -75,6 +83,9 @@ const getMainPage = (req, res) => {
                         thumbnailImg: results[2],
                         rankInfo: results[3],
                         productNum: results[4],
+                        sellProducts: results[5],
+                        reviews: results[6],
+                        sellProductCntSum: results[7],
                     })
                 );
             }
