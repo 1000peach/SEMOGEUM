@@ -36,6 +36,11 @@ body {
 	margin-top: 40px;
 	margin-bottom: 40px;
 }
+.main-icon {
+	position: absolute;
+	top: 590px;
+	left: 140px;
+}
 .form-v7-content .form-left img {
 	width: 100%;
 	display: block;
