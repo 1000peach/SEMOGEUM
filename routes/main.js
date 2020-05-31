@@ -29,8 +29,6 @@ const getMainPage = (req, res) => {
     str6 = 'SELECT productNum, productName, productIntro, thumbnailImg FROM SELL_PRODUCT;'; // 세 모금 부분
     str7 = 'SELECT Contents, userName FROM REVIEW;';
     str8 = 'SELECT COUNT(productNum) as cnt FROM SELL_PRODUCT;';
-    //str7 = 'SELECT a.Contents, a.userName FROM REVIEW a INNER JOIN SELL_PRODUCT b ON a.productNum = b.productNum;';
-    //str2 = 'SELECT a.productNum, a.productName, a.thumbnailImg FROM VOTE_PRODUCT a INNER JOIN IS_VOTE b ON a.productNum = b.productNum WHERE b.userId=?;';
 
     // if :로그인된 상태,  else : 로그인안된 상태
     if (req.session.userId) {
@@ -382,6 +380,9 @@ const getDetail = (req, res) => {
     if (req.params.page === '1') {
         title = '상품 투표하기';
         ejsView = 'oneDetail.ejs';
+    } else if (req.params.page === '2') {
+        title = '선정된 상품 보기';
+        ejsView = 'twoDetail.ejs';
     } else if (req.params.page === '3') {
         title = '상품 구매하기';
         ejsView = 'threeDetail.ejs';
@@ -496,6 +497,43 @@ const getDetail = (req, res) => {
             });
         }
     } else if (req.params.page === '2') {
+        let clickSQL = `SELECT * FROM SELL_PRODUCT WHERE productNum='${req.params.productNum}'`;
+        // 후에 리뷰도 다중 쿼리로 추가 예정
+        db.query(clickSQL, (error, product) => {
+            if (error) {
+                console.log('세모금 상세 페이지 에러' + error);
+            } else {
+                if (req.session.userId) {
+                    res.end(
+                        ejs.render(detailStream, {
+                            title: title,
+                            page: req.params.page,
+                            userId: req.session.userId,
+                            userName: req.session.who,
+                            signUpUrl: '/myPage',
+                            signUpLabel: '마이페이지',
+                            loginUrl: '/cart',
+                            loginLabel: '장바구니',
+                            product: product[0],
+                        })
+                    );
+                } else {
+                    res.end(
+                        ejs.render(detailStream, {
+                            title: title,
+                            page: req.params.page,
+                            userId: '비회원',
+                            userName: '비회원',
+                            signUpUrl: '/users/signUp',
+                            signUpLabel: '회원가입',
+                            loginUrl: '/users/login',
+                            loginLabel: '로그인',
+                            product: product[0],
+                        })
+                    );
+                }
+            }
+        });
     } else if (req.params.page === '3') {
         let clickSQL = `SELECT * FROM SELL_PRODUCT WHERE productNum='${req.params.productNum}'`;
         // 후에 리뷰도 다중 쿼리로 추가 예정
@@ -648,11 +686,11 @@ const handleVote = (req, res) => {
 router.get('/preview', function (req, res) {
     res.render('preview', { title: '세상의 모든 금손, 세모금' });
 });
+
 router.get('/', getMainPage);
 router.get('/myPage', getMyPage);
 router.get('/cart', getCartPage);
 router.get('/mogeum/:page', getMogeum); // 모금 페이지
-
 router.get('/mogeum-detail/:page/:productNum', getDetail); // 모금 상세페이지 처리(이후 getDetail 함수 호출)
 
 router.put('/vote', handleVote);
