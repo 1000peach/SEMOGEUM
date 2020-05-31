@@ -15,6 +15,16 @@
     padding: 10px 0;
     color: black;
 }
+/* 투표 관련 조항 */
+#vote-manual {
+    margin-top: 20px;
+    padding: 10px;
+    line-height: 200%;
+    border: 2px solid lightgrey;
+}
+#vote {
+    font-size: 13px;
+}
 /* 상품 목록 */
 .card {
     border: none;
