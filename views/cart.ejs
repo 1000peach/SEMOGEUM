@@ -1,4 +1,7 @@
 <div id="one-div" class="col-div" style="width: 100%;">
+    <button type="button" id="top" style="width: 60px; height: 60px;">
+        <img src="/images/top.png" width="30" height="30" alt="scroll top" />
+    </button>
     <div class="col-div" id="res-header">
         <ol style="margin-bottom: 0;">
             <li class="notice-li text-center" style="height: 80px; border: none; border-radius: 0; padding: 25px 0;">
@@ -10,99 +13,51 @@
             </li>
         </ol>
     </div>
-    <div class="container pb-5 mb-2">
-        <!-- 장바구니에 담은 상품 -->
-        <div class="cart-item d-md-flex justify-content-between">
-            <span class="remove-item"><i class="fa fa-times"></i></span>
-            <div class="px-3 my-3">
-                <a class="cart-item-product" href="#">
-                    <div class="cart-item-product-thumb"><img src="/images/uploads/sellProducts/까만목걸.jpg" alt="Product" /></div>
-                    <div class="cart-item-product-info">
-                        <h4 class="cart-item-product-title">까만 목걸</h4>
-                        <span><strong>옵션</strong><br> 선물 포장</span>
+    <div class="container mb-2 mt-2">
+        <form id="remove-form" style="display: none;">
+            <input type="hidden" name="userId" value="<%= userId %>" />
+            <input type="hidden" name="productNum" />
+        </form>
+        <div id="cart-list">
+            <!-- 장바구니에 담은 상품 -->
+            <% for (var i = 0; i < carts.length; i++) { %>
+            <div class="cart-item d-md-flex justify-content-between">
+                <button type="button" class="remove-item" onclick="carryInfo(event);" value="<%= carts[i].productNum %>">
+                    <i class="fa fa-times"></i>
+                </button>
+                <div class="px-3 my-3">
+                    <a class="cart-item-product" href="#">
+                        <div class="cart-item-product-thumb"><img src="<%= carts[i].thumbnailImg %>" alt="Product" /></div>
+                        <div class="cart-item-product-info">
+                            <h4 class="cart-item-product-title"><%= carts[i].productName %></h4>
+                            <span><strong>옵션</strong><br />옵션 없음</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="px-3 my-3 text-center">
+                    <div class="cart-item-label">수량</div>
+                    <div class="count-input">
+                        <select class="form-control">
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
                     </div>
-                </a>
-            </div>
-            <div class="px-3 my-3 text-center">
-                <div class="cart-item-label">수량</div>
-                <div class="count-input">
-                    <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
+                </div>
+                <div class="px-3 my-3 text-center">
+                    <div class="cart-item-label">담은 금액</div>
+                    <span class="text-xl font-weight-medium"><%= Number(carts[i].productPrice).toLocaleString("en") %>원</span>
                 </div>
             </div>
-            <div class="px-3 my-3 text-center">
-                <div class="cart-item-label">담은 금액</div>
-                <span class="text-xl font-weight-medium">10,000원</span>
-            </div>
-        </div>
-        <!-- 장바구니에 담은 상품 -->
-        <div class="cart-item d-md-flex justify-content-between">
-            <span class="remove-item"><i class="fa fa-times"></i></span>
-            <div class="px-3 my-3">
-                <a class="cart-item-product" href="#">
-                    <div class="cart-item-product-thumb"><img src="/images/uploads/sellProducts/예쁜목걸.jpg" alt="Product" /></div>
-                    <div class="cart-item-product-info">
-                        <h4 class="cart-item-product-title">예쁜 목걸</h4>
-                        <span><strong>옵션</strong><br> 옵션 없음</span>
-                    </div>
-                </a>
-            </div>
-            <div class="px-3 my-3 text-center">
-                <div class="cart-item-label">수량</div>
-                <div class="count-input">
-                    <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-            </div>
-            <div class="px-3 my-3 text-center">
-                <div class="cart-item-label">담은 금액</div>
-                <span class="text-xl font-weight-medium">20,000원</span>
-            </div>
-        </div>
-        <!-- 장바구니에 담은 상품 -->
-        <div class="cart-item d-md-flex justify-content-between">
-            <span class="remove-item"><i class="fa fa-times"></i></span>
-            <div class="px-3 my-3">
-                <a class="cart-item-product" href="#">
-                    <div class="cart-item-product-thumb"><img src="/images/uploads/sellProducts/하트목걸.jpg" alt="Product" /></div>
-                    <div class="cart-item-product-info">
-                        <h4 class="cart-item-product-title">하트 목걸</h4>
-                        <span><strong>옵션</strong><br> 세모금 스티커</span>
-                    </div>
-                </a>
-            </div>
-            <div class="px-3 my-3 text-center">
-                <div class="cart-item-label">수량</div>
-                <div class="count-input">
-                    <select class="form-control">
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </select>
-                </div>
-            </div>
-            <div class="px-3 my-3 text-center">
-                <div class="cart-item-label">담은 금액</div>
-                <span class="text-xl font-weight-medium">30,000원</span>
-            </div>
+            <% } %>
         </div>
         <!-- 주문 시 요청 사항 + 총 담은 금액 -->
         <div class="d-sm-flex justify-content-between align-items-center text-center text-sm-left">
-            <form class="form-inline py-2" style="width: 100%;">
+            <form class="form-inline py-2" style="width: 100%;" onsubmit="event.preventDefault();">
                 <label class="sr-only">주문 시 요청 사항</label>
-                <input class="form-control form-control-sm my-2 mr-3" type="text" placeholder="주문 시 요청 사항" style="width: 80%;">
+                <input class="form-control form-control-sm my-2 mr-3" type="text" placeholder="주문 시 요청 사항" style="width: 80%;" />
                 <!-- modal 구동 버튼 (trigger) -->
                 <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal">
                     적용하기
@@ -112,10 +67,12 @@
                     <div class="modal-dialog" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                            <h4 class="modal-title" id="myModalLabel">주문 시 요청 사항</h4></div>
+                                <h4 class="modal-title" id="myModalLabel">주문 시 요청 사항</h4>
+                            </div>
                             <div class="modal-body">주문 시 요청 사항이 적용됐습니다!</div>
                             <div class="modal-footer">
-                            <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button></div>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">닫기</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -127,12 +84,21 @@
         </div>
         <!-- 쇼핑으로 돌아가기 & 구매하기 -->
         <hr class="my-2" />
-        <div class="row pt-3 pb-5 mb-2">
+        <div class="row pt-3 mb-2">
             <div class="col-sm-6 mb-3">
-                <a class="btn btn-style-1 btn-secondary btn-block" href="/mogeum/3"><i class="fe-icon-refresh-ccw"></i>&nbsp;쇼핑으로 돌아가기</a>
+                <a class="btn btn-style-1 btn-secondary btn-block" href="/mogeum/3" style="border: none;"
+                    ><i class="fe-icon-refresh-ccw"></i>&nbsp;쇼핑으로 돌아가기</a
+                >
             </div>
             <div class="col-sm-6 mb-3">
-                <a class="btn btn-style-1 btn-custom btn-block buy" href="#"><i class="fe-icon-credit-card"></i>&nbsp;구매하기</a>
+                <button
+                    type="button"
+                    class="btn btn-style-1 btn-custom btn-block buy"
+                    onclick="alert('준비 중인 기능입니다!');"
+                    style="border: none;"
+                >
+                    <i class="fe-icon-credit-card"></i>&nbsp;구매하기
+                </button>
             </div>
         </div>
     </div>
