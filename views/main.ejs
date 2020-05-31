@@ -77,7 +77,7 @@
             <% for (var i = 0; i < 3; i++) { %>
                 <div class="col-lg-3 col-md-4 col-6">
                         <% if (thumbnailImg[i] !== undefined) { %>
-                            <a href="/mogeum-detail/1/<%= productNum[i].productNum %>" class="d-block mb-4 h-100">
+                            <a href="/mogeum-detail/2/<%= productNum[i].productNum %>" class="d-block mb-4 h-100">
                             <img class="img-fluid img-thumbnail" src="<%= Object.values(thumbnailImg[i])[0] %>" alt="한 모금 상품" style="border: none; padding: 0;" />
                         <% } else { %>
                             <a href="#" class="d-block mb-4 h-100">
@@ -104,7 +104,7 @@
             <% for (var i = 0; i < 3; i++) { %>
                 <div class="col-lg-3 col-md-4 col-6">
                         <% if (thumbnailImg[i] !== undefined) { %>
-                            <a href="/mogeum-detail/1/<%= rankInfo[i].productNum %>" class="d-block mb-4 h-100">
+                            <a href="/mogeum-detail/2/<%= rankInfo[i].productNum %>" class="d-block mb-4 h-100">
                             <img class="img-fluid img-thumbnail" src="<%= Object.values(rankInfo)[i].thumbnailImg %>" alt="두 모금 상품" style="border: none; padding: 0;" />
                         <% } else { %>
                             <a href="#" class="d-block mb-4 h-100">
