@@ -1,0 +1,10 @@
+/* scroll top */
+#top {
+    border-radius: 50%;
+    position: fixed;
+    right: 40px;
+    bottom: 20px;
+    z-index: 4;
+    background-image: linear-gradient(to right, rgb(128, 212, 255), rgb(204, 102, 255));
+    box-shadow: 10px 10px 10px lightgray;
+}
