@@ -203,6 +203,42 @@ const selectReview = (req, res) => {
     });
 };
 
+/*
+    세 모금 상품 장바구니 추가
+*/
+const insertCart = (req, res) => {
+    let selectSQL = `SELECT * FROM CART WHERE userId = '${req.params.userId}' AND productNum = '${req.params.productNum}'`;
+    db.query(selectSQL, (error, result) => {
+        if (error) {
+            console.log('장바구니 검색 에러' + error);
+            res.json({
+                status: -1,
+            });
+        } else {
+            if (result[0] !== undefined) {
+                // 이미 장바구니에 담긴 상품일 때
+                res.json({
+                    status: 0,
+                });
+            } else {
+                let insertSQL = `INSERT INTO CART(userId, productNum) VALUES('${req.params.userId}', ${req.params.productNum})`;
+                db.query(insertSQL, (error) => {
+                    if (error) {
+                        console.log('장바구니 추가 에러' + error);
+                        res.json({
+                            status: -1,
+                        }); // 장바구니 에러 시
+                    } else {
+                        res.json({
+                            status: 1,
+                        }); // 장바구니 삽입 성공
+                    }
+                });
+            }
+        }
+    });
+};
+
 router.get('/prodContest', getProdContest);
 router.post('/upload', handleProdContest);
 
@@ -215,5 +251,7 @@ router.put('/updateCnt/:productNum/:currentCnt', updateCnt);
 /* 세모금 상품 리뷰 기능 */
 router.post('/addReview', addReview);
 router.post('/selectReview', selectReview);
+/* 세모금 장바구니 추가 */
+router.put('/insertCart/:userId/:productNum', insertCart);
 
 module.exports = router;
