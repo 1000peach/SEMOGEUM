@@ -20,7 +20,7 @@
         </form>
         <div id="cart-list">
             <!-- 장바구니에 담은 상품 -->
-            <% for (var i = 0; i < carts.length; i++) { %>
+            <% if (carts.length > 0) { %> <% for (var i = 0; i < carts.length; i++) { %>
             <div class="cart-item d-md-flex justify-content-between">
                 <button type="button" class="remove-item" onclick="carryInfo(event);" value="<%= carts[i].productNum %>">
                     <i class="fa fa-times"></i>
@@ -37,7 +37,7 @@
                 <div class="px-3 my-3 text-center">
                     <div class="cart-item-label">수량</div>
                     <div class="count-input">
-                        <select class="form-control">
+                        <select id="each-<%= i %>" class="form-control" onchange="priceChange(event);">
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -48,9 +48,13 @@
                 </div>
                 <div class="px-3 my-3 text-center">
                     <div class="cart-item-label">담은 금액</div>
-                    <span class="text-xl font-weight-medium"><%= Number(carts[i].productPrice).toLocaleString("en") %>원</span>
+                    <span id="print-<%= i %>" class="text-xl font-weight-medium"><%= Number(carts[i].productPrice).toLocaleString("en") %>원</span>
+                    <input id="origin-<%= i %>" type="hidden" value="<%= carts[i].productPrice %>" />
+                    <input class="sum-list" id="price-<%= i %>" type="hidden" value="<%= carts[i].productPrice %>" />
                 </div>
             </div>
+            <% } %> <% } else { %>
+            <p class="text-center mt-4">장바구니에 담긴 상품이 없습니다!</p>
             <% } %>
         </div>
         <!-- 주문 시 요청 사항 + 총 담은 금액 -->
@@ -79,7 +83,9 @@
             </form>
             <div class="py-2">
                 <span class="d-inline-block align-middle text-sm text-muted font-weight-medium text-uppercase mr-2">총 담은 금액:</span
-                ><span class="d-inline-block align-middle text-xl font-weight-medium"> 60,000원</span>
+                ><span id="sum-result" class="d-inline-block align-middle text-xl font-weight-medium">
+                    <%= Number(sumPrice).toLocaleString("en") %>원</span
+                >
             </div>
         </div>
         <!-- 쇼핑으로 돌아가기 & 구매하기 -->

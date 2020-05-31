@@ -106,7 +106,7 @@ const getMyPage = (req, res) => {
 
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 
-    str1 = 'SELECT voteRights, userName, userEmail, userPhone FROM USER;';
+    str1 = `SELECT voteRights, userName, userEmail, userPhone FROM USER WHERE userId = '${req.session.userId}';`;
     str2 =
         'SELECT a.productNum, a.productName, a.thumbnailImg FROM VOTE_PRODUCT a INNER JOIN IS_VOTE b On a.productNum = b.productNum WHERE b.userId=?;';
 
@@ -164,7 +164,10 @@ const getCartPage = (req, res) => {
             if (error) {
                 console.log('장바구니 검색 에러' + error);
             } else {
-                console.log(results);
+                let sumPrice = 0;
+                for (var i = 0; i < results.length; i++) {
+                    sumPrice += Number(results[i].productPrice);
+                }
                 res.end(
                     ejs.render(cartStream, {
                         title: '장바구니',
@@ -176,6 +179,7 @@ const getCartPage = (req, res) => {
                         loginUrl: '/cart',
                         loginLabel: '장바구니',
                         carts: results,
+                        sumPrice: sumPrice,
                     })
                 );
             }
