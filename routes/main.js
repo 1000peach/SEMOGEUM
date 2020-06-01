@@ -24,8 +24,8 @@ const getMainPage = (req, res) => {
     str1 = 'SELECT COUNT(productName) as cnt FROM VOTE_PRODUCT;'; // 총 상품 개수
     str2 = 'SELECT SUM(voteCount) as sum FROM VOTE_PRODUCT;'; // 상품의 받은 투표수 합
     str3 = 'SELECT thumbnailImg as thumb FROM VOTE_PRODUCT;'; // 상품 이미지
-    str4 = 'SELECT productNum, thumbnailImg FROM VOTE_PRODUCT ORDER BY voteCount DESC;'; // 랭킹순으로 
-    str5 = 'SELECT productNum FROM VOTE_PRODUCT;'; // 한 모금, 두 모금 부분 
+    str4 = 'SELECT productNum, thumbnailImg FROM VOTE_PRODUCT ORDER BY voteCount DESC;'; // 랭킹순으로
+    str5 = 'SELECT productNum FROM VOTE_PRODUCT;'; // 한 모금, 두 모금 부분
     str6 = 'SELECT productNum, productName, productIntro, thumbnailImg FROM SELL_PRODUCT;'; // 세 모금 부분
     str7 = 'SELECT Contents, userName FROM REVIEW;';
     str8 = 'SELECT COUNT(productNum) as cnt FROM SELL_PRODUCT;';
@@ -104,7 +104,7 @@ const getMyPage = (req, res) => {
 
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 
-    str1 = 'SELECT voteRights, userName, userEmail, userPhone FROM USER;';
+    str1 = `SELECT voteRights, userName, userEmail, userPhone FROM USER WHERE userId = '${req.session.userId}';`;
     str2 =
         'SELECT a.productNum, a.productName, a.thumbnailImg FROM VOTE_PRODUCT a INNER JOIN IS_VOTE b On a.productNum = b.productNum WHERE b.userId=?;';
 
@@ -157,17 +157,31 @@ const getCartPage = (req, res) => {
 
     // if :로그인된 상태,  else : 로그인안된 상태
     if (req.session.userId) {
-        res.end(
-            ejs.render(cartStream, {
-                title: '장바구니',
-                page: 0,
-                userName: req.session.who,
-                signUpUrl: '/myPage',
-                signUpLabel: '마이페이지',
-                loginUrl: '/cart',
-                loginLabel: '장바구니',
-            })
-        );
+        let selectSQL = `SELECT C.*, S.* FROM CART C INNER JOIN SELL_PRODUCT S ON C.productNum = S.productNum WHERE C.userId='${req.session.userId}'`;
+        db.query(selectSQL, (error, results) => {
+            if (error) {
+                console.log('장바구니 검색 에러' + error);
+            } else {
+                let sumPrice = 0;
+                for (var i = 0; i < results.length; i++) {
+                    sumPrice += Number(results[i].productPrice);
+                }
+                res.end(
+                    ejs.render(cartStream, {
+                        title: '장바구니',
+                        page: 0,
+                        userId: req.session.userId,
+                        userName: req.session.who,
+                        signUpUrl: '/myPage',
+                        signUpLabel: '마이페이지',
+                        loginUrl: '/cart',
+                        loginLabel: '장바구니',
+                        carts: results,
+                        sumPrice: sumPrice,
+                    })
+                );
+            }
+        });
     } else {
         res.end(ejs.render(returnError(), { title: '에러 페이지', errorMessage: '로그인이 필요합니다.' }));
     }

@@ -28,7 +28,7 @@
     cursor: pointer;
 }
 
-#buy-list div div > .card:hover h6,
+#buy-list div div a > .card:hover h6,
 .best-sell:hover h6 {
     color: #D1B2FF;
     transition: 0.2s;
