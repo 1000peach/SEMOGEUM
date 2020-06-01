@@ -47,12 +47,12 @@
     <!-- 이벤트 기간 공지 -->
     <ol>
         <li class="notice-li text-center">
-            <b class="d-day text-danger bg-white">D-4</b>
-            <a href="/mogeum/1" class="text-white">6월의 상품 투표 (2020.04.20~2020.04.26)</a>
+            <b class="d-day text-danger bg-white">D-15</b>
+            <a href="/mogeum/1" class="text-white">6월의 상품 투표 (2020.06.01~2020.06.21)</a>
         </li>
         <li class="notice-li text-center">
-            <b class="d-day text-danger bg-white">D-7</b>
-            <a href="/products/prodContest" class="text-white">7월의 상품 공모 (2020.04.20~2020.05.03)</a>
+            <b class="d-day text-danger bg-white">D-15</b>
+            <a href="/products/prodContest" class="text-white">7월의 상품 공모 (2020.06.01~2020.06.21)</a>
         </li>
     </ol>
     <!-- 중간: 이런 상품도 있어요 -->
@@ -66,7 +66,7 @@
                     <div class="col-div" style="border: none;">
                         <p class="product-title text-white text-left font-weight-bold">한 모금,</p>
                         <div class="mogeum" style="padding: 10px;">
-                            <p class="product-name text-center font-weight-bold">5월의 상품</p>
+                            <p class="product-name text-center font-weight-bold">6월의 상품</p>
                             <br />
                             <p class="text-left product-name"><img src="/images/price-tag.png" width="30" height="30" />&nbsp;상품 <%= prodNameCount.cnt %>개</p>
                             <p class="text-left product-name"><img src="/images/like2.png" width="30" height="30" />&nbsp;투표 <%= voteCountSum.sum %>개</p>
@@ -95,7 +95,7 @@
                             <p class="product-name text-center font-weight-bold">5월 선정작 상품화 진행</p>
                             <br />
                             <% if (prodNameCount !== undefined) { %>
-                            <p class="text-left product-name"><img src="/images/like2.png" width="30" height="30" />&nbsp;상품 <%= prodNameCount.cnt %>개</p>
+                            <p class="text-left product-name"><img src="/images/price-tag.png" width="30" height="30" />&nbsp;상품 <%= prodNameCount.cnt %>개</p>
                             <% } %>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
             <% for (var i = 0; i < 3; i++) { %>
                 <div class="col-lg-3 col-md-4 col-6">
                         <% if (thumbnailImg[i] !== undefined) { %>
-                            <a href="/mogeum-detail/1/<%= rankInfo[i].productNum %>" class="d-block mb-4 h-100">
+                            <a href="/mogeum-detail/2/<%= rankInfo[i].productNum %>" class="d-block mb-4 h-100">
                             <img class="img-fluid img-thumbnail" src="<%= Object.values(rankInfo)[i].thumbnailImg %>" alt="두 모금 상품" style="border: none; padding: 0;" />
                         <% } else { %>
                             <a href="#" class="d-block mb-4 h-100">
@@ -122,7 +122,7 @@
                             <p class="product-name text-center font-weight-bold">판매중인 상품</p>
                             <br />
                             <% if (sellProductCntSum !== undefined) { %>
-                            <p class="text-left product-name"><img src="/images/like2.png" width="30" height="30" />&nbsp;상품 <%= sellProductCntSum[0].cnt %>개</p>
+                            <p class="text-left product-name"><img src="/images/price-tag.png" width="30" height="30" />&nbsp;상품 <%= sellProductCntSum[0].cnt %>개</p>
                             <% } %>
                         </div>
                     </div>

@@ -162,9 +162,9 @@
 $('#cart-form').on('submit', function (event) {
     event.preventDefault();
     addCart().then(data => {
-        if (data.status === 1) { // 의견 등록 성공
+        if (data.status === 1) { // 최초 장바구니 담을 때
             alert("해당 상품을 장바구니에 담았습니다!");
-        } else if (data.status === 0) { // 의견 등록 실패
+        } else if (data.status === 0) { // 이미 장바구니에 담겨있을 때
             alert("이미 장바구니에 담긴 상품입니다!");
         } else {
             alert("장바구니 담기 중 문제가 발생했습니다.");
