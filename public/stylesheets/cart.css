@@ -365,7 +365,9 @@
     background: linear-gradient(to right, #66ccff, #cc66ff);
 }
 .buy:hover {
-    color: black;
+    color: white;
+    opacity: 0.8;
+    transition: 0.2s;
 }
 .remove-item {
     display: block;
