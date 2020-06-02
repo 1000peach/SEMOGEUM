@@ -78,10 +78,10 @@
                 <div class="col-lg-3 col-md-4 col-6">
                         <% if (thumbnailImg[i] !== undefined) { %>
                             <a href="/mogeum-detail/1/<%= productNum[i].productNum %>" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="<%= Object.values(thumbnailImg[i])[0] %>" alt="한 모금 상품" style="border: none; padding: 0;" />
+                            <img class="img-fluid img-thumbnail mouse-up" src="<%= Object.values(thumbnailImg[i])[0] %>" alt="한 모금 상품" style="border: none; padding: 0;" />
                         <% } else { %>
                             <a href="#" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="/images/catPaw.PNG" alt="기본 이미지" style="border: none; padding: 0;" />
+                            <img class="img-fluid img-thumbnail mouse-up" src="/images/catPaw.PNG" alt="기본 이미지" style="border: none; padding: 0;" />
                         <% } %>
                     </a>
                 </div>
@@ -95,7 +95,7 @@
                             <p class="product-name text-center font-weight-bold">5월 선정작 상품화 진행</p>
                             <br />
                             <% if (prodNameCount !== undefined) { %>
-                            <p class="text-left product-name"><img src="/images/price-tag.png" width="30" height="30" />&nbsp;상품 <%= prodNameCount.cnt %>개</p>
+                            <p class="text-left product-name"><img class="mouse-up" src="/images/price-tag.png" width="30" height="30" />&nbsp;상품 <%= prodNameCount.cnt %>개</p>
                             <% } %>
                         </div>
                     </div>
@@ -105,10 +105,10 @@
                 <div class="col-lg-3 col-md-4 col-6">
                         <% if (thumbnailImg[i] !== undefined) { %>
                             <a href="/mogeum-detail/2/<%= rankInfo[i].productNum %>" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="<%= Object.values(rankInfo)[i].thumbnailImg %>" alt="두 모금 상품" style="border: none; padding: 0;" />
+                            <img class="img-fluid img-thumbnail mouse-up" src="<%= Object.values(rankInfo)[i].thumbnailImg %>" alt="두 모금 상품" style="border: none; padding: 0;" />
                         <% } else { %>
                             <a href="#" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail" src="/images/catPaw.PNG" alt="기본 이미지" style="border: none; padding: 0;" />
+                            <img class="img-fluid img-thumbnail mouse-up" src="/images/catPaw.PNG" alt="기본 이미지" style="border: none; padding: 0;" />
                         <% } %>
                     </a>
                 </div>
@@ -122,7 +122,7 @@
                             <p class="product-name text-center font-weight-bold">판매중인 상품</p>
                             <br />
                             <% if (sellProductCntSum !== undefined) { %>
-                            <p class="text-left product-name"><img src="/images/price-tag.png" width="30" height="30" />&nbsp;상품 <%= sellProductCntSum[0].cnt %>개</p>
+                            <p class="text-left product-name"><img class="mouse-up" src="/images/price-tag.png" width="30" height="30" />&nbsp;상품 <%= sellProductCntSum[0].cnt %>개</p>
                             <% } %>
                         </div>
                     </div>
@@ -131,7 +131,7 @@
             <% for (var i = 0; i < 3; i++) { %>
             <div class="col-lg-3 col-md-4 col-6">
                 <a href="/mogeum-detail/3/<%= sellProducts[i].productNum %>" class="d-block mb-4 h-100">
-                    <img class="img-fluid img-thumbnail" src="<%= sellProducts[i].thumbnailImg %>" alt="" style="border: none; padding: 0;" />
+                    <img class="img-fluid img-thumbnail mouse-up" src="<%= sellProducts[i].thumbnailImg %>" alt="" style="border: none; padding: 0;" />
                 </a>
             </div>
             <% } %>
@@ -152,7 +152,7 @@
                         <div class="col-6">
                             <% if (sellProducts[i * 2] !== undefined) { %>
                             <a href="/mogeum-detail/3/<%= sellProducts[i * 2].productNum %>">
-                                <img src="<%= sellProducts[i * 2].thumbnailImg %>" alt="" class="card-img" /> <!-- thumbnailImg -->
+                                <img src="<%= sellProducts[i * 2].thumbnailImg %>" alt="" class="card-img mouse-up" /> <!-- thumbnailImg -->
                             </a>
                             <% } %>
                         </div>
@@ -185,7 +185,7 @@
                         <div class="col-6">
                             <% if (sellProducts[i * 2 + 1] !== undefined) { %>
                             <a href="/mogeum-detail/3/<%= sellProducts[i * 2 + 1].productNum %>">
-                                <img src="<%= sellProducts[i * 2 + 1].thumbnailImg %>" alt="" class="card-img" /> <!-- thumbnailImg -->
+                                <img src="<%= sellProducts[i * 2 + 1].thumbnailImg %>" alt="" class="card-img mouse-up" /> <!-- thumbnailImg -->
                             </a>
                             <% } %>
                         </div>
@@ -198,8 +198,8 @@
                                     <span class="review-rank fa fa-star checked"></span>
                                     <span class="review-rank fa fa-star checked"></span>
                                     <span class="review-rank fa fa-star checked"></span>
-                                    <span class="review-rank fa fa-star"></span>
-                                    <span class="review-rank fa fa-star"></span>
+                                    <span class="review-rank fa fa-star checked"></span>
+                                    <span class="review-rank fa fa-star checked"></span>
                                 </div>
                                 <% if (sellProducts[i * 2 + 1] !== undefined) { %>
                                 <p class="review-content"><%= reviews[i * 2 + 1].Contents %></p>
