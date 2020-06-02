@@ -15,6 +15,16 @@
     height: 40px;
     background-image: linear-gradient(to right, rgb(128, 212, 255), rgb(204, 102, 255));
 }
+/* 투표 관련 조항 */
+#vote-manual {
+    margin-top: 20px;
+    padding: 10px;
+    line-height: 200%;
+    border: 2px solid lightgrey;
+}
+#vote {
+    font-size: 13px;
+}
 /* 투표 상태 */
 .vote-state {
     margin: 10px auto;

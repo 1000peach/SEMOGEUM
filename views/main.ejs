@@ -78,12 +78,13 @@
                 <div class="col-lg-3 col-md-4 col-6">
                         <% if (thumbnailImg[i] !== undefined) { %>
                             <a href="/mogeum-detail/1/<%= productNum[i].productNum %>" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail mouse-up" src="<%= Object.values(thumbnailImg[i])[0] %>" alt="한 모금 상품" style="border: none; padding: 0;" />
+                                <img class="img-fluid img-thumbnail mouse-up" src="<%= Object.values(thumbnailImg[i])[0] %>" alt="한 모금 상품" style="border: none; padding: 0;" />
+                            </a>
                         <% } else { %>
                             <a href="#" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail mouse-up" src="/images/catPaw.PNG" alt="기본 이미지" style="border: none; padding: 0;" />
+                                <img class="img-fluid img-thumbnail mouse-up" src="/images/catPaw.PNG" alt="기본 이미지" style="border: none; padding: 0;" />
+                            </a>
                         <% } %>
-                    </a>
                 </div>
             <% } %>
             <!-- 두 모금 -->
@@ -106,11 +107,12 @@
                         <% if (thumbnailImg[i] !== undefined) { %>
                             <a href="/mogeum-detail/2/<%= rankInfo[i].productNum %>" class="d-block mb-4 h-100">
                             <img class="img-fluid img-thumbnail mouse-up" src="<%= Object.values(rankInfo)[i].thumbnailImg %>" alt="두 모금 상품" style="border: none; padding: 0;" />
+                            </a>
                         <% } else { %>
                             <a href="#" class="d-block mb-4 h-100">
                             <img class="img-fluid img-thumbnail mouse-up" src="/images/catPaw.PNG" alt="기본 이미지" style="border: none; padding: 0;" />
+                            </a>
                         <% } %>
-                    </a>
                 </div>
             <% } %>
             <!-- 세 모금 -->
@@ -165,8 +167,8 @@
                                     <span class="review-rank fa fa-star checked"></span>
                                     <span class="review-rank fa fa-star checked"></span>
                                     <span class="review-rank fa fa-star checked"></span>
-                                    <span class="review-rank fa fa-star"></span>
-                                    <span class="review-rank fa fa-star"></span>
+                                    <span class="review-rank fa fa-star checked"></span>
+                                    <span class="review-rank fa fa-star checked"></span>
                                 </div>
                                 <div style="height: 60%;">
                                     <% if (sellProducts[i * 2] !== undefined) { %>
