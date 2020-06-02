@@ -57,15 +57,9 @@ app.use('/', routes); // URI (/) 접속하면 main.js로 라우팅
 app.use('/users', users); // URI (/users) 접속하면 users.js로 라우팅
 app.use('/products', products); // URI (/products) 접속하면 products.js로 라우팅
 
-<<<<<<< HEAD
 // 
 // app.listen(port, function () {
 //     console.log('서버실행: http://localhost:' + port);
 // }); 
-=======
-app.listen(port, function () {
-    console.log('서버실행: http://localhost:' + port);
-}); 
->>>>>>> e41ec0d891a5d98c28480aba9df114129c575ead
 
 module.exports = app;

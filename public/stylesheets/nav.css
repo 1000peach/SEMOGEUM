@@ -19,6 +19,14 @@ nav {
 #logo {
     height: 170px;
 }
+/* #logo-video {
+    position: absolute;
+    left: 20px;
+}
+#logo-img {
+    position: absolute;
+    left: 170px;
+} */
 #userdiv {
     height: 170px;
     padding: 20px;
