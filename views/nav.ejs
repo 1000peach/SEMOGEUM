@@ -1,14 +1,13 @@
 <body style="display: flex;">
     <nav id="nav" class="col-div">
         <input id="page" type="text" style="display: none;" value="<%= page %>" />
-        <a href="/" id="logo" class="col-div" style="width: 100%;">
-            <video id="logo_video" class="d-block mx-auto" width="220" height="80" autoplay muted loop>
-                <source src="/images/logo_video.mp4" type="video/mp4" />
-                해당 브라우저는 video 태그를 지원하지 않습니다.
-            </video>
+            <a href="/" id="logo" class="col-div" style="width: 100%; float: inherit;">
+                <img src="/images/logo-gif.gif" class="mx-auto" id="logo-video" width="160" height="90" alt="해당 브라우저는 video 태그를 지원하지 않습니다.">
+                </img>
+                <!-- <img src="/images/icon.png" id="logo-img" class="mx-auto" width="60" height="80" style="justify-content: end;"> -->
             <!-- 아이폰 모바일로는 비디오처럼 보이니까 media query 통해서 모바일로는 이미지로 보이게? -->
             <p class="mx-auto d-block text-white">세상의 모든 금손</p>
-        </a>
+            </a>
         <div id="userdiv">
             <h5 class="text-center text-white" style="margin-bottom: 20px;"><span id="page-userName"><%= userName %></span>님 환영합니다.</h5>
             <div class="login-menu">
