@@ -25,7 +25,6 @@
 .form-v7-content {
     width: 910px;
     height: 600px;
-    font-family: 'Open Sans', sans-serif;
     position: relative;
     display: flex;
     display: -webkit-flex;
@@ -100,11 +99,10 @@
     position: relative;
 }
 .form-v7-content .form-detail .form-row label {
-    color: #666;
-    font-weight: 600;
-    font-size: 13px;
+    color: #888;
+    font-weight: 550;
+    font-size: 13.5px;
     margin-bottom: 3px;
-    font-family: 'Open Sans', sans-serif;
 }
 .form-v7-content .form-detail .form-row label#valid {
     position: absolute;
@@ -179,7 +177,6 @@
     -webkit-outline: none;
     -o-outline: none;
     -ms-outline: none;
-    font-family: 'Open Sans', sans-serif;
     font-size: 16px;
     font-weight: 700;
     color: #333;
@@ -203,10 +200,9 @@
     border: none;
     margin: -13px 0 50px 0px;
     cursor: pointer;
-    font-family: 'Open Sans', sans-serif;
     color: #fff;
     font-weight: 700;
-    font-size: 14px;
+    font-size: 16px;
     float: left;
     height: 40px;
 }

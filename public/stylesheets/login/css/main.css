@@ -5,7 +5,7 @@
 /*//////////////////////////////////////////////////////////////////
 [ FONT ]*/
 
-@font-face {
+/* @font-face {
   font-family: Poppins-Regular;
   src: url('../fonts/poppins/Poppins-Regular.ttf'); 
 }
@@ -23,7 +23,7 @@
 @font-face {
   font-family: Poppins-SemiBold;
   src: url('../fonts/poppins/Poppins-SemiBold.ttf'); 
-}
+} */
 
 
 
@@ -39,7 +39,6 @@
 
 body, html {
 	height: 100%;
-	font-family: Poppins-Regular, sans-serif;
 }
 
 /*---------------------------------------------*/
@@ -127,13 +126,11 @@ iframe {
 /*//////////////////////////////////////////////////////////////////
 [ Utility ]*/
 .txt1 {
-  font-family: Poppins-Regular;
   font-size: 14px;
   line-height: 1.5;
 }
 
 .txt2 {
-  font-family: Poppins-Regular;
   font-size: 14px;
   line-height: 1.5;
   color: #333333;
@@ -173,8 +170,8 @@ iframe {
 .wrap-login100 {
   width: 500px;
   background: #fff;
-  border-radius: 10px;
   overflow: hidden;
+  padding: 50px;
 }
 
 
@@ -187,7 +184,6 @@ iframe {
 
 .login100-form-title {
   display: block;
-  font-family: Poppins-Bold;
   font-size: 39px;
   color: #333333;
   line-height: 1.2;
@@ -206,7 +202,6 @@ iframe {
 }
 
 .label-input100 {
-  font-family: Poppins-Regular;
   font-size: 14px;
   color: #333333;
   line-height: 1.5;
@@ -214,7 +209,7 @@ iframe {
 }
 
 .input100 {
-  font-family: Poppins-Medium;
+  font-weight: bold;
   font-size: 16px;
   color: #333333;
   line-height: 1.2;
@@ -236,6 +231,10 @@ iframe {
   top: 0;
   left: 0;
   pointer-events: none;
+}
+
+.flex-c-m {
+  padding-top: 30px;
 }
 
 .focus-input100::after {
@@ -339,7 +338,6 @@ iframe {
 }
 
 .login100-form-btn {
-  font-family: Poppins-Medium;
   font-size: 16px;
   color: #fff;
   line-height: 1.2;
@@ -354,7 +352,7 @@ iframe {
   align-items: center;
   padding: 0 20px;
   width: 100%;
-  height: 50px;
+  height: 45px;
 }
 
 .wrap-login100-form-btn:hover .login100-form-bgbtn {
@@ -422,10 +420,28 @@ iframe {
   opacity: 1;
 }
 
+.flex-col-c {
+  padding-top: 30px;
+}
+
 @media (max-width: 992px) {
   .alert-validate::before {
     visibility: visible;
     opacity: 1;
+  }
+  .wrap-login100 {
+    padding: 0 50px;
+    height: 550px;
+  }
+  .flex-c-m .login100-social-item {
+    width: 40px;
+    height: 40px;
+  }
+  .flex-c-m {
+    padding-top: 10px;
+  }
+  .flex-col-c {
+    padding-top: 10px;
   }
 }
 
@@ -458,8 +474,12 @@ iframe {
 [ Responsive ]*/
 
 @media (max-width: 576px) {
-  .wrap-login100 {
-    padding-left: 15px;
-    padding-right: 15px;
+  /* .wrap-login100 {
+    padding: 0 15px;
+    height: 550px;
   }
+  .login100-social-item {
+    width: 40px;
+    height: 40px;
+  } */
 } 
