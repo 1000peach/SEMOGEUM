@@ -13,15 +13,20 @@
             <div class="carousel-item active">
                 <div id="first-carousel" class="top-carousel d-block" style="width: 100%; height: 250px;">
                     <h3 class="font-weight-bold text-right">
-                        어느 날 <mark style="color: white; background-color: gold;">화분</mark>이 <br />내게 말을 걸어왔다 ··· <br /><font size="6">"물 안 주면 삐뚤어질테다!"</font>
+                        어느 날 <mark style="color: white; background-color: gold;">화분</mark>이 <br />내게 말을 걸어왔다 ··· <br /><font size="6"
+                            >"물 안 주면 삐뚤어질테다!"</font
+                        >
                     </h3>
                 </div>
             </div>
             <div class="carousel-item">
                 <div id="second-carousel" class="top-carousel d-block" style="width: 100%; height: 250px;">
                     <h3 class="font-weight-bold text-right">
-                        <font size="6"><strong>마!</strong></font> <br /> 요즘 누가 귀찮구로 쓰까묵노! <br /> 쏘맥, 아샷추? <br /> 그거 
-                        <mark style="color: white; background-color: tomato;">한 번에 무라!</mark> 
+                        <font size="6"><strong>마!</strong></font> <br />
+                        요즘 누가 귀찮구로 쓰까묵노! <br />
+                        쏘맥, 아샷추? <br />
+                        그거
+                        <mark style="color: white; background-color: tomato;">한 번에 무라!</mark>
                     </h3>
                 </div>
             </div>
@@ -67,25 +72,33 @@
                         <p class="product-title text-white text-left font-weight-bold">한 모금,</p>
                         <div class="mogeum" style="padding: 10px;">
                             <p class="product-name text-center font-weight-bold">6월의 상품</p>
-                            <br />
-                            <p class="text-left product-name"><img src="/images/price-tag.png" width="30" height="30" />&nbsp;상품 <%= prodNameCount.cnt %>개</p>
-                            <p class="text-left product-name"><img src="/images/like2.png" width="30" height="30" />&nbsp;투표 <%= voteCountSum.sum %>개</p>
+                            <p class="text-left product-name">
+                                <img src="/images/price-tag.png" width="30" height="30" />&nbsp;상품 <%= prodNameCount.cnt %>개
+                            </p>
+                            <p class="text-left product-name">
+                                <img src="/images/like2.png" width="30" height="30" />&nbsp;투표 <%= voteCountSum.sum %>개
+                            </p>
                         </div>
                     </div>
                 </a>
             </div>
             <% for (var i = 0; i < 3; i++) { %>
-                <div class="col-lg-3 col-md-4 col-6">
-                        <% if (thumbnailImg[i] !== undefined) { %>
-                            <a href="/mogeum-detail/1/<%= productNum[i].productNum %>" class="d-block mb-4 h-100">
-                                <img class="img-fluid img-thumbnail mouse-up" src="<%= Object.values(thumbnailImg[i])[0] %>" alt="한 모금 상품" style="border: none; padding: 0;" />
-                            </a>
-                        <% } else { %>
-                            <a href="#" class="d-block mb-4 h-100">
-                                <img class="img-fluid img-thumbnail mouse-up" src="/images/catPaw.PNG" alt="기본 이미지" style="border: none; padding: 0;" />
-                            </a>
-                        <% } %>
-                </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <% if (thumbnailImg[i] !== undefined) { %>
+                <a href="/mogeum-detail/1/<%= productNum[i].productNum %>" class="d-block mb-4 h-100">
+                    <img
+                        class="img-fluid  mouse-up"
+                        src="<%= Object.values(thumbnailImg[i])[0] %>"
+                        alt="한 모금 상품"
+                        style="border: none; padding: 0;"
+                    />
+                </a>
+                <% } else { %>
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid  mouse-up" src="/images/catPaw.PNG" alt="기본 이미지" style="border: none; padding: 0;" />
+                </a>
+                <% } %>
+            </div>
             <% } %>
             <!-- 두 모금 -->
             <div class="col-lg-3 col-md-4 col-6">
@@ -94,26 +107,32 @@
                         <p class="product-title text-white text-left font-weight-bold">두 모금,</p>
                         <div class="mogeum" style="padding: 10px;">
                             <p class="product-name text-center font-weight-bold">5월 선정작 상품화 진행</p>
-                            <br />
                             <% if (prodNameCount !== undefined) { %>
-                            <p class="text-left product-name"><img class="mouse-up" src="/images/price-tag.png" width="30" height="30" />&nbsp;상품 <%= prodNameCount.cnt %>개</p>
+                            <p class="text-left product-name">
+                                <img class="mouse-up" src="/images/price-tag.png" width="30" height="30" />&nbsp;상품 <%= prodNameCount.cnt %>개
+                            </p>
                             <% } %>
                         </div>
                     </div>
                 </a>
             </div>
             <% for (var i = 0; i < 3; i++) { %>
-                <div class="col-lg-3 col-md-4 col-6">
-                        <% if (thumbnailImg[i] !== undefined) { %>
-                            <a href="/mogeum-detail/2/<%= rankInfo[i].productNum %>" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail mouse-up" src="<%= Object.values(rankInfo)[i].thumbnailImg %>" alt="두 모금 상품" style="border: none; padding: 0;" />
-                            </a>
-                        <% } else { %>
-                            <a href="#" class="d-block mb-4 h-100">
-                            <img class="img-fluid img-thumbnail mouse-up" src="/images/catPaw.PNG" alt="기본 이미지" style="border: none; padding: 0;" />
-                            </a>
-                        <% } %>
-                </div>
+            <div class="col-lg-3 col-md-4 col-6">
+                <% if (thumbnailImg[i] !== undefined) { %>
+                <a href="/mogeum-detail/2/<%= rankInfo[i].productNum %>" class="d-block mb-4 h-100">
+                    <img
+                        class="img-fluid  mouse-up"
+                        src="<%= Object.values(rankInfo)[i].thumbnailImg %>"
+                        alt="두 모금 상품"
+                        style="border: none; padding: 0;"
+                    />
+                </a>
+                <% } else { %>
+                <a href="#" class="d-block mb-4 h-100">
+                    <img class="img-fluid  mouse-up" src="/images/catPaw.PNG" alt="기본 이미지" style="border: none; padding: 0;" />
+                </a>
+                <% } %>
+            </div>
             <% } %>
             <!-- 세 모금 -->
             <div class="col-lg-3 col-md-4 col-6">
@@ -122,9 +141,11 @@
                         <p class="product-title text-white text-left font-weight-bold">세 모금,</p>
                         <div class="mogeum" style="padding: 10px;">
                             <p class="product-name text-center font-weight-bold">판매중인 상품</p>
-                            <br />
                             <% if (sellProductCntSum !== undefined) { %>
-                            <p class="text-left product-name"><img class="mouse-up" src="/images/price-tag.png" width="30" height="30" />&nbsp;상품 <%= sellProductCntSum[0].cnt %>개</p>
+                            <p class="text-left product-name">
+                                <img class="mouse-up" src="/images/price-tag.png" width="30" height="30" />&nbsp;상품 <%= sellProductCntSum[0].cnt
+                                %>개
+                            </p>
                             <% } %>
                         </div>
                     </div>
@@ -133,7 +154,12 @@
             <% for (var i = 0; i < 3; i++) { %>
             <div class="col-lg-3 col-md-4 col-6">
                 <a href="/mogeum-detail/3/<%= sellProducts[i].productNum %>" class="d-block mb-4 h-100">
-                    <img class="img-fluid img-thumbnail mouse-up" src="<%= sellProducts[i].thumbnailImg %>" alt="" style="border: none; padding: 0;" />
+                    <img
+                        class="img-fluid  mouse-up"
+                        src="<%= sellProducts[i].thumbnailImg %>"
+                        alt=""
+                        style="border: none; padding: 0;"
+                    />
                 </a>
             </div>
             <% } %>
@@ -144,76 +170,32 @@
     <div class="container">
         <!-- 꿀떡꿀떡 넘어가는 리뷰 전체를 묶는 div -->
         <h4 class="font-weight-bold mt-4 mb-0">꿀떡꿀떡 넘어가는 리뷰</h4>
-        <hr class="mt-2 mb-3" />
-        <% for (var i = 0; i < 3; i++) { %> 
-        <div class="row">
-            <div class="col-lg-6">
-                <div class="card mb-3" style="border: none;">
-                    <!-- 한 줄에 리뷰 2개 표시 (사진 2개, 텍스트 2개) mb는 margin bottom -->
-                    <div class="row no-gutters">
-                        <div class="col-6">
-                            <% if (sellProducts[i * 2] !== undefined) { %>
-                            <a href="/mogeum-detail/3/<%= sellProducts[i * 2].productNum %>">
-                                <img src="<%= sellProducts[i * 2].thumbnailImg %>" alt="" class="card-img mouse-up" /> <!-- thumbnailImg -->
-                            </a>
-                            <% } %>
-                        </div>
-                        <div class="col-6">
-                            <div class="card-body">
-                                <% if (sellProducts[i * 2] !== undefined) { %>
-                                <p class="review-title"><%= sellProducts[i * 2].productName %></p> <!-- productName -->
-                                <% } %>
-                                <div>
-                                    <span class="review-rank fa fa-star checked"></span>
-                                    <span class="review-rank fa fa-star checked"></span>
-                                    <span class="review-rank fa fa-star checked"></span>
-                                    <span class="review-rank fa fa-star checked"></span>
-                                    <span class="review-rank fa fa-star checked"></span>
-                                </div>
-                                <div style="height: 60%;">
-                                    <% if (sellProducts[i * 2] !== undefined) { %>
-                                    <p class="review-content"><%= reviews[i * 2].Contents %></p> <!-- productIntro -->
-                                    <% } %>
-                                    <p class="customer-ID">- <%= reviews[i * 2].userName %></p> <!-- userName -->
-                                </div>
+        <hr class="mt-2" />
+        <div class="projects-horizontal">
+            <div class="container">
+                <div class="row projects">
+                    <% for (var i = 0; i < 6; i++) { %>
+                    <div class="review-article col-lg-6 col-md-4 col-6 item">
+                        <div class="row">
+                            <div class="review-div col-md-12 col-lg-5">
+                                <a href="#"><img class="img-fluid" src="<%= reviews[i].thumbnailImg %>" /></a>
+                            </div>
+                            <div class="col">
+                                <h6 class="font-weight-bold mb-2"><%= reviews[i].productName %></h6>
+                                <p class="description">
+                                    평점: <% for (var j = 0; j < 5; j++) { %> <% if (j < reviews[i].star) { %>
+                                    <span class="fa fa-star checked"></span>
+                                    <% } else { %> <span class="fa fa-star"></span> <% } %> <% } %><br /><%= reviews[i].Contents %>
+                                </p>
                             </div>
                         </div>
                     </div>
+                    <% } %>
                 </div>
             </div>
-            <div class="col-lg-6">
-                <div class="card mb-3" style="border: none;">
-                    <div class="row no-gutters">
-                        <div class="col-6">
-                            <% if (sellProducts[i * 2 + 1] !== undefined) { %>
-                            <a href="/mogeum-detail/3/<%= sellProducts[i * 2 + 1].productNum %>">
-                                <img src="<%= sellProducts[i * 2 + 1].thumbnailImg %>" alt="" class="card-img mouse-up" /> <!-- thumbnailImg -->
-                            </a>
-                            <% } %>
-                        </div>
-                        <div class="col-6">
-                            <div class="card-body">
-                                <% if (sellProducts[i * 2 + 1] !== undefined) { %>
-                                <p class="review-title"><%= sellProducts[i * 2 + 1].productName %></p> 
-                                <% } %>
-                                <div>
-                                    <span class="review-rank fa fa-star checked"></span>
-                                    <span class="review-rank fa fa-star checked"></span>
-                                    <span class="review-rank fa fa-star checked"></span>
-                                    <span class="review-rank fa fa-star checked"></span>
-                                    <span class="review-rank fa fa-star checked"></span>
-                                </div>
-                                <% if (sellProducts[i * 2 + 1] !== undefined) { %>
-                                <p class="review-content"><%= reviews[i * 2 + 1].Contents %></p>
-                                <% } %>
-                                <p class="customer-ID">- <%= reviews[i * 2 + 1].userName %></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <h4 class="font-weight-bold mt-4 mb-0">세모금과 함께 합니다</h4>
+            <hr class="mt-2 mb-3" />
         </div>
-        <% } %>
     </div>
     <!-- 꿀떡꿀떡 넘어가는 리뷰 끝-->
     <!-- 하단 협찬사 캐러셀-->

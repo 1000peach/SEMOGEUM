@@ -27,7 +27,7 @@ const getMainPage = (req, res) => {
     str4 = 'SELECT productNum, thumbnailImg FROM VOTE_PRODUCT ORDER BY voteCount DESC;'; // 랭킹순으로
     str5 = 'SELECT productNum FROM VOTE_PRODUCT;'; // 한 모금, 두 모금 부분
     str6 = 'SELECT productNum, productName, productIntro, thumbnailImg FROM SELL_PRODUCT;'; // 세 모금 부분
-    str7 = 'SELECT Contents, userName FROM REVIEW;';
+    str7 = 'SELECT R.Contents, R.star, S.productName, S.thumbnailImg FROM REVIEW R INNER JOIN SELL_PRODUCT S ON R.productNum = S.productNum ORDER BY inputDate;';
     str8 = 'SELECT COUNT(productNum) as cnt FROM SELL_PRODUCT;';
 
     // if :로그인된 상태,  else : 로그인안된 상태
