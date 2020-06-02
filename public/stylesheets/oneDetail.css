@@ -1,7 +1,7 @@
 /* 투표 부분 */
 #current-vote {
     width: 500px;
-    height: 500px;
+    height: 700px;
     padding: 0 20px;
     border-width: 4px;
     border-style: solid;
@@ -42,6 +42,11 @@
 }
 #current-vote > div[class="btn-group"] > button {
     width: 100%;
+}
+/* 투표 현황 차트 관련 */
+.chart {
+    max-width: 100%;
+    margin: 0 auto;
 }
 /* 제품 구입 옵션 */
 #purchase-option {

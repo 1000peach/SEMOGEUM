@@ -26,7 +26,12 @@
             </form>
             <p class="vote-state text-center">투표권이 <strong id="vote-rights"><%= voteRights %></strong>개 남았습니다.</p>
             <p class="vote-state text-center">현재 순위 <strong><%= rank %></strong>위</p> 
-            <div>그래프 들어갈 공간</div>
+            <div>
+                <p class="mt-4 mb-0 text-center" style="font-size: 14px;"><b>성별</b>에 따른 투표 비율</p>
+                <canvas id="gender-chart" class="chart text-center" style="max-width: 300px;"></canvas>
+                <p class="mt-4 mb-0 text-center" style="font-size: 14px;"><b>연령</b>에 따른 투표 비율</p>
+                <canvas id="age-chart" class="chart text-center"></canvas>
+            </div>
         </div>
         <div id="product-detail" class="mb-50" style="z-index: 0;">
             <!-- 제품 사진 -->
@@ -111,9 +116,15 @@
 <script src="/javascripts/twoMogeum.js"></script>
 <script src="/javascripts/oneDetail.js"></script>
 <script>
+/* ios css 고려 */
 if (checkMobile() === 'ios') {
     $("#one-div-main").css("margin-top", "80px");
-} // ios css 고려
+}
+
+/* 투표 현황 차트 */
+showChart();
+
+/* 의견 관련 */
 selectComment();
 $('#comment-form').on('submit', function (event) {
     event.preventDefault();
