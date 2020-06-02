@@ -511,43 +511,105 @@ const getDetail = (req, res) => {
             });
         }
     } else if (req.params.page === '2') {
-        let clickSQL = `SELECT * FROM SELL_PRODUCT WHERE productNum='${req.params.productNum}'`;
-        // 후에 리뷰도 다중 쿼리로 추가 예정
-        db.query(clickSQL, (error, product) => {
-            if (error) {
-                console.log('세모금 상세 페이지 에러' + error);
-            } else {
-                if (req.session.userId) {
-                    res.end(
-                        ejs.render(detailStream, {
-                            title: title,
-                            page: req.params.page,
-                            userId: req.session.userId,
-                            userName: req.session.who,
-                            signUpUrl: '/myPage',
-                            signUpLabel: '마이페이지',
-                            loginUrl: '/cart',
-                            loginLabel: '장바구니',
-                            product: product[0],
-                        })
-                    );
+        let rank;
+        let rankObj = {};
+        let str1, str2, str3, str4, str5;
+        let isVote = '투표하기';
+        str1 = 'SELECT * FROM VOTE_PRODUCT WHERE productNum=?;'; // 다중 쿼리에서는 SQL문 내 세미콜론 꼭 써줘야함(세미콜론으로 구분하기 때문)
+        str2 = 'SELECT voteRights FROM USER WHERE userId=?;';
+        str3 = 'SELECT productNum FROM VOTE_PRODUCT ORDER BY voteCount DESC;'; // 랭킹
+        str4 = 'SELECT productNum, userId FROM IS_VOTE;';
+        str5 = 'SELECT COUNT(num) as cnt FROM IS_VOTE;';
+        if (req.session.userId) {
+            db.query(str1 + str2 + str3 + str4 + str5, [req.params.productNum, userId], (error, results) => {
+                if (error) {
+                    console.log(error);
+                    res.end('error');
                 } else {
-                    res.end(
-                        ejs.render(detailStream, {
-                            title: title,
-                            page: req.params.page,
-                            userId: '비회원',
-                            userName: '비회원',
-                            signUpUrl: '/users/signUp',
-                            signUpLabel: '회원가입',
-                            loginUrl: '/users/login',
-                            loginLabel: '로그인',
-                            product: product[0],
-                        })
-                    );
+                    // 입력받은 데이터가 DB에 존재하는지 판단합니다.
+                    if (results[0] == null || results[1] == null) {
+                        res.status(562).end(
+                            ejs.render(returnError(), {
+                                title: '에러 페이지',
+                                errorMessage: '여기 에러메세지 뭐라고 할까ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ',
+                            })
+                        );
+                    } else {
+                        // {'1': '아름다운 목걸이'}와 같이 key, value 삽입
+                        for (let i = 0; i < results[2].length; i++) {
+                            rankObj[i + 1] = results[2][i].productNum;
+                        }
+                        //console.log(rankObj);
+                        rank = handleRank(results[0][0].productNum, rankObj);
+
+                        //console.log('###########33', results[3]);
+                        for (let i = 0; i < results[4][0].cnt; i++) {
+                            if (userId == results[3][i].userId && req.params.productNum == results[3][i].productNum) {
+                                //console.log('results[3][%d]: ', i, results[3][i].productNum);
+                                isVote = '이미 투표 완료된 상품입니다.';
+                                break;
+                            }
+                        }
+
+                        res.end(
+                            ejs.render(detailStream, {
+                                title: title,
+                                page: req.params.page,
+                                userName: req.session.who,
+                                userId: req.session.userId,
+                                signUpUrl: '/myPage',
+                                signUpLabel: '마이페이지',
+                                loginUrl: '/cart',
+                                loginLabel: '장바구니',
+                                prodList: results[0][0],
+                                voteRights: results[1][0].voteRights,
+                                rank: rank,
+                                isVote: isVote,
+                            })
+                        );
+                    }
                 }
-            }
-        });
+            });
+        } else {
+            db.query(str1 + str2 + str3, [req.params.productNum, userId], (error, results) => {
+                if (error) {
+                    console.log(error);
+                    res.end('error');
+                } else {
+                    // 입력받은 데이터가 DB에 존재하는지 판단합니다.
+                    if (results[0] == null) {
+                        res.status(562).end(
+                            ejs.render(returnError(), {
+                                title: '에러 페이지',
+                                errorMessage: '에러메세지 정하자ㅏㅏㅏㅏㅏㅏㅏㅏㅏㅏ',
+                            })
+                        );
+                    } else {
+                        for (let i = 0; i < results[2].length; i++) {
+                            rankObj[i + 1] = results[2][i].productNum;
+                        }
+                        rank = handleRank(results[0][0].productNum, rankObj);
+
+                        res.status(562).end(
+                            ejs.render(detailStream, {
+                                title: title,
+                                page: req.params.page,
+                                userName: '비회원',
+                                userId: '비회원',
+                                signUpUrl: '/users/signUp',
+                                signUpLabel: '회원가입',
+                                loginUrl: '/users/login',
+                                loginLabel: '로그인',
+                                prodList: results[0][0],
+                                voteRights: 'X',
+                                rank: rank,
+                                isVote: '로그인이 필요합니다.',
+                            })
+                        );
+                    }
+                }
+            });
+        }
     } else if (req.params.page === '3') {
         let clickSQL = `SELECT * FROM SELL_PRODUCT WHERE productNum='${req.params.productNum}'`;
         // 후에 리뷰도 다중 쿼리로 추가 예정
