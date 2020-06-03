@@ -87,7 +87,7 @@
                 <% if (thumbnailImg[i] !== undefined) { %>
                 <a href="/mogeum-detail/1/<%= productNum[i].productNum %>" class="d-block mb-4 h-100">
                     <img
-                        class="img-fluid  mouse-up"
+                        class="img-fluid mouse-up"
                         src="<%= Object.values(thumbnailImg[i])[0] %>"
                         alt="한 모금 상품"
                         style="border: none; padding: 0;"
@@ -95,7 +95,7 @@
                 </a>
                 <% } else { %>
                 <a href="#" class="d-block mb-4 h-100">
-                    <img class="img-fluid  mouse-up" src="/images/catPaw.PNG" alt="기본 이미지" style="border: none; padding: 0;" />
+                    <img class="img-fluid mouse-up" src="/images/catPaw.PNG" alt="기본 이미지" style="border: none; padding: 0;" />
                 </a>
                 <% } %>
             </div>
@@ -121,7 +121,7 @@
                 <% if (thumbnailImg[i] !== undefined) { %>
                 <a href="/mogeum-detail/2/<%= rankInfo[i].productNum %>" class="d-block mb-4 h-100">
                     <img
-                        class="img-fluid  mouse-up"
+                        class="img-fluid mouse-up"
                         src="<%= Object.values(rankInfo)[i].thumbnailImg %>"
                         alt="두 모금 상품"
                         style="border: none; padding: 0;"
@@ -129,7 +129,7 @@
                 </a>
                 <% } else { %>
                 <a href="#" class="d-block mb-4 h-100">
-                    <img class="img-fluid  mouse-up" src="/images/catPaw.PNG" alt="기본 이미지" style="border: none; padding: 0;" />
+                    <img class="img-fluid mouse-up" src="/images/catPaw.PNG" alt="기본 이미지" style="border: none; padding: 0;" />
                 </a>
                 <% } %>
             </div>
@@ -154,12 +154,7 @@
             <% for (var i = 0; i < 3; i++) { %>
             <div class="col-lg-3 col-md-4 col-6">
                 <a href="/mogeum-detail/3/<%= sellProducts[i].productNum %>" class="d-block mb-4 h-100">
-                    <img
-                        class="img-fluid  mouse-up"
-                        src="<%= sellProducts[i].thumbnailImg %>"
-                        alt=""
-                        style="border: none; padding: 0;"
-                    />
+                    <img class="img-fluid mouse-up" src="<%= sellProducts[i].thumbnailImg %>" alt="" style="border: none; padding: 0;" />
                 </a>
             </div>
             <% } %>
@@ -174,7 +169,7 @@
         <div class="projects-horizontal">
             <div class="container">
                 <div class="row projects">
-                    <% for (var i = 0; i < 6; i++) { %>
+                    <% for (var i = 0; i < 6; i++) { %> <% if (reviews[i] !== undefined) { %>
                     <div class="review-article col-lg-6 col-md-4 col-6 item">
                         <div class="row">
                             <div class="review-div col-md-12 col-lg-5">
@@ -190,7 +185,7 @@
                             </div>
                         </div>
                     </div>
-                    <% } %>
+                    <% } %> <% } %>
                 </div>
             </div>
             <h4 class="font-weight-bold mt-4 mb-0">세모금과 함께 합니다</h4>
