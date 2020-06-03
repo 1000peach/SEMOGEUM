@@ -58,6 +58,7 @@
 .vote-product {
     text-align: center;
     margin: 5px;
+    display: flex;
 }
 
 .product-name {
