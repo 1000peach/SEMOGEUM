@@ -43,7 +43,6 @@ body {
 }
 
 .notfound .notfound-404 h1 {
-  font-family: 'Maven Pro', sans-serif;
   color: #ececec;
   font-weight: 900;
   font-size: 276px;
@@ -57,7 +56,6 @@ body {
 }
 
 .notfound h2 {
-  font-family: 'Maven Pro', sans-serif;
   font-size: 46px;
   color: #000;
   font-weight: 900;
@@ -66,7 +64,6 @@ body {
 }
 
 .notfound p {
-  font-family: 'Maven Pro', sans-serif;
   font-size: 16px;
   color: #000;
   font-weight: 400;
@@ -75,7 +72,6 @@ body {
 }
 
 .notfound a {
-  font-family: 'Maven Pro', sans-serif;
   font-size: 14px;
   text-decoration: none;
   text-transform: uppercase;

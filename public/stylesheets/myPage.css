@@ -62,7 +62,7 @@
 
 .product-name {
     padding: 5px;
-    font-size: large;
+    /* font-size: large; */
 }
 
 .product-name:hover{

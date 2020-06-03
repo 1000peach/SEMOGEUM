@@ -1,3 +1,47 @@
+/* 투표 현황 차트 */
+const showChart = () => {
+    var genderChart = document.getElementById('gender-chart').getContext('2d');
+    var ageChart = document.getElementById('age-chart').getContext('2d'); 
+    new Chart(genderChart, {
+        type: 'pie',
+        data: {
+            labels: ['👩', '🧑'],
+            datasets: [
+                {
+                    label: '# of Votes',
+                    data: [60, 20],
+                    backgroundColor: ['#F15F5F', '#6799FF'],
+                    borderWidth: 1,
+                },
+            ],
+        },
+    });
+    new Chart(ageChart, {
+        type: 'bar',
+        data: {
+            labels: ['10대', '20대', '30대', '40대', '50대 이상'],
+            datasets: [
+                {
+                    label: '# of Votes',
+                    data: [5, 60, 10, 4, 1],
+                    backgroundColor: ['#FFA873', '#8BBDFF', '#BFA0ED', '#FF96CA', '#86E57F'],
+                    borderWidth: 1,
+                },
+            ],
+        },
+        options: {
+			responsive: false,
+			scales: {
+				yAxes: [{
+					ticks: {
+						beginAtZero: true
+					}
+				}]
+			},
+		}
+    });
+};
+
 /* 로그인, 비로그인 나눠 투표처리 */
 const validate = () => {
     if ($('#is-vote').text() === '이미 투표 완료된 상품입니다.') {

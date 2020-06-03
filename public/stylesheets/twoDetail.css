@@ -20,7 +20,7 @@
     margin-top: 20px;
     padding: 10px;
     line-height: 200%;
-    border: 2px solid lightgrey;
+    border: 2px solid #f6f6f6;
 }
 #vote {
     font-size: 13px;
@@ -123,7 +123,6 @@
     font-size: 16px;
     color: #262626;
     margin-bottom: 15px;
-    font-family: 'Conv_helveticaneuecyr-bold';
 }
 
 .be-img-comment {
@@ -152,7 +151,6 @@
 
 .be-comment-name {
     font-size: 13px;
-    font-family: 'Conv_helveticaneuecyr-bold';
 }
 
 .be-comment-content a {

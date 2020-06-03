@@ -20,7 +20,7 @@
     margin-top: 20px;
     padding: 10px;
     line-height: 200%;
-    border: 2px solid lightgrey;
+    border: 2px solid #f6f6f6;
 }
 #vote {
     font-size: 13px;
@@ -50,7 +50,7 @@
     border-style: solid;
     border-image: linear-gradient(to right, #80d4ff, #cc66ff);
     border-image-slice: 2;
-    padding: 8px;
+    padding: 5px;
     cursor: pointer;
     top: 100px;
 }
@@ -61,6 +61,6 @@
     right: 40px;
     bottom: 20px;
     z-index: 4;
-    background-image: linear-gradient(to right, rgb(128, 212, 255), rgb(204, 102, 255));
+    background-image: linear-gradient(to right, #80d4ff, #cc66ff);
     box-shadow: 10px 10px 10px lightgray;
 }
