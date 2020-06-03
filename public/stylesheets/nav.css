@@ -19,14 +19,9 @@ nav {
 #logo {
     height: 100px;
 }
-/* #logo-video {
-    position: absolute;
-    left: 20px;
-}
 #logo-img {
-    position: absolute;
-    left: 170px;
-} */
+    margin-top: 15px;
+} 
 #userdiv {
     height: 170px;
     padding: 20px;
@@ -95,6 +90,12 @@ button {
 }
 
 @media screen and (max-width: 768px) {
+    #logo-video {
+        margin-top: 10px;
+    }
+    #logo-img {
+        margin-top: 25px;
+    }
     #logout {
         position: absolute;
         bottom: 15px;
