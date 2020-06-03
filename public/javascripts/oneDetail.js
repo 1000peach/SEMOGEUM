@@ -22,6 +22,7 @@ const validate = () => {
                 ' 상품에 정말로 투표하시겠습니까?'
         ) == true
     ) {
+        alter('정상적으로 투표되었습니다.');
         return true; // '확인' 누르면 form의 action으로 페이지 전환
     } else {
         return false; // '취소' 누르면 페이지 전환 X
