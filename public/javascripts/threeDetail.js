@@ -46,10 +46,8 @@ const selectReview = () => {
                 let star = Number(data[i].star);
                 for (var j = 0; j < 5; j++) {
                     if (j < star) {
-                        console.log('노란');
                         starDiv += `<span class="fa fa-star checked"></span>`;
                     } else {
-                        console.log('검은');
                         starDiv += `<span class="fa fa-star"></span>`;
                     }
                 }

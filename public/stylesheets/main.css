@@ -23,12 +23,12 @@
 }
 #second-carousel {
     background-image: url('/images/main2.png');
-    background-color: seashell;
+    background-color: #FFEBFE;
     background-size: 250px 250px;
 }
 #third-carousel {
     background-image: url('/images/main1.png');
-    background-color: seashell;
+    background-color: #D9E5FF;
     background-size: 250px 250px;
 }
 h3 {
@@ -92,16 +92,12 @@ mark {
     margin: 0;
     float: left;
     background-image: linear-gradient(to right, #80d4ff, #cc66ff);
-    border-radius: 5px;
     height: 6vh;
     padding: 1vh 10px;
 }
 .product-name {
-    font-size: 18px;
+    /* font-size: 18px; */
     color: black;
-}
-.mogeum p:hover {
-    text-decoration: underline;
 }
 /* 꿀떡꿀떡 넘어가는 리뷰 */
 .card-body {
@@ -120,7 +116,7 @@ mark {
     color: black;
 }
 .review-title:hover {
-    color: #D1B2FF;
+    color: #d1b2ff;
     transition: 0.2s;
 }
 .review-content {
@@ -135,9 +131,86 @@ mark {
     text-align: right;
     padding: 0%;
 }
+/* 메인에 있는 상품 hover시 */
+.mouse-up:hover {
+    opacity: 0.8;
+    transform: scale(1.1);
+    transition: transform 0.5s;
+}
+
 /* footer */
 .footer p {
     font-size: 11px;
     text-align: center;
     padding-bottom: 10px;
 }
+/* 꿀떡 리뷰 */
+.projects-horizontal {
+    color: #313437;
+    background-color: #fff;
+}
+
+.projects-horizontal h2 {
+    font-weight: bold;
+    margin-bottom: 40px;
+    padding-top: 40px;
+    color: inherit;
+}
+
+@media (max-width: 767px) {
+    .projects-horizontal h2 {
+        margin-bottom: 25px;
+        padding-top: 25px;
+        font-size: 24px;
+    }
+}
+
+.projects-horizontal .intro {
+    font-size: 16px;
+    max-width: 500px;
+    margin: 0 auto 10px;
+}
+
+.projects-horizontal .projects {
+    padding-bottom: 40px;
+}
+
+.projects-horizontal .item {
+    padding-top: 30px;
+    min-height: 160px;
+}
+
+@media (max-width: 767px) {
+    .projects-horizontal .item {
+        padding-top: 40px;
+        min-height: 160px;
+    }
+}
+
+.projects-horizontal .item .name {
+    font-size: 18px;
+    font-weight: bold;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    color: inherit;
+}
+
+@media (max-width: 991px) {
+    .projects-horizontal .item .name {
+        margin-top: 22px;
+    }
+}
+
+.projects-horizontal .item .description {
+    /* font-size: 15px; */
+    margin-bottom: 0;
+}
+
+.review-article {
+    cursor: pointer;
+}
+
+.review-article:hover .row div h6 {
+    color: #D1B2FF;
+    transition: 0.2s;
+} 

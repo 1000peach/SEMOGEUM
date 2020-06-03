@@ -51,7 +51,6 @@
 .product-card .product-price {
     display: block;
     color: #404040;
-    font-family: 'Montserrat', sans-serif;
     font-weight: normal;
 }
 .product-card .product-price > del {

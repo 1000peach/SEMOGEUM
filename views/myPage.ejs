@@ -46,7 +46,7 @@
                     </div>
                 </a>
             <% } else { %>
-                <p>투표 리스트 없음</p>
+                
             <% } %>
         <% } %>
         <hr>
@@ -87,7 +87,7 @@
             </div>
         </div>
         <div class = "col-2">
-            2020년 <br> 5월 25일
+            2020년 <br> 6월 6일
         </div>
         <div class = "col-2">
             15,000 <br>
@@ -153,89 +153,6 @@
         </div>
     </div>
 
-    <!-- <div class = "row title">
-        <div class = "col-6 title-left">
-            <strong>장바구니</strong>
-        </div>
-        <div class = "col-6 title-right">
-            더보기 >
-        </div>
-    </div>
-    <hr style="border: 0.5px solid black;">
-    <div class = "row" style="align-items: center;">
-        <div class = "col-9 semi-title">
-            제품 정보
-        </div>
-        <div class = "col-3 semi-title">
-            담은금액 (수량)
-        </div>
-    </div>
-    <div class = "row" style="align-items: center;">
-        <div class = "col-1">
-            <div class="form-check cart-check">
-                <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-            </div>
-        </div>
-        <div class = "col-8">
-            <div class = "row" style="align-items: center;">
-                <div class = "col-4 cart-img">
-                    <img src = "/images/catPaw.PNG" class = "img-fluid">
-                </div>
-                <div class = "col-8">
-                    귀요미 고양이 장갑
-                </div>
-            </div>
-        </div>
-        <div class = "col-3 cart-price">
-            19,800원 <br>
-            (2개)
-        </div>
-    </div>
-    <hr style="border: 0.5px solid grey;">
-    <div class = "row" style="align-items: center;">
-        <div class = "col-1">
-            <div class="form-check cart-check">
-                <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-            </div>
-        </div>
-        <div class = "col-8">
-            <div class = "row" style="align-items: center;">
-                <div class = "col-4 cart-img">
-                    <img src = "/images/catPaw.PNG" class = "img-fluid">
-                </div>
-                <div class = "col-8">
-                    귀요미 고양이 장갑
-                </div>
-            </div>
-        </div>
-        <div class = "col-3 cart-price">
-            19,800원 <br>
-            (2개)
-        </div>
-    </div>
-    <hr style="border: 0.5px solid grey;">
-    <div class = "row" style="align-items: center;">
-        <div class = "col-1">
-            <div class="form-check cart-check">
-                <input class="form-check-input position-static" type="checkbox" id="blankCheckbox" value="option1" aria-label="...">
-            </div>
-        </div>
-        <div class = "col-8">
-            <div class = "row" style="align-items: center;">
-                <div class = "col-4 cart-img">
-                    <img src = "/images/catPaw.PNG" class = "img-fluid">
-                </div>
-                <div class = "col-8">
-                    귀요미 고양이 장갑
-                </div>
-            </div>
-        </div>
-        <div class = "col-3 cart-price">
-            19,800원 <br>
-            (2개)
-        </div>
-    </div> -->
-
     <div class = "row title">
         <div class = "col title-left">
             <strong>이 외 도움이 필요하시다면?</strong>
@@ -244,24 +161,29 @@
     <hr style="border: 0.5px solid grey;">
     <div class = "row" style="align-items: center;">
         <div class = "col-4">
-            <button type="button" class="btn btn-outline-primary btn-block extra-menu">최근 본 상품</button>
+            <button type="button" class="btn btn-outline-primary btn-block extra-menu etc">최근 본 상품</button>
         </div>
         <div class = "col-4">
-            <button type="button" class="btn btn-outline-primary btn-block extra-menu">구매 후기</button>
+            <button type="button" class="btn btn-outline-primary btn-block extra-menu etc">구매 후기</button>
         </div>
         <div class = "col-4">
-            <button type="button" class="btn btn-outline-primary btn-block extra-menu">1:1 문의</button>
+            <button type="button" class="btn btn-outline-primary btn-block extra-menu etc">1:1 문의</button>
         </div>
     </div>
     <div class = "row" style="align-items: center;">
         <div class = "col-4">
-            <button type="button" class="btn btn-outline-primary btn-block extra-menu">취소/환불 문의</button>
+            <button type="button" class="btn btn-outline-primary btn-block extra-menu etc">취소/환불 문의</button>
         </div>
         <div class = "col-4">
-            <button type="button" class="btn btn-outline-primary btn-block extra-menu">쿠폰함</button>
+            <button type="button" class="btn btn-outline-primary btn-block extra-menu etc">쿠폰함</button>
         </div>
         <div class = "col-4">
-            <button type="button" class="btn btn-outline-primary btn-block extra-menu">세모금에게 <br> 후원하기</button>
+            <button type="button" class="btn btn-outline-primary btn-block extra-menu etc">세모금에게 <br> 후원하기</button>
         </div>
     </div>
 </div>
+<script>
+    $('.etc').on('click', function() {
+        alert('준비중인 서비스입니다.');
+    });
+</script>

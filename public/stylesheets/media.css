@@ -20,6 +20,12 @@
         max-width: 400px;
         max-height: 400px;
     }
+    .review-div {
+        margin-bottom: 10px;
+    }
+    .description {
+        font-size: 14px;
+    }
 }
 /* md 기준보다 브라우저 크기 작을 때 */
 @media screen and (max-width: 768px) {

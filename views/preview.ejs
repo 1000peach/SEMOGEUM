@@ -1,11 +1,42 @@
-<button type="button" id="top" style="width: 60px; height: 60px;">
-    <img src="/images/top.png" width="30" height="30" alt="scroll top" />
-</button>
-<body class="thumbnail-wrapper" style="display: flex; margin: 0; background-color: black;">
-    <img class="text-center" src="/images/preview.png" alt="세모금 프리뷰" style="height: 10000px; margin: 0 auto;" usemap="#preview-map"/>
-    <map name="preview-map">
-        <area shape="rect" coords="0,700,1920,850" alt="세모금 메인 바로가기" href="/" style="outline: 0;" />
-        <area shape="rect" coords="0,9450,1920,9600" alt="세모금 회원가입 바로가기" href="/users/signUp" style="outline: 0;" />
-        <area shape="rect" coords="0,9720,1920,9870" alt="세모금 메인 바로가기" href="/" style="outline: 0;" />
-    </map>
-</body>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+        <style>
+            #top {
+                border-radius: 50%;
+                position: fixed;
+                right: 40px;
+                bottom: 20px;
+                z-index: 4;
+                background-image: linear-gradient(to right, #80d4ff, #cc66ff);
+                outline: none;
+                border: none;
+                cursor: pointer;
+            }
+            @media screen and (max-width: 576px) {
+                #top {
+                    right: 10px;
+                    width: 100px;
+                    height: 100px;
+                }
+            }
+        </style>
+    </head>
+    <body class="thumbnail-wrapper" style="display: flex; margin: 0; background-color: black;">
+        <button type="button" id="top" style="width: 100px; height: 100px;">
+            <img src="/images/top.png" width="60" height="60" alt="scroll top" />
+        </button>
+        <img class="text-center" src="/images/preview.png" alt="세모금 프리뷰" style="height: 10000px; margin: 0 auto;" usemap="#preview-map" />
+        <map name="preview-map">
+            <area shape="rect" coords="0,700,1920,850" alt="세모금 메인 바로가기" href="/" style="outline: 0;" />
+            <area shape="rect" coords="0,9450,1920,9600" alt="세모금 회원가입 바로가기" href="/users/signUp" style="outline: 0;" />
+            <area shape="rect" coords="0,9720,1920,9870" alt="세모금 메인 바로가기" href="/" style="outline: 0;" />
+        </map>
+    </body>
+    <script>
+        $('#top').click(function () {
+            $('html, body, #one-div, #main-div').animate({ scrollTop: 0 }, 500);
+            return false;
+        });
+    </script>
+</html>
