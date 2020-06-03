@@ -23,12 +23,12 @@
 }
 #second-carousel {
     background-image: url('/images/main2.png');
-    background-color: #FFEBFE;
+    background-color: lavenderblush;
     background-size: 250px 250px;
 }
 #third-carousel {
     background-image: url('/images/main1.png');
-    background-color: #D9E5FF;
+    background-color: rgb(233, 240, 255);
     background-size: 250px 250px;
 }
 h3 {
