@@ -85,7 +85,8 @@
                 <hr class="mb-3" />
                 <h6 class="text-center text-dark font-weight-bold mb-0">제품명 : <%= prodList.productName %></h6>
                 <hr class="mt-3" />
-                <p class="text-dark"><%= prodList.productDetail %></p>
+                <input type="hidden" id="prodDetail" value="<%= prodList.productDetail %>" />
+                <p id="showDetail" class="text-dark"></p>
                 <hr class="mt-3" />
                 <h6 class="mb-3"><strong>유권자의 한 마디</strong> <small style="float: right;">응원 또는 개선사항을 남겨주세요!</small></h6>
                 <!-- 댓글 -->
@@ -120,10 +121,10 @@
 if (checkMobile() === 'ios') {
     $("#one-div-main").css("margin-top", "80px");
 }
-
+/* 제품 설명 개행 적용 */
+showProdDetail();
 /* 투표 현황 차트 */
 showChart();
-
 /* 의견 관련 */
 selectComment();
 $('#comment-form').on('submit', function (event) {

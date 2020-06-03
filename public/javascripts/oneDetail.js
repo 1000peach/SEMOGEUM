@@ -1,7 +1,7 @@
 /* 투표 현황 차트 */
 const showChart = () => {
     var genderChart = document.getElementById('gender-chart').getContext('2d');
-    var ageChart = document.getElementById('age-chart').getContext('2d'); 
+    var ageChart = document.getElementById('age-chart').getContext('2d');
     new Chart(genderChart, {
         type: 'pie',
         data: {
@@ -30,15 +30,17 @@ const showChart = () => {
             ],
         },
         options: {
-			responsive: false,
-			scales: {
-				yAxes: [{
-					ticks: {
-						beginAtZero: true
-					}
-				}]
-			},
-		}
+            responsive: false,
+            scales: {
+                yAxes: [
+                    {
+                        ticks: {
+                            beginAtZero: true,
+                        },
+                    },
+                ],
+            },
+        },
     });
 };
 
@@ -189,4 +191,10 @@ const selectComment = () => {
             console.log('client 의견 검색 에러' + err);
         },
     });
+};
+
+/* 제품 자세 설명 개행 처리 */
+const showProdDetail = () => {
+    var str = $('#prodDetail').val();
+    $('#showDetail').html(str);
 };
