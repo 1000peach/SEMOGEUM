@@ -151,7 +151,7 @@ const getCartPage = (req, res) => {
     cartStream += fs.readFileSync(__dirname + '/../views/header.ejs', 'utf8');
     cartStream += fs.readFileSync(__dirname + '/../views/nav.ejs', 'utf8');
     cartStream += fs.readFileSync(__dirname + '/../views/cart.ejs', 'utf8');
-    cartStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
+    // cartStream += fs.readFileSync(__dirname + '/../views/footer.ejs', 'utf8');
 
     res.writeHead(200, { 'Content-Type': 'text/html; charset=utf8' }); // 200은 성공
 

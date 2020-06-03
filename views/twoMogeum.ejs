@@ -14,30 +14,29 @@
     <button type="button" id="top" style="width: 60px; height: 60px;">
         <img src="/images/top.png" width="30" height="30" alt="scroll top" />
     </button>
-    <div class="container">
+    <div class="container" style="margin-bottom: 60px;">
         <h5 class="font-weight-bold mt-3 mb-3">TOP6 선정되어 상품화 진행 중에 있습니다!</h5>
-        <% for (var i = 0; i < 6; i++) { %>
+        <% for (var i = 0; i < 6; i++) { %> <% var progress = 16 * (i + 1); %>
         <div class="row">
             <div class="col-lg-7 col-sm-12">
-                <div class="row">
+                <div class="row" style="cursor: pointer;">
                     <div class="col-lg-4 col-sm-4 col-xs-4 two-image">
                         <% if (selectResults[i] !== undefined) { %>
-                            <a href="/mogeum-detail/2/<%= selectResults[i].productNum %>">
-                                <img src="<%= selectResults[i].thumbnailImg %>" class="img-fluid" />
-                            </a>
+                        <a href="/mogeum-detail/2/<%= selectResults[i].productNum %>">
+                            <img src="<%= selectResults[i].thumbnailImg %>" class="img-fluid" />
+                        </a>
                         <% } %>
                     </div>
                     <div class="col-lg-8 col-sm-8 col-xs-8">
                         <div class="two-title">
                             <% if (selectResults[i] !== undefined) { %>
-                                <strong><%= selectResults[i].productName %></strong>
+                            <strong><%= selectResults[i].productName %></strong>
                             <% } %>
                         </div>
                         <div class="two-content">
-                            <% if (selectResults[i] !== undefined) { %>
-                                <%= selectResults[i].productIntro %>
-                            <% } %>
+                            <% if (selectResults[i] !== undefined) { %> <%= selectResults[i].productIntro %> <% } %>
                         </div>
+                        <br />
                         <div class="progress">
                             <div
                                 class="progress-bar progress-bar-custom"
@@ -45,14 +44,14 @@
                                 aria-valuenow="33"
                                 aria-valuemin="0"
                                 aria-valuemax="100"
-                                style="width: 33%;"
+                                style="width: <%= progress %>%;"
                             ></div>
                         </div>
                         <div class="row">
                             <div class="col-3" id="progress-content">선정 완료</div>
-                            <div class="col-3" id="progress-content">제작 기업<br>컨택 중</div>
+                            <div class="col-3" id="progress-content">제작 기업<br />컨택 중</div>
                             <div class="col-3" id="progress-content">제작 완료</div>
-                            <div class="col-3" id="progress-content">판매 페이지<br>업로드</div>
+                            <div class="col-3" id="progress-content">판매 페이지<br />업로드</div>
                         </div>
                     </div>
                 </div>
@@ -69,20 +68,19 @@
                 <div class="row">
                     <div class="col-6 oneword-menu">
                         <div class="row oneword-bottom">
-                            <img src="/images/bell.png" class="oneword-img" width=30px; height="30px;">
-                            <p>메일로 출시 알림 받기</p>
+                            <img src="/images/bell.png" class="oneword-img" width="30px;" height="30px;" />
+                            <button type="button">메일로 출시 알림 받기</button>
                         </div>
                     </div>
                     <div class="col-6 oneword-menu">
                         <div class="row oneword-bottom">
-                            <img src="/images/mail.png" class="oneword-img" width=30px; height="30px;">
-                            <p>판매자에게 의견 보내기</p>
+                            <img src="/images/mail.png" class="oneword-img" width="30px;" height="30px;" />
+                            <button type="button">판매자에게 의견 보내기</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <% } %>
-            <% if (i == 1) { %>
+            <% } %> <% if (i == 1) { %>
             <div class="col-lg-5 col-sm-12 content-right">
                 <div class="oneword">
                     <strong>판매자의 한 마디</strong>
@@ -94,20 +92,19 @@
                 <div class="row">
                     <div class="col-6 oneword-menu">
                         <div class="row oneword-bottom">
-                            <img src="/images/bell.png" class="oneword-img" width=30px; height="30px;">
-                            <p>메일로 출시 알림 받기</p>
+                            <img src="/images/bell.png" class="oneword-img" width="30px;" height="30px;" />
+                            <button type="button">메일로 출시 알림 받기</button>
                         </div>
                     </div>
                     <div class="col-6 oneword-menu">
                         <div class="row oneword-bottom">
-                            <img src="/images/mail.png" class="oneword-img" width=30px; height="30px;">
-                            <p>판매자에게 의견 보내기</p>
+                            <img src="/images/mail.png" class="oneword-img" width="30px;" height="30px;" />
+                            <button type="button">판매자에게 의견 보내기</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <% } %>
-            <% if (i == 2) { %>
+            <% } %> <% if (i == 2) { %>
             <div class="col-lg-5 col-sm-12 content-right">
                 <div class="oneword">
                     <strong>판매자의 한 마디</strong>
@@ -119,20 +116,19 @@
                 <div class="row">
                     <div class="col-6 oneword-menu">
                         <div class="row oneword-bottom">
-                            <img src="/images/bell.png" class="oneword-img" width=30px; height="30px;">
-                            <p>메일로 출시 알림 받기</p>
+                            <img src="/images/bell.png" class="oneword-img" width="30px;" height="30px;" />
+                            <button type="button">메일로 출시 알림 받기</button>
                         </div>
                     </div>
                     <div class="col-6 oneword-menu">
                         <div class="row oneword-bottom">
-                            <img src="/images/mail.png" class="oneword-img" width=30px; height="30px;">
-                            <p>판매자에게 의견 보내기</p>
+                            <img src="/images/mail.png" class="oneword-img" width="30px;" height="30px;" />
+                            <button type="button">판매자에게 의견 보내기</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <% } %>
-            <% if (i == 3) { %>
+            <% } %> <% if (i == 3) { %>
             <div class="col-lg-5 col-sm-12 content-right">
                 <div class="oneword">
                     <strong>판매자의 한 마디</strong>
@@ -144,20 +140,19 @@
                 <div class="row">
                     <div class="col-6 oneword-menu">
                         <div class="row oneword-bottom">
-                            <img src="/images/bell.png" class="oneword-img" width=30px; height="30px;">
-                            <p>메일로 출시 알림 받기</p>
+                            <img src="/images/bell.png" class="oneword-img" width="30px;" height="30px;" />
+                            <button type="button">메일로 출시 알림 받기</button>
                         </div>
                     </div>
                     <div class="col-6 oneword-menu">
                         <div class="row oneword-bottom">
-                            <img src="/images/mail.png" class="oneword-img" width=30px; height="30px;">
-                            <p>판매자에게 의견 보내기</p>
+                            <img src="/images/mail.png" class="oneword-img" width="30px;" height="30px;" />
+                            <button type="button">판매자에게 의견 보내기</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <% } %>
-            <% if (i == 4) { %>
+            <% } %> <% if (i == 4) { %>
             <div class="col-lg-5 col-sm-12 content-right">
                 <div class="oneword">
                     <strong>판매자의 한 마디</strong>
@@ -169,20 +164,19 @@
                 <div class="row">
                     <div class="col-6 oneword-menu">
                         <div class="row oneword-bottom">
-                            <img src="/images/bell.png" class="oneword-img" width=30px; height="30px;">
-                            <p>메일로 출시 알림 받기</p>
+                            <img src="/images/bell.png" class="oneword-img" width="30px;" height="30px;" />
+                            <button type="button">메일로 출시 알림 받기</button>
                         </div>
                     </div>
                     <div class="col-6 oneword-menu">
                         <div class="row oneword-bottom">
-                            <img src="/images/mail.png" class="oneword-img" width=30px; height="30px;">
-                            <p>판매자에게 의견 보내기</p>
+                            <img src="/images/mail.png" class="oneword-img" width="30px;" height="30px;" />
+                            <button type="button">판매자에게 의견 보내기</button>
                         </div>
                     </div>
                 </div>
             </div>
-            <% } %>
-            <% if (i == 5) { %>
+            <% } %> <% if (i == 5) { %>
             <div class="col-lg-5 col-sm-12 content-right">
                 <div class="oneword">
                     <strong>판매자의 한 마디</strong>
@@ -194,14 +188,14 @@
                 <div class="row">
                     <div class="col-6 oneword-menu">
                         <div class="row oneword-bottom">
-                            <img src="/images/bell.png" class="oneword-img" width=30px; height="30px;">
-                            <p>메일로 출시 알림 받기</p>
+                            <img src="/images/bell.png" class="oneword-img" width="30px;" height="30px;" />
+                            <button type="button">메일로 출시 알림 받기</button>
                         </div>
                     </div>
                     <div class="col-6 oneword-menu">
                         <div class="row oneword-bottom">
-                            <img src="/images/mail.png" class="oneword-img" width=30px; height="30px;">
-                            <p>판매자에게 의견 보내기</p>
+                            <img src="/images/mail.png" class="oneword-img" width="30px;" height="30px;" />
+                            <button type="button">판매자에게 의견 보내기</button>
                         </div>
                     </div>
                 </div>
@@ -210,28 +204,42 @@
         </div>
         <% } %>
     </div>
-    <div class="container">
+    <div class="container mb-5">
         <h5 class="font-weight-bold mt-3 mb-3">명예의 전당</h5>
         <section class="customer-logos slider">
             <div class="slide"><img src="/images/2월.PNG" /></div>
             <div class="slide"><img src="/images/uploads/sellProducts/도마1.png" /></div>
             <div class="slide"><img src="/images/uploads/sellProducts/물통1.png" /></div>
             <div class="slide"><img src="/images/uploads/sellProducts/샤워기1.png" /></div>
-            <div class="slide"><img src="/images/3월.PNG"/></div>
+            <div class="slide"><img src="/images/3월.PNG" /></div>
             <div class="slide"><img src="/images/uploads/sellProducts/신발1.png" /></div>
             <div class="slide"><img src="/images/uploads/sellProducts/옥수수1.png" /></div>
             <div class="slide"><img src="/images/uploads/sellProducts/옷걸이1.png" /></div>
         </section>
     </div>
-    <div class="container">
-        <h5 class="font-weight-bold mt-3 mb-3">협찬사</h5>
+    <div class="container mb-5">
+        <h5 class="font-weight-bold mt-3 mb-3">세모금의 협찬사</h5>
         <section class="a slider">
-            <div class="slide"><img src="/images/가천대로고.jpg" /></div>
-            <div class="slide"><img src="/images/성신여대로고.png" /></div>
-            <div class="slide"><img src="/images/세종대로고.jpg" /></div>
-            <div class="slide"><img src="/images/숙명여대로고.png" /></div>
-            <div class="slide"><img src="/images/이화여대로고.jpg" /></div>
-            <div class="slide"><img src="/images/큐시즘.jpeg" /></div>
-            <div class="slide"><img src="/images/profile.png"/></div>
+            <div class="slide">
+                <a href="https://www.gachon.ac.kr/main.jsp" target="_blank"><img src="/images/가천대로고.jpg" /></a>
+            </div>
+            <div class="slide">
+                <a href="https://www.sungshin.ac.kr/sites/main_kor/main.jsp" target="_blank"><img src="/images/성신여대로고.png" /></a>
+            </div>
+            <div class="slide">
+                <a href="http://www.sejong.ac.kr/" target="_blank"><img src="/images/세종대로고.jpg" /></a>
+            </div>
+            <div class="slide">
+                <a href="http://www.sookmyung.ac.kr/sookmyungkr/index.do" target="_blank"><img src="/images/숙명여대로고.png" /></a>
+            </div>
+            <div class="slide">
+                <a href="http://www.ewha.ac.kr/ewha/index.do" target="_blank"><img src="/images/이화여대로고.jpg" /></a>
+            </div>
+            <div class="slide">
+                <a href="https://cafe.naver.com/kusitms" target="_blank"><img src="/images/큐시즘.jpeg" /></a>
+            </div>
+            <div class="slide">
+                <a href="/"><img src="/images/profile.png" /></a>
+            </div>
         </section>
     </div>
