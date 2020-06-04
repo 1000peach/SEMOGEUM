@@ -108,3 +108,28 @@
             </div>
         </div>
     </div>
+</div> <!-- 메인 페이지 전체 감싸는 div -->
+</body>
+<script src="/javascripts/nav.js"></script>
+<script src="/javascripts/oneMogeum.js"></script>
+<script src="/javascripts/twoMogeum.js"></script>
+<script src="/javascripts/cart.js"></script>
+<script>
+/* ios css 고려 */
+if (checkMobile() === 'ios') {
+    $("#res-header").css("margin-bottom", "80px");
+}
+/* 장바구니 삭제 함수 */
+$('#remove-form').on('submit', function (event) {
+event.preventDefault();
+deleteCart().then(data => {
+    if (data.status === 1) { // 장바구니 삭제 성공
+        selectCart();
+        alert("장바구니에서 삭제되었습니다!");
+    } else { // 장바구니 삭제 실패
+        alert("올바르지 않은 접근입니다!");
+    }
+}); 
+});
+</script>
+</html>

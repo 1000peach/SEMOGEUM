@@ -24,6 +24,15 @@
                 <button id="is-vote" class="text-white"><%= isVote %></button>
                 <input type="hidden" name="productNum" value="<%= prodList.productNum %>" />
             </form>
+            <div class="text-center mt-4 mb-4">
+                <a href="#"><img src="/images/share.png" width="25" height="25" alt="share" /></a>
+                <a href="http://google.com/" target="_blank"><img src="/images/gmail.png" width="30" height="30" alt="gmail" /></a>
+                <a href="https://www.youtube.com/" target="_blank"><img src="/images/youtube.png" width="30" height="30" alt="youtube" /></a>
+                <a href="https://www.instagram.com/" target="_blank"><img src="/images/instagram.png" width="30" height="30" alt="instagram" /></a>
+                <a href="https://www.facebook.com/" target="_blank"><img src="/images/facebook.png" width="30" height="30" alt="facebook" /></a>
+                <a href="https://twitter.com/" target="_blank"><img src="/images/twitter.png" width="30" height="30" alt="twitter" /></a>
+                <a href="https://www.kakaocorp.com/" target="_blank"><img src="/images/kakaotalk.png" width="30" height="30" alt="kakaotalk" /></a>
+             </div>
             <p class="vote-state text-center">투표권이 <strong id="vote-rights"><%= voteRights %></strong>개 남았습니다.</p>
             <p class="vote-state text-center">현재 순위 <strong><%= rank %></strong>위</p> 
             <div>
@@ -85,7 +94,8 @@
                 <hr class="mb-3" />
                 <h6 class="text-center text-dark font-weight-bold mb-0">제품명 : <%= prodList.productName %></h6>
                 <hr class="mt-3" />
-                <p class="text-dark"><%= prodList.productDetail %></p>
+                <input type="hidden" id="prodDetail" value="<%= prodList.productDetail %>" />
+                <p id="showDetail" class="text-dark"></p>
                 <hr class="mt-3" />
                 <h6 class="mb-3"><strong>유권자의 한 마디</strong> <small style="float: right;">응원 또는 개선사항을 남겨주세요!</small></h6>
                 <!-- 댓글 -->
@@ -120,10 +130,10 @@
 if (checkMobile() === 'ios') {
     $("#one-div-main").css("margin-top", "80px");
 }
-
+/* 제품 설명 개행 적용 */
+showProdDetail();
 /* 투표 현황 차트 */
 showChart();
-
 /* 의견 관련 */
 selectComment();
 $('#comment-form').on('submit', function (event) {

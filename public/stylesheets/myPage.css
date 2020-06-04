@@ -4,12 +4,12 @@
     font-weight: 600;
     color: white;
     background-image: linear-gradient(to right, #66ccff, #cc66ff);
-    padding: 20px;
+    padding: 15px;
     display: block;
 }
 
 #profile-info {
-    background-color: gainsboro;
+    background-color: #f3f2ff;
     margin: 5px;
     padding: 10px;
     display: flex;
@@ -20,11 +20,29 @@
     text-align: center;
 }
 
+#profile-info div button,
+.buy-review button {
+    background-image: linear-gradient(to right, #66ccff, #cc66ff);
+    border: none;
+    color: white;
+}
+#profile-info div button:hover,
+.buy-review button:hover {
+    opacity: 0.7;
+}
+
 #profile-img {
     text-align: center;
     width: 100px;
     height: 100px;
     margin-bottom: 10px;
+    border: 1px solid lightgray;
+    border-radius: 50%;
+    background-color: white;
+}
+
+.buy-review button {
+    font-size: 16px;
 }
 
 #level {
@@ -32,13 +50,13 @@
 }
 
 .profile-sep1 {
-    background-color: white;
+    background-color: #ecebff;
     padding: 20px;
     margin: 5px;
+    border-radius: 5px;
 }
 
 .profile-sep2 {
-    background-color: white;
     padding: 20px;
     margin: 5px;
 }
@@ -58,6 +76,7 @@
 .vote-product {
     text-align: center;
     margin: 5px;
+    display: flex;
 }
 
 .product-name {
@@ -65,8 +84,8 @@
     /* font-size: large; */
 }
 
-.product-name:hover{
-    color: #D1B2FF;
+.buy-specific:hover div div #buy-product, .row:hover div div .buy-list-title, .vote-product div:hover a .product-name {
+    color: #d1b2ff;
     transition: 0.2s;
 }
 
@@ -103,7 +122,7 @@
     width: 70px;
     height: 30px;
     color: white;
-    background-color: #D1B2FF;
+    background-color: #d1b2ff;
 }
 
 .buy-list {
@@ -116,18 +135,8 @@
     text-align: center;
 }
 
-#buy-product:hover {
-    color: #D1B2FF;
-    transition: 0.2s;
-}
-
 .col-sm-12 {
     margin-top: 10px;
-}
-
-.buy-list-title:hover {
-    color: #D1B2FF;
-    transition: 0.2s;
 }
 
 .semi-title {
@@ -150,15 +159,19 @@
 }
 
 .extra-menu {
-    border: 1px solid #66ccff;
+    background-color: #ECEBFF;
     margin-top: 5px;
     text-align: center;
-    font-size: 17px;
-    font-weight: 600;
+    font-size: 16px;
     height: 100px;
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.extra-menu:hover {
+    background-color: #d1b2ff;
+    transition: 0.2s;
 }
 
 .row {

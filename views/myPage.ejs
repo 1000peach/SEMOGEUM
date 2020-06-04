@@ -1,189 +1,185 @@
 <div id="one-div" class="col-div" style="width: 100%;">
-<div class = "container-fluid"> <!--헤더 부분-->
-    <div class = "row mypage-header" style="justify-content: center;">
-        마이페이지 <br>
-        <%= userId %>님의 남은 투표수 (6월) : <%= voteRights %>개
-    </div>
-</div>
-
-<div class = "container">
-    <div class = "row" id = "profile-info" style="justify-content: center; align-items: center;">
-        <div class = "col-lg-6 col-sm-12 profile-sep1" id = "profile">
-            <img src = "/images/man.png" id = "profile-img"> <br>
-            <div id = "level">골드피커: Lv.3 <br> </div>
-            닉네임: <%= userName %> <br>
-            <button type = "button" class = "btn btn-outline-dark btn-sm edit">수정</button>
-        </div>
-        <div class = "col-lg-6 col-sm-12 profile-sep2">
-            <div class = "contact"><strong>연락처</strong> <br></div>
-            이메일: <%= userEmail %> <br>
-            휴대전화: +82 <%= userPhone %> <br>
-            <button type = "button" class = "btn btn-outline-dark btn-sm edit">수정</button>
+    <div class="container-fluid">
+        <!--헤더 부분-->
+        <div class="row mypage-header" style="justify-content: center;">
+            <p style="font-size: 18px;"><b style="font-size: 28px;">마이 페이지</b><br /><%= userName %>님의 남은 투표수 (6월) : <%= voteRights %>개</p>
         </div>
     </div>
-</div>
 
-<hr style = "border: solid 1px grey;">
-
-<div class = "container">
-    <div class = "row" style="align-items: center;">
-        <div class = "col-6 title-left">
-            <strong>투표 내역 조회</strong>
-        </div>
-        <div class = "col-6 title-right">
-            더보기 >
+    <div class="container">
+        <div class="row" id="profile-info" style="justify-content: center; align-items: center;">
+            <div class="col-lg-6 col-sm-12 profile-sep1" id="profile">
+                <img src="/images/tamsasoo.png" id="profile-img" /> <br />
+                <div id="level">골드피커: Lv.3 <br /></div>
+                닉네임: <%= userName %> <br />
+                <button type="button" class="btn btn-outline-dark btn-sm edit">수정</button>
+            </div>
+            <div class="col-lg-6 col-sm-12 profile-sep2">
+                <div class="contact"><strong>연락처</strong> <br /></div>
+                이메일 : <%= userEmail %> <br />
+                휴대전화 : +82 <%= userPhone %> <br />
+                <button type="button" class="btn btn-outline-dark btn-sm edit">수정</button>
+            </div>
         </div>
     </div>
-    <hr style="border: 0.5px solid black;">
-    <div class = "row vote-product">
-        <% for (var i = 0; i < 4; i++) { %>
-            <% if (myVoteData[i] !== undefined) { %>
+
+    <div class="container">
+        <div class="row" style="align-items: center;">
+            <div class="col-6 title-left mt-3">
+                <strong>투표 내역 조회</strong>
+            </div>
+            <div class="col-6 title-right">
+                <small class="font-weight-bold">더보기 ></small>
+            </div>
+        </div>
+        <hr class="mt-1" />
+        <div class="row vote-product">
+            <% for (var i = 0; i < 4; i++) { %> <% if (myVoteData[i] !== undefined) { %>
+            <div class="col-md-4 col-lg-3 col-sm-6 col-xs-6" style="cursor: pointer;">
                 <a href="/mogeum-detail/1/<%= myVoteData[i].productNum %>">
-                    <div class="col-md-4 col-lg-3 col-sm-6 col-xs-6">
-                        <img src="<%= myVoteData[i].thumbnailImg%>" class="img-fluid" />
-                        <div class="rank">현재 1위</div>
-                        <div class="product-name"><%= myVoteData[i].productName %></div>
-                    </div>
+                    <img src="<%= myVoteData[i].thumbnailImg%>" class="img-fluid" />
+                    <div class="rank">현재 <%= i + 1 %>위</div>
+                    <div class="product-name font-weight-bold"><%= myVoteData[i].productName %></div>
                 </a>
-            <% } else { %>
-                
-            <% } %>
-        <% } %>
-        <hr>
-    </div>
+            </div>
+            <% } else { %> <% } %> <% } %>
+            <!-- <hr> -->
+        </div>
 
-    <div class = "row title">
-        <div class = "col-6 title-left">
-            <strong>주문 내역 조회</strong>
-        </div>
-        <div class = "col-6 title-right">
-            더보기 >
-        </div>
-    </div>
-    <hr style="border: 0.5px solid black;">
-    <div class = "row buy-list">
-        <div class = "col-6">
-            제품정보
-        </div>
-        <div class = "col-2">
-            주문일자
-        </div>
-        <div class = "col-2">
-            주문금액<br>(수량)
-        </div>
-        <div class = "col-2">
-            주문 상태
-        </div>
-    </div>
-    <div class = "row buy-specific" style="align-items: center;">
-        <div class = "col-6">
-            <div class = "row" style="align-items: center;">
-                <div class = "col-xl-5 col-sm-12">
-                    <img src = "/images/catPaw.PNG" class = "img-fluid buy-img">
-                </div>
-                <div class = "col-xl-7 col-sm-12" id = "buy-product">
-                    귀여운 민지를 만져봐요!
-                </div>
+        <div class="row title">
+            <div class="col-6 title-left">
+                <strong>주문 내역 조회</strong>
+            </div>
+            <div class="col-6 title-right">
+                <small class="font-weight-bold">더보기 ></small>
             </div>
         </div>
-        <div class = "col-2">
-            2020년 <br> 6월 6일
+        <hr class="mt-1" />
+        <div class="row buy-list">
+            <div class="col-6">
+                제품정보
+            </div>
+            <div class="col-2">
+                주문일자
+            </div>
+            <div class="col-2">주문금액<br />(수량)</div>
+            <div class="col-2">
+                주문 상태
+            </div>
         </div>
-        <div class = "col-2">
-            15,000 <br>
-            (1개)
+        <div class="row buy-specific" style="align-items: center;">
+            <div class="col-6">
+                <div class="row" style="align-items: center; cursor: pointer;">
+                    <div class="col-xl-5 col-sm-12">
+                        <img src="/images/uploads/sellProducts/우산1.jpg" class="img-fluid buy-img" />
+                    </div>
+                    <div class="col-xl-7 col-sm-12 font-weight-bold" id="buy-product">
+                        잠금 우산
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                2020년 <br />
+                6월 6일
+            </div>
+            <div class="col-2">
+                15,000 <br />
+                (1개)
+            </div>
+            <div class="col-2">
+                배송 준비중
+            </div>
         </div>
-        <div class = "col-2">
-            배송 준비중
-        </div>
-    </div>
 
-    <div class = "row title">
-        <div class = "col-6 title-left">
-            <strong>상품 구매 내역</strong>
-        </div>
-        <div class = "col-6 title-right">
-            더보기 >
-        </div>
-    </div>
-    <hr style="border: 0.5px solid black;">
-    <div class = "row" style="align-items: center;">
-        <div class = "col-lg-6 col-sm-12">
-            <div class = "row" style="align-items: center;">
-                <div class = "col-5">
-                    <img src = "/images/catPaw.PNG" class = "img-fluid">
-                </div>
-                <div class = "col-7 buy-list-title">
-                    귀민쓰 장갑
-                </div>
+        <div class="row title">
+            <div class="col-6 title-left">
+                <strong>상품 구매 내역</strong>
+            </div>
+            <div class="col-6 title-right">
+                <small class="font-weight-bold">더보기 ></small>
             </div>
         </div>
-        <div class = "col-lg-6 col-sm-12 buy-review">
-            <button type = "button" class = "btn btn-outline-dark btn-lg btn-block">구매 후기 작성</button>
-        </div>
-    </div>
-    <div class = "row" style="align-items: center;">
-        <div class = "col-lg-6 col-sm-12">
-            <div class = "row" style="align-items: center;">
-                <div class = "col-5">
-                    <img src = "/images/catPaw.PNG" class = "img-fluid">
-                </div>
-                <div class = "col-7 buy-list-title">
-                    귀민쓰 장갑
+        <hr class="mt-1" />
+        <div class="row" style="align-items: center;">
+            <div class="col-lg-6 col-sm-12" style="cursor: pointer;">
+                <div class="row" style="align-items: center;">
+                    <div class="col-5">
+                        <img src="/images/uploads/sellProducts/도마1.png" class="img-fluid" />
+                    </div>
+                    <div class="col-7 buy-list-title text-center font-weight-bold">
+                        다기능 도마
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class = "col-lg-6 col-sm-12 buy-review">
-            <button type = "button" class = "btn btn-outline-dark btn-lg btn-block">구매 후기 작성</button>
-        </div>
-    </div>
-    <div class = "row" style="align-items: center;">
-        <div class = "col-lg-6 col-sm-12">
-            <div class = "row" style="align-items: center;">
-                <div class = "col-5">
-                    <img src = "/images/catPaw.PNG" class = "img-fluid">
-                </div>
-                <div class = "col-7 buy-list-title">
-                    귀민쓰 장갑
-                </div>
+            <div class="col-lg-6 col-sm-12 buy-review">
+                <button type="button" class="btn btn-outline-dark btn-lg btn-block">구매 후기 작성</button>
             </div>
         </div>
-        <div class = "col-lg-6 col-sm-12 buy-review">
-            <button type = "button" class = "btn btn-outline-dark btn-lg btn-block">구매 후기 작성</button>
+        <div class="row" style="align-items: center;">
+            <div class="col-lg-6 col-sm-12" style="cursor: pointer;">
+                <div class="row" style="align-items: center;">
+                    <div class="col-5">
+                        <img src="/images/uploads/sellProducts/물통1.png" class="img-fluid" />
+                    </div>
+                    <div class="col-7 buy-list-title text-center font-weight-bold">
+                        반반물통
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12 buy-review">
+                <button type="button" class="btn btn-outline-dark btn-lg btn-block">구매 후기 작성</button>
+            </div>
         </div>
-    </div>
+        <div class="row" style="align-items: center;">
+            <div class="col-lg-6 col-sm-12" style="cursor: pointer;">
+                <div class="row" style="align-items: center;">
+                    <div class="col-5">
+                        <img src="/images/uploads/sellProducts/신발1.png" class="img-fluid" />
+                    </div>
+                    <div class="col-7 buy-list-title text-center font-weight-bold">
+                        방수 신발 커버
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-sm-12 buy-review">
+                <button type="button" class="btn btn-outline-dark btn-lg btn-block">구매 후기 작성</button>
+            </div>
+        </div>
 
-    <div class = "row title">
-        <div class = "col title-left">
-            <strong>이 외 도움이 필요하시다면?</strong>
+        <div class="row title">
+            <div class="col title-left">
+                <strong>이 외 도움이 필요하시다면?</strong>
+            </div>
+        </div>
+        <hr class="mt-1" />
+        <div class="row" style="align-items: center;">
+            <div class="col-4">
+                <button type="button" class="btn btn-block extra-menu etc">최근 본 상품</button>
+            </div>
+            <div class="col-4">
+                <button type="button" class="btn btn-block extra-menu etc">구매 후기</button>
+            </div>
+            <div class="col-4">
+                <button type="button" class="btn btn-block extra-menu etc">1:1 문의</button>
+            </div>
+        </div>
+        <div class="row" style="align-items: center;">
+            <div class="col-4">
+                <button type="button" class="btn btn-block extra-menu etc">취소/환불 문의</button>
+            </div>
+            <div class="col-4">
+                <button type="button" class="btn btn-block extra-menu etc">쿠폰함</button>
+            </div>
+            <div class="col-4">
+                <button type="button" class="btn btn-block extra-menu etc">
+                    세모금에게 <br />
+                    후원하기
+                </button>
+            </div>
         </div>
     </div>
-    <hr style="border: 0.5px solid grey;">
-    <div class = "row" style="align-items: center;">
-        <div class = "col-4">
-            <button type="button" class="btn btn-outline-primary btn-block extra-menu etc">최근 본 상품</button>
-        </div>
-        <div class = "col-4">
-            <button type="button" class="btn btn-outline-primary btn-block extra-menu etc">구매 후기</button>
-        </div>
-        <div class = "col-4">
-            <button type="button" class="btn btn-outline-primary btn-block extra-menu etc">1:1 문의</button>
-        </div>
-    </div>
-    <div class = "row" style="align-items: center;">
-        <div class = "col-4">
-            <button type="button" class="btn btn-outline-primary btn-block extra-menu etc">취소/환불 문의</button>
-        </div>
-        <div class = "col-4">
-            <button type="button" class="btn btn-outline-primary btn-block extra-menu etc">쿠폰함</button>
-        </div>
-        <div class = "col-4">
-            <button type="button" class="btn btn-outline-primary btn-block extra-menu etc">세모금에게 <br> 후원하기</button>
-        </div>
-    </div>
-</div>
-<script>
-    $('.etc').on('click', function() {
-        alert('준비중인 서비스입니다.');
-    });
-</script>
+    <script>
+        $('.etc').on('click', function () {
+            alert('준비중인 서비스입니다.');
+        });
+    </script>

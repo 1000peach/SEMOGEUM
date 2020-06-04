@@ -87,6 +87,7 @@ const handleProdContest = (req, res) => {
             console.log('body: ', body);
             console.log('imgFileArr: ', imgFileArr);
 
+            prodDetail = prodDetail.replace(/(?:\r\n|\r|\n)/g, '<br>');
             str1 = `INSERT INTO VOTE_PRODUCT(userId, productName, productIntro, productDetail, thumbnailImg, detailImg1, detailImg2, detailImg3, userPhone, userEmail) VALUES('${body.userId}', '${body.prodName}', '${body.prodIntro}', ?, ?, ?, ?, ?, ?, ?)`;
 
             if (req.session.userId) {
