@@ -160,6 +160,7 @@
     font-weight: 900;
 }
 .form-v7-content .form-detail .input-text {
+    font-family: sans-serif;
     margin-bottom: 15px;
 }
 .form-v7-content .form-detail input {
