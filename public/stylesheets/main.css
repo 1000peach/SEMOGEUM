@@ -31,6 +31,9 @@
     background-color: rgb(233, 240, 255);
     background-size: 250px 250px;
 }
+.review-article a:hover {
+    color: black;
+}
 h3 {
     position: absolute;
     bottom: 50px;

@@ -171,19 +171,21 @@
                 <div class="row projects">
                     <% for (var i = 0; i < 6; i++) { %> <% if (reviews[i] !== undefined) { %>
                     <div class="review-article col-lg-6 col-md-4 col-6 item">
-                        <div class="row">
-                            <div class="review-div col-md-12 col-lg-5">
-                                <a href="#"><img class="img-fluid" src="<%= reviews[i].thumbnailImg %>" /></a>
+                        <a href="/mogeum-detail/3/<%= reviews[i].productNum %>" class="text-black">
+                            <div class="row">
+                                <div class="review-div col-md-12 col-lg-5">
+                                    <img class="img-fluid" src="<%= reviews[i].thumbnailImg %>" />
+                                </div>
+                                <div class="col">
+                                    <h6 class="font-weight-bold mb-2"><%= reviews[i].productName %></h6>
+                                    <p class="description">
+                                        평점: <% for (var j = 0; j < 5; j++) { %> <% if (j < reviews[i].star) { %>
+                                        <span class="fa fa-star checked"></span>
+                                        <% } else { %> <span class="fa fa-star"></span> <% } %> <% } %><br /><%= reviews[i].Contents %>
+                                    </p>
+                                </div>
                             </div>
-                            <div class="col">
-                                <h6 class="font-weight-bold mb-2"><%= reviews[i].productName %></h6>
-                                <p class="description">
-                                    평점: <% for (var j = 0; j < 5; j++) { %> <% if (j < reviews[i].star) { %>
-                                    <span class="fa fa-star checked"></span>
-                                    <% } else { %> <span class="fa fa-star"></span> <% } %> <% } %><br /><%= reviews[i].Contents %>
-                                </p>
-                            </div>
-                        </div>
+                        </a>
                     </div>
                     <% } %> <% } %>
                 </div>
