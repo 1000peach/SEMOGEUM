@@ -287,7 +287,7 @@ const getMogeum = (req, res) => {
             });
         }
     } else if (req.params.page === '2') {
-        let str1 = 'SELECT productNum, productName, productIntro, thumbnailImg FROM VOTE_PRODUCT ORDER BY voteCount DESC;';
+        let str1 = 'SELECT productNum, productName, productIntro, thumbnailImg, voteCount FROM VOTE_PRODUCT ORDER BY voteCount DESC;';
         if (req.session.userId) {
             db.query(str1, (error, results) => {
                 if (error) {
