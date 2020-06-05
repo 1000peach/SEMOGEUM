@@ -15,7 +15,11 @@
     padding-bottom: 5px;
 }
 
-.two-title:hover {
+.two-title > a {
+    color: black;
+}
+
+.two-title > a :hover {
     color: #D1B2FF;
     transition: 0.2s;
 }

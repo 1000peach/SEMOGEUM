@@ -30,9 +30,11 @@
                     </div>
                     <div class="col-lg-8 col-sm-8 col-xs-8">
                         <div class="two-title">
-                            <% if (selectResults[i] !== undefined) { %>
-                            <strong><%= selectResults[i].productName %></strong>
-                            <% } %>
+                            <a href="/mogeum-detail/2/<%= selectResults[i].productNum %>" style="font-size: 16px;">
+                                <% if (selectResults[i] !== undefined) { %>
+                                <strong><%= selectResults[i].productName %></strong>
+                                <% } %>
+                            </a>
                         </div>
                         <div class="two-content">
                             <% if (selectResults[i] !== undefined) { %> <%= selectResults[i].productIntro %> <% } %>
