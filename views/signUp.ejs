@@ -3,14 +3,13 @@
         <div class="form-v7-content">
             <div class="form-left">
                 <div class="thumbnail-wrapper">
-                    <img id="big-logo" src="/images/signup.jpg" class="text-center" alt="세모금 메인" usemap="#signup-map" />
-                    <map name="signup-map">
-                        <area shape="rect" coords="110,540,225,620" alt="세모금 메인 바로가기" href="/mogeum/1" style="outline: 0;" />
-                    </map>
+                    <a href="/">
+                        <img id="big-logo" src="/images/signup.jpg" class="text-center" alt="세모금 메인" usemap="#signup-map" />
+                    </a>
                 </div>
             </div>
-			<form class="form-detail" action="/users/signUp" method="POST" id="myform">
-				<img id="mini-logo" src="/images/icon.png" alt="세모금 로고" />
+            <form class="form-detail" action="/users/signUp" method="POST" id="myform">
+                <a href="/"><img id="mini-logo" src="/images/icon.png" alt="세모금 로고" /></a>
                 <div class="form-row">
                     <label for="username">아이디</label>
                     <input type="text" name="userId" class="input-text" required />
