@@ -19,12 +19,12 @@
         <!-- 제품 간단 소개, 투표 상태 -->
         <div id="current-vote" class="mb-3">
             <h5 class="font-weight-bold mt-3 mb-3 text-center prodName"><%= prodList.productName %></h5>
-            <p class="text-center"><%= prodList.productIntro %></p>
+            <p class="text-center mb-3"><%= prodList.productIntro %></p>
             <form id="vote-form" method="POST" action="/vote?_method=PUT" onsubmit="return validate();">
                 <button id="is-vote" class="text-white">선정 완료</button>
                 <input type="hidden" name="productNum" value="<%= prodList.productNum %>" />
             </form>
-            <p class="mt-5 mb-4 text-center" style="color: #AD8EDB;">TOP6로 선정되어 <b>상품화 진행중</b>입니다.<br />많은 관심 감사합니다!</p>
+            <p class="mt-5 mb-5 text-center" style="color: #AD8EDB;">TOP6로 선정되어 <b>상품화 진행중</b>입니다.<br />많은 관심 감사합니다!</p>
             <div class="text-center mt-2 mb-5">
                 <a href="#"><img src="/images/share.png" width="25" height="25" alt="share" /></a>
                 <a href="http://google.com/" target="_blank"><img src="/images/gmail.png" width="30" height="30" alt="gmail" /></a>
@@ -94,7 +94,7 @@
                 <h6 class="text-center text-dark font-weight-bold mb-0">제품명 : <%= prodList.productName %></h6>
                 <hr class="mt-3" />
                 <input type="hidden" id="prodDetail" value="<%= prodList.productDetail %>" />
-                <p id="showDetail" class="text-dark"></p>
+                <p id="showDetail" class="text-dark mb-3"></p>
             </div>
         </div><!-- product-detail -->
     </div> <!-- /one-div-main -->
