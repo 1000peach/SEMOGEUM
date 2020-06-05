@@ -20,10 +20,10 @@
         <!-- 제품 간단 소개, 투표 상태 -->
         <div id="current-vote" class="mb-3" style="height: 350px;">
             <h5 class="font-weight-bold mt-3 mb-3 text-center prodName"><%= product.productName %></h5>
-            <p class="text-center"><%= product.productIntro %></p>
-            <h5 class="text-dark font-weight-bold text-right mb-3"><%= Number(product.productPrice).toLocaleString("en") %>원</h5>
+            <p class="text-center mb-3"><%= product.productIntro %></p>
+            <h5 class="text-dark font-weight-bold text-right mb-4"><%= Number(product.productPrice).toLocaleString("en") %>원</h5>
             <form id="cart-form" method="PUT">
-                <div style="display: flex;">
+                <div style="display: flex;" class="mb-3">
                     <button type="button" class="text-white" onclick="alert('준비 중인 서비스 입니다.');">구매하기</button>
                     <button class="text-white">장바구니</button>
                 </div>
