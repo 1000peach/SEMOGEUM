@@ -194,7 +194,7 @@ const selectComment = () => {
     });
 };
 
-/* 제품 자세 설명 개행 처리 */
+/* 제품 상세 설명 개행 처리 */
 const showProdDetail = () => {
     var str = $('#prodDetail').val();
     $('#showDetail').html(str);

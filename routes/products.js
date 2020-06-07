@@ -287,9 +287,11 @@ router.post('/selectComment', selectComment);
 
 /* 세모금 조회수 증가 */
 router.put('/updateCnt/:productNum/:currentCnt', updateCnt);
+
 /* 세모금 상품 리뷰 기능 */
 router.post('/addReview', addReview);
 router.post('/selectReview', selectReview);
+
 /* 세모금 장바구니 기능 */
 router.get('/selectCart', selectCart);
 router.put('/insertCart/:userId/:productNum', insertCart);
