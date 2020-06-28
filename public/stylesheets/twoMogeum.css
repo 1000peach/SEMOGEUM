@@ -20,8 +20,8 @@
 }
 
 .two-title > a :hover {
-    color: #D1B2FF;
-    transition: 0.2s;
+    /* color: #D1B2FF;
+    transition: 0.2s; */
 }
 
 .two-content {
@@ -198,4 +198,9 @@
     color: white;
     padding: 5px;
     background-image: linear-gradient(to right, #66ccff, #cc66ff);
+}
+
+.two-div:hover > div > .two-title a {
+    color: #D1B2FF;
+    transition: 0.2s;
 }
