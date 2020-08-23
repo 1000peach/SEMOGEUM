@@ -27,24 +27,24 @@
 ![THREE & CART](https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FoYL25%2FbtqFNfYw4tq%2FudrzkSM3d1OSSiKSKxve30%2Fimg.gif)
 
 ## :smile: Author
-<table><tbody><tr><td align="center" valign="top" width="8%">
+<table><tbody><tr><td align="center" valign="top" width="5%">
 <a href="https://github.com/1000peach">
-<img src="https://avatars0.githubusercontent.com/u/36118545?s=400&u=22af5f807fdd9578b8c5a0dbc6453633d72c02fa&v=4" width="75" height="75"><br />
+<img src="https://avatars0.githubusercontent.com/u/36118545?s=400&u=22af5f807fdd9578b8c5a0dbc6453633d72c02fa&v=4" width="55" height="55"><br />
 천승아
 </a>
-</td><td align="center" valign="top" width="8%">
+</td><td align="center" valign="top" width="5%">
 <a href="https://github.com/prinyun11">
-<img src="https://avatars1.githubusercontent.com/u/45250049?s=400&u=743781fa797f330d5c81a47042d5c4c96052ea7b&v=4" width="75" height="75"><br />
+<img src="https://avatars1.githubusercontent.com/u/45250049?s=400&u=743781fa797f330d5c81a47042d5c4c96052ea7b&v=4" width="55" height="55"><br />
 김지윤
 </a>
-</td><td align="center" valign="top" width="8%">
+</td><td align="center" valign="top" width="5%">
 <a href="https://github.com/mnxmnz">
-<img src="https://avatars1.githubusercontent.com/u/48766355?s=400&u=0dea83ee4d3109e4753d165f0131faff90085f49&v=4" width="75" height="75"><br />
+<img src="https://avatars1.githubusercontent.com/u/48766355?s=400&u=0dea83ee4d3109e4753d165f0131faff90085f49&v=4" width="55" height="55"><br />
 김민지
 </a>
-</td><td align="center" valign="top" width="8%">
+</td><td align="center" valign="top" width="5%">
 <a href="https://github.com/cbw1030">
-<img src="https://avatars1.githubusercontent.com/u/40957996?s=400&u=df7fd20ae5c0afb399738e9b00fb770bea02d4b3&v=4" width="75" height="75"><br />
+<img src="https://avatars1.githubusercontent.com/u/40957996?s=400&u=df7fd20ae5c0afb399738e9b00fb770bea02d4b3&v=4" width="55" height="55"><br />
 조재희
 </a>
 </td></tr></tbody></table>
