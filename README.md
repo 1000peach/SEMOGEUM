@@ -61,4 +61,4 @@
 - 큐시즘 학술제 최우수상
 
 ## :link: URL
-- [SEMOGEUM 바로가기](http://3.34.5.134:3000/preview)
+- [SEMOGEUM 바로가기](http://54.180.96.120:3000/preview)
